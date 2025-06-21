@@ -20,6 +20,11 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - Skip to relevant parts functionality
 - Personalized highlight extraction
 
+### Follow-Up Questions
+- Real-time Q&A via text or voice for any unclear concept
+- Context-aware answers generated from the current podcast segment
+- Automatic resume: continue playback exactly where the listener paused after doubts are cleared
+
 ### Natural Language Interface
 - Text and voice chat interaction
 - Conversational podcast browsing
