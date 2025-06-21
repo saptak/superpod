@@ -16,25 +16,25 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - Learning user preferences through chat interactions and Spotify data
 
 ### Content Exploration
-- AI-generated podcast synopses
-- Segment-level content breakdown with timestamps
-- Topic extraction and categorization per episode
+- AI-generated podcast synopses with personalized highlights
+- Segment-level content breakdown with timestamps (Future Enhancement)
+- Topic extraction and categorization per episode (Future Enhancement)
 
 ### Smart Playback
 - Spotify Web Playback SDK integration for seamless audio streaming
-- Segment-specific playback based on user interests
-- Skip to relevant parts functionality
-- Personalized highlight extraction
+- Standard podcast playback controls (play, pause, skip, volume)
+- Segment-specific playback based on user interests (Future Enhancement)
+- Skip to relevant parts functionality (Future Enhancement)
 
-### Follow-Up Questions
+### Follow-Up Questions (Future Enhancement)
 - Real-time Q&A via text or voice for any unclear concept
 - Context-aware answers generated from the current podcast segment
 - Automatic resume: continue playback exactly where the listener paused after doubts are cleared
 
 ### Natural Language Interface
-- Text and voice chat interaction
+- Text chat interaction for podcast discovery
 - Conversational podcast browsing
-- Voice commands for playback control
+- Voice commands for playback control (Future Enhancement)
 
 ## Technical Stack
 - **Frontend**: Progressive Web App (PWA) for web/mobile
@@ -42,6 +42,7 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - **Audio**: Spotify Web Playback SDK for streaming
 - **AI/ML**: LLM integration for chat, content analysis
 - **Data**: Spotify Web API for podcasts, user profiles, listening history
+- **Service Layer**: RESTful API with TypeScript interfaces for frontend integration
 
 ## Success Metrics
 - User engagement time per session
@@ -50,12 +51,12 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - Chat interaction frequency
 
 ## MVP Scope
-1. Spotify OAuth 2.0 authentication flow
-2. User interest extraction from real Spotify listening history
-3. Chat interface with live user Spotify data context
-4. Real-time Spotify podcast search and recommendations
-5. AI episode synopsis generation using actual podcast content
-6. Spotify Web Playback SDK integration with live streaming
+1. Spotify OAuth 2.0 authentication flow with service API
+2. User interest extraction from real Spotify listening history via API
+3. Chat interface with live user Spotify data context through service layer
+4. Real-time Spotify podcast search and recommendations via RESTful API
+5. AI episode synopsis generation using actual podcast content through service
+6. Spotify Web Playback SDK integration with live streaming and API state management
 
 ## Future Enhancements
 - Native mobile apps (iOS/Android)

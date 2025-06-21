@@ -26,10 +26,11 @@
    - Add basic components (Button, Input, Card)
 
 3. **Create basic project structure and TypeScript types**
-   - Set up folder structure (components, hooks, utils, types, services)
-   - Define core TypeScript interfaces (User, SpotifyProfile, Podcast, Episode, Message)
+   - Set up folder structure (components, hooks, utils, types, services, api)
+   - Define core TypeScript interfaces from API specification
+   - Create API client service layer for backend communication
    - Create initial routing with React Router
-   - Set up environment variables for Spotify API keys
+   - Set up environment variables for API base URL and keys
 
 **Deliverable**: Working development environment with styled hello world
 
@@ -38,17 +39,17 @@
 ### Phase 2: Spotify Authentication 🔐
 **Goal**: Implement Spotify OAuth and extract user interests
 
-1. **Implement Spotify OAuth 2.0 login flow**
-   - Set up Spotify App registration and get client credentials
-   - Implement PKCE OAuth flow for security
+1. **Implement Spotify OAuth 2.0 login flow via service API**
+   - Create API client methods for auth endpoints (/auth/spotify/*)
+   - Implement PKCE OAuth flow using service layer
    - Create login/logout components with shadcn/ui
-   - Handle authentication state management
+   - Handle authentication state management with API tokens
 
-2. **Extract user interests from Spotify listening history**
-   - Fetch user's top artists, tracks, and genres
-   - Get recently played tracks and analyze patterns
-   - Create user interest profile from listening data
-   - Store user preferences in local state/storage
+2. **Extract user interests from Spotify listening history via API**
+   - Implement API client for user profile endpoints (/user/*)
+   - Fetch user's interests through service layer
+   - Create user interest profile from API responses
+   - Store user preferences with proper token refresh logic
 
 **Deliverable**: Working Spotify authentication with user interest extraction
 
@@ -57,16 +58,16 @@
 ### Phase 3: Core Chat Interface 💬
 **Goal**: Build functional chat UI with user context
 
-1. **Implement chat interface with live Spotify user context**
+1. **Implement chat interface with live Spotify user context via API**
    - Create ChatContainer, MessageList, MessageInput components
    - Use shadcn/ui components (Card, Input, Button, ScrollArea)
-   - Include real user's Spotify interests and listening history in chat context
-   - Implement message state management with useState
+   - Implement API client for chat endpoints (/chat/*)
+   - Include real user's Spotify context in API requests
 
-2. **Test chat UI with real user data from Spotify API**
-   - Fetch and display actual user listening preferences
-   - Test message rendering with live Spotify data
-   - Ensure responsive design on mobile
+2. **Test chat UI with real user data from service API**
+   - Use live API calls to backend service
+   - Test message rendering with actual API responses
+   - Ensure responsive design on mobile with real data
 
 **Deliverable**: Interactive chat interface with live Spotify user context
 
@@ -75,17 +76,17 @@
 ### Phase 4: AI Integration 🤖
 **Goal**: Connect chat to Llama 4.0 with personalized context
 
-1. **Set up Llama 4.0 API integration with real Spotify context**
-   - Configure API client with proper authentication
-   - Create API service layer with error handling
-   - Include user's real Spotify listening data in AI prompts
-   - Add loading states and retry logic
+1. **Backend service handles Llama 4.0 integration (frontend connects via API)**
+   - Frontend uses existing chat API endpoints
+   - Service layer handles AI integration with Spotify context
+   - Frontend implements proper error handling for API responses
+   - Add loading states and retry logic for API calls
 
-2. **Connect chat interface to Llama 4.0 with live data**
-   - Integrate real AI responses with live Spotify user context
-   - Handle streaming responses if supported
-   - Add conversation context management with actual user data
-   - Personalize responses based on real user's music taste and history
+2. **Connect chat interface to service API with live data**
+   - Use chat API endpoints for AI-powered responses
+   - Handle API response streaming if supported by service
+   - Add conversation context management through API
+   - Display personalized responses from service layer
 
 **Deliverable**: Working AI chat with personalized Llama 4.0 responses using live data
 
@@ -94,17 +95,17 @@
 ### Phase 5: Spotify Podcast Features 🎧
 **Goal**: Add Spotify podcast discovery and playback
 
-1. **Integrate real-time Spotify podcast search and recommendations**
-   - Build SearchBar with shadcn/ui Input for live Spotify search
-   - Create PodcastCard and PodcastList components with real podcast data
-   - Use Spotify Web API for live podcast search results
-   - Implement personalized recommendations using actual user listening history
+1. **Integrate real-time Spotify podcast search and recommendations via API**
+   - Build SearchBar with shadcn/ui Input
+   - Create PodcastCard and PodcastList components
+   - Implement API client for podcast endpoints (/podcasts/*)
+   - Use service API for search results and personalized recommendations
 
-2. **Implement Spotify Web Playback SDK with live streaming**
-   - Set up Premium account requirement check
-   - Create AudioPlayer component with Spotify SDK for actual streaming
-   - Add play/pause, progress bar, volume controls for real playback
-   - Use shadcn/ui components for player UI with live audio data
+2. **Implement Spotify Web Playback SDK with API state management**
+   - Set up Premium account requirement check via API
+   - Create AudioPlayer component with Spotify SDK
+   - Implement playback API endpoints (/playback/*)
+   - Sync playback state between SDK and service API
 
 **Deliverable**: Live Spotify podcast catalog with real-time search and streaming
 
@@ -137,18 +138,20 @@
 
 ### Key Considerations
 - Start with simple implementations, iterate to add complexity
-- Test UI components with real data from the beginning
-- Keep API calls abstracted in service layer (Spotify + Llama 4.0)
+- Test UI components with real data from service API
+- Keep all external API calls abstracted in backend service layer
+- Frontend communicates only with internal service API
 - Maintain responsive design throughout development
-- Handle Spotify Premium account requirements gracefully
-- Implement proper error handling for OAuth flows
-- Store Spotify tokens securely with refresh logic
-- Never use placeholder or mock data - always integrate with live APIs
+- Handle API errors gracefully with proper user feedback
+- Implement proper token refresh logic through service API
+- Never use placeholder or mock data - always integrate with live service API
 
 ### Future Enhancements (Post-MVP)
 
 - Voice commands integration
 - Segment-based playback with timestamps
-- User preference learning
+- Real-time Q&A during podcast playback
+- Topic extraction and categorization per episode
+- User preference learning algorithms
 - Social features (sharing, playlists)
 - Advanced recommendation algorithms
