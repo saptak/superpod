@@ -1,14 +1,15 @@
 # SuperPod - AI-Powered Podcast Discovery Platform
 
-SuperPod is an AI-driven podcast discovery and consumption platform that integrates with YouTube to provide personalized podcast recommendations through natural language chat interactions.
+SuperPod is an AI-driven podcast discovery and consumption platform that uses local media files with AI-powered transcription and semantic search for personalized content exploration.
 
 ## Features
 
-- **YouTube Integration**: Authenticate with Google to access YouTube data
-- **AI-Powered Chat**: Conversational podcast discovery using Llama 4.0
-- **Personalized Recommendations**: Based on YouTube watch history and subscriptions
-- **Caption Navigation**: Search and navigate within podcast videos using captions
-- **Video Playback**: Integrated YouTube Player API for seamless streaming
+- **Local Media Storage**: Automatically processes media files dropped into storage
+- **AI Transcription**: Uses Llama 4.0 for audio-to-text conversion with timestamped segments
+- **Vector Search**: Semantic search through transcribed content using ChromaDB
+- **AI-Powered Chat**: Conversational content discovery and Q&A about podcast content
+- **Real-time Processing**: File watcher automatically processes new media files
+- **Personalized Recommendations**: AI-powered content suggestions based on listening history
 
 ## Tech Stack
 
@@ -19,16 +20,20 @@ SuperPod is an AI-driven podcast discovery and consumption platform that integra
 - React Router for navigation
 
 ### Backend
-- Node.js + Express + TypeScript
-- YouTube Data API v3 integration
-- Google OAuth 2.0 authentication
-- Llama 4.0 API for AI chat responses
+- Python 3.11 + FastAPI
+- PostgreSQL with SQLAlchemy (async)
+- ChromaDB for vector embeddings
+- Llama 4.0 API for transcription and chat
+- FFmpeg for audio processing
+- Watchdog for file monitoring
 
 ## Quick Start
 
 ### Prerequisites
+- Python 3.11+ and pip
 - Node.js 18+ and npm
-- Google Cloud Console project with YouTube Data API enabled
+- PostgreSQL database
+- FFmpeg installed on system
 - Llama 4.0 API access
 
 ### Installation
@@ -42,10 +47,16 @@ SuperPod is an AI-driven podcast discovery and consumption platform that integra
 2. **Set up Backend**
    ```bash
    cd backend
-   npm install
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   
+   # Copy and configure environment
    cp .env.example .env
-   # Edit .env with your API keys and configuration
-   npm run dev
+   # Edit .env with your configuration
+   
+   # Start the server
+   python -m app.main
    ```
 
 3. **Set up Frontend**
@@ -61,34 +72,78 @@ SuperPod is an AI-driven podcast discovery and consumption platform that integra
 
 #### Backend (.env)
 ```env
-PORT=3001
-NODE_ENV=development
-GOOGLE_CLIENT_ID=your_google_client_id_here
-GOOGLE_CLIENT_SECRET=your_google_client_secret_here
-JWT_SECRET=your_jwt_secret_here
-LLAMA_API_URL=https://api.llama.ai/v1
-LLAMA_API_KEY=your_llama_api_key_here
-FRONTEND_URL=http://localhost:5173
+# Server
+HOST=0.0.0.0
+PORT=8000
+DEBUG=true
+
+# Security
+SECRET_KEY=your-secret-key-here-change-in-production
+
+# Database
+DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost/superpod
+
+# AI Services
+LLAMA_API_KEY=your-llama-api-key-here
+LLAMA_MODEL=gpt-3.5-turbo
+
+# File Storage
+MEDIA_STORAGE_PATH=./data/media
+CHROMADB_PATH=./data/chromadb
 ```
 
 #### Frontend (.env)
 ```env
-VITE_API_BASE_URL=http://localhost:3001/api
+VITE_API_BASE_URL=http://localhost:8000/api
 ```
 
-### Google OAuth Setup
+### Database Setup
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing one
-3. Enable YouTube Data API v3
-4. Create OAuth 2.0 credentials
-5. Add authorized redirect URIs:
-   - `http://localhost:5173/auth/callback` (development)
-   - Your production domain (production)
+1. Create PostgreSQL database:
+   ```sql
+   CREATE DATABASE superpod;
+   ```
+
+2. Database tables will be created automatically on first run.
+
+## Usage
+
+### Adding Media Files
+
+1. **Automatic Processing**: Drop media files (audio/video) into the `MEDIA_STORAGE_PATH` directory
+2. **File Watcher**: The system automatically detects new files and:
+   - Creates database records
+   - Extracts audio (if video file)
+   - Transcribes using Llama 4.0
+   - Generates vector embeddings
+   - Makes content searchable
+
+### Supported File Types
+
+- **Audio**: MP3, WAV, FLAC, OGG, M4A
+- **Video**: MP4, AVI, MOV, WMV, MKV
+
+### API Endpoints
+
+The backend provides RESTful APIs for:
+- **Authentication**: User registration and login
+- **Media**: File listing, details, and transcriptions
+- **Search**: Semantic search through transcribed content
+- **Chat**: AI-powered conversations about content
+- **Playback**: Session management and progress tracking
+
+See [API_SPECIFICATION.md](./API_SPECIFICATION.md) for detailed documentation.
 
 ## Development
 
 ### Available Scripts
+
+#### Backend
+- `python -m app.main` - Start development server
+- `python -m pytest` - Run tests
+- `black app/` - Format code
+- `isort app/` - Sort imports
+- `mypy app/` - Type checking
 
 #### Frontend
 - `npm run dev` - Start development server
@@ -96,48 +151,55 @@ VITE_API_BASE_URL=http://localhost:3001/api
 - `npm run lint` - Run ESLint
 - `npm run type-check` - Run TypeScript compiler
 
-#### Backend
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build TypeScript to JavaScript
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript compiler
-
 ### Project Structure
 
 ```
 superpod/
-├── frontend/
+├── frontend/                  # React frontend
 │   ├── src/
-│   │   ├── components/     # React components
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── services/      # API service layer
-│   │   ├── types/         # TypeScript interfaces
-│   │   ├── utils/         # Helper functions
-│   │   └── api/           # API client
+│   │   ├── components/       # React components
+│   │   ├── services/         # API service layer
+│   │   ├── types/           # TypeScript interfaces
+│   │   └── ...
 │   └── ...
-├── backend/
-│   ├── src/
-│   │   ├── controllers/   # Route controllers
-│   │   ├── services/      # Business logic
-│   │   ├── middleware/    # Express middleware
-│   │   ├── routes/        # API routes
-│   │   ├── types/         # TypeScript interfaces
-│   │   └── utils/         # Helper functions
-│   └── ...
-├── docs/                  # Documentation
-├── API_SPECIFICATION.md   # API documentation
-├── IMPLEMENTATION_PLAN.md # Development roadmap
+├── backend/                  # Python FastAPI backend
+│   ├── app/
+│   │   ├── api/             # API endpoints
+│   │   ├── core/            # Core configuration
+│   │   ├── models/          # Database models
+│   │   ├── services/        # Business logic
+│   │   └── ...
+│   └── requirements.txt
+├── data/                    # Data storage
+│   ├── media/              # Media files
+│   └── chromadb/           # Vector database
+├── docs/                   # Documentation
 └── README.md
 ```
 
-## API Documentation
+## Key Features
 
-See [API_SPECIFICATION.md](./API_SPECIFICATION.md) for detailed API documentation.
+### Automatic Transcription Pipeline
 
-## Implementation Roadmap
+1. **File Detection**: Watchdog monitors media directory
+2. **Audio Extraction**: FFmpeg extracts audio from video files
+3. **Transcription**: Llama 4.0 converts audio to timestamped text
+4. **Vector Embeddings**: Generate semantic embeddings for search
+5. **Database Storage**: Save transcriptions and metadata
 
-See [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) for the development phases and roadmap.
+### Semantic Search
+
+- Vector similarity search using ChromaDB
+- Natural language queries
+- Content-based recommendations
+- Contextual segment matching
+
+### AI Chat Interface
+
+- Ask questions about podcast content
+- Get personalized recommendations
+- Context-aware responses based on listening history
+- Real-time conversation with transcribed content
 
 ## Contributing
 
@@ -150,3 +212,18 @@ See [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) for the development phase
 ## License
 
 MIT License - see LICENSE file for details
+
+## Troubleshooting
+
+### Common Issues
+
+1. **FFmpeg not found**: Install FFmpeg on your system
+2. **Database connection errors**: Ensure PostgreSQL is running and connection string is correct
+3. **Transcription failures**: Check Llama API key and quota
+4. **File permission errors**: Ensure media directory is writable
+
+### Logs
+
+Check application logs for detailed error information:
+- Backend logs: Console output with structured logging
+- Frontend logs: Browser console

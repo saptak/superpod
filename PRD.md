@@ -7,44 +7,49 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 ## Core Features
 
 ### Authentication & User Profiling
-- Google OAuth 2.0 login for seamless authentication
-- Automatic user interest extraction from YouTube watch history and subscriptions
-- Profile building based on subscribed channels, viewed content, and engagement patterns
+- Simple user authentication for personalized experiences
+- User interest extraction based on listening history and interactions
+- Profile building based on listened content, search patterns, and chat interactions
 
 ### Discovery & Personalization
-- Interest-based podcast recommendations from YouTube's catalog
-- Natural language search ("Find podcasts about startup funding")
-- Learning user preferences through chat interactions and YouTube data
+- Interest-based podcast recommendations from local media library
+- Natural language search with vector similarity ("Find podcasts about startup funding")
+- Learning user preferences through chat interactions and listening history
+- Semantic search through transcribed content
 
 ### Content Exploration
-- AI-generated podcast synopses with personalized highlights
-- Segment-level content breakdown with timestamps (Future Enhancement)
-- Topic extraction and categorization per episode (Future Enhancement)
+- AI-generated podcast synopses with personalized highlights from transcriptions
+- Segment-level content breakdown with precise timestamps
+- Topic extraction and categorization per episode using AI analysis
+- Full-text search within transcriptions
 
 ### Smart Playback
-- YouTube Player API integration for seamless video/audio streaming
-- Standard podcast playback controls (play, pause, skip, volume)
-- Caption-based navigation and search within episodes
-- Segment-specific playback based on user interests (Future Enhancement)
-- Skip to relevant parts functionality using YouTube captions (Future Enhancement)
+- Direct media file streaming from local storage
+- Standard podcast playback controls (play, pause, skip, volume, seek)
+- Transcription-based navigation and search within episodes
+- Segment-specific playback based on user interests and AI analysis
+- Skip to relevant parts functionality using transcribed timestamps
 
-### Follow-Up Questions (Future Enhancement)
-- Real-time Q&A via text or voice for any unclear concept
-- Context-aware answers generated from the current podcast segment
-- Automatic resume: continue playback exactly where the listener paused after doubts are cleared
+### Follow-Up Questions
+- Real-time Q&A via text about podcast content
+- Context-aware answers generated from transcriptions and current segment
+- Automatic resume: continue playback exactly where the listener paused after questions are answered
 
 ### Natural Language Interface
-- Text chat interaction for podcast discovery
-- Conversational podcast browsing
-- Voice commands for playback control (Future Enhancement)
+- Text chat interaction for podcast discovery and content exploration
+- Conversational podcast browsing with semantic understanding
+- AI-powered content recommendations based on natural language queries
 
 ## Technical Stack
 - **Frontend**: Progressive Web App (PWA) for web/mobile
-- **Authentication**: Google OAuth 2.0 for YouTube access
-- **Video/Audio**: YouTube Player API for streaming
-- **AI/ML**: LLM integration for chat, content analysis
-- **Data**: YouTube Data API v3 for videos, channels, captions, user data
-- **Service Layer**: RESTful API with TypeScript interfaces for frontend integration
+- **Backend**: Python FastAPI with async processing
+- **Authentication**: JWT-based user authentication
+- **Media Storage**: Local file storage with organized directory structure
+- **Audio Processing**: FFmpeg for audio extraction and processing
+- **Transcription**: Llama 4.0 API for audio-to-text conversion
+- **Vector Database**: ChromaDB or Pinecone for semantic search
+- **AI/ML**: LLM integration for chat, content analysis, and recommendations
+- **File Monitoring**: Watchdog for automatic processing of new media files
 
 ## Success Metrics
 - User engagement time per session
@@ -53,12 +58,12 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - Chat interaction frequency
 
 ## MVP Scope
-1. Google OAuth 2.0 authentication flow for YouTube access
-2. User interest extraction from real YouTube watch history and subscriptions
-3. Chat interface with live user YouTube data context through service layer
-4. Real-time YouTube podcast search and recommendations via RESTful API
-5. AI episode synopsis generation using YouTube captions and metadata
-6. YouTube Player API integration with live streaming and API state management
+1. File storage system with automatic media file detection and processing
+2. Llama-powered transcription service for new media files
+3. Vector database integration for semantic search capabilities
+4. Chat interface with AI-powered content discovery and recommendations
+5. Media file streaming with transcription-based navigation
+6. AI episode synopsis generation using transcriptions and content analysis
 
 ## Future Enhancements
 - Native mobile apps (iOS/Android)

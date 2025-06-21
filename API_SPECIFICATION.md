@@ -2,46 +2,50 @@
 
 ## Overview
 
-This document defines the API interface between the SuperPod frontend and the service layer. All endpoints return JSON responses and use TypeScript interfaces for type safety.
+This document defines the API interface between the SuperPod frontend and the Python FastAPI backend service. All endpoints return JSON responses and use TypeScript interfaces for type safety.
 
 ## Base Configuration
 
 ```typescript
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001/api'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'
 ```
 
 ## Authentication Endpoints
 
-### POST /auth/google/login
+### POST /auth/login
 
-Initiate Google OAuth 2.0 flow for YouTube access
-
-```typescript
-interface GoogleLoginRequest {
-  redirectUri: string;
-}
-
-interface GoogleLoginResponse {
-  authUrl: string;
-  state: string;
-}
-```
-
-### POST /auth/google/callback
-
-Exchange authorization code for access token
+User login with email/password
 
 ```typescript
-interface GoogleCallbackRequest {
-  code: string;
-  state: string;
+interface LoginRequest {
+  email: string;
+  password: string;
 }
 
-interface GoogleCallbackResponse {
+interface LoginResponse {
   accessToken: string;
   refreshToken: string;
   expiresIn: number;
-  user: YouTubeUser;
+  user: User;
+}
+```
+
+### POST /auth/register
+
+User registration
+
+```typescript
+interface RegisterRequest {
+  email: string;
+  password: string;
+  displayName: string;
+}
+
+interface RegisterResponse {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number;
+  user: User;
 }
 ```
 
@@ -64,34 +68,174 @@ interface RefreshTokenResponse {
 
 ### GET /user/profile
 
-Get authenticated user's YouTube profile
+Get authenticated user's profile
 
 ```typescript
-interface YouTubeUser {
+interface User {
   id: string;
-  displayName: string;
   email: string;
-  profileImageUrl: string;
-  channelId: string;
-  subscriberCount: number;
+  displayName: string;
+  createdAt: string;
+  lastLoginAt: string;
 }
 ```
 
 ### GET /user/interests
 
-Extract user interests from YouTube watch history and subscriptions
+Get user interests based on listening history
 
 ```typescript
 interface UserInterests {
-  topChannels: YouTubeChannel[];
-  topCategories: string[];
-  recentlyWatched: YouTubeVideo[];
-  subscriptions: YouTubeChannel[];
-  engagementProfile: {
-    averageWatchTime: number;
-    preferredVideoLength: 'short' | 'medium' | 'long';
+  topTopics: string[];
+  favoriteGenres: string[];
+  listeningHistory: MediaFile[];
+  preferences: {
+    averageListeningTime: number;
+    preferredContentLength: 'short' | 'medium' | 'long';
     topicPreferences: string[];
   };
+}
+```
+
+## Media File Endpoints
+
+### GET /media/files
+
+Get paginated list of media files
+
+```typescript
+interface MediaFilesParams {
+  limit?: number;
+  offset?: number;
+  search?: string;
+  topic?: string;
+  genre?: string;
+}
+
+interface MediaFilesResponse {
+  files: MediaFile[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+```
+
+### GET /media/files/:fileId
+
+Get specific media file details
+
+```typescript
+interface MediaFile {
+  id: string;
+  filename: string;
+  title: string;
+  description?: string;
+  duration: number;
+  fileSize: number;
+  mimeType: string;
+  transcriptionStatus: 'pending' | 'processing' | 'completed' | 'failed';
+  transcription?: Transcription;
+  topics: string[];
+  genre?: string;
+  uploadedAt: string;
+  processedAt?: string;
+  streamUrl: string;
+}
+```
+
+### GET /media/files/:fileId/transcription
+
+Get transcription for a specific media file
+
+```typescript
+interface Transcription {
+  id: string;
+  fileId: string;
+  segments: TranscriptionSegment[];
+  fullText: string;
+  language: string;
+  confidence: number;
+  createdAt: string;
+}
+
+interface TranscriptionSegment {
+  id: string;
+  startTime: number;
+  endTime: number;
+  text: string;
+  confidence: number;
+  speaker?: string;
+}
+```
+
+### POST /media/files/:fileId/synopsis
+
+Generate AI synopsis for media file
+
+```typescript
+interface SynopsisRequest {
+  // No body required - uses authenticated user context
+}
+
+interface SynopsisResponse {
+  synopsis: string;
+  keyTopics: string[];
+  relevanceScore: number;
+  personalizedHighlights: string[];
+  estimatedReadTime: number;
+  transcriptHighlights: TranscriptionSegment[];
+}
+```
+
+## Search Endpoints
+
+### GET /search/semantic
+
+Semantic search through transcriptions
+
+```typescript
+interface SemanticSearchParams {
+  query: string;
+  limit?: number;
+  offset?: number;
+  threshold?: number;
+}
+
+interface SemanticSearchResponse {
+  results: SearchResult[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+interface SearchResult {
+  file: MediaFile;
+  relevanceScore: number;
+  matchedSegments: TranscriptionSegment[];
+  context: string;
+}
+```
+
+### GET /search/recommendations
+
+Get personalized recommendations
+
+```typescript
+interface RecommendationsParams {
+  limit?: number;
+  basedOn?: string; // fileId to base recommendations on
+}
+
+interface RecommendationsResponse {
+  recommendations: Recommendation[];
+  reasoning: string;
+}
+
+interface Recommendation {
+  file: MediaFile;
+  reasoningText: string;
+  relevanceScore: number;
+  matchedInterests: string[];
 }
 ```
 
@@ -99,15 +243,15 @@ interface UserInterests {
 
 ### POST /chat/message
 
-Send message to AI with user context
+Send message to AI with context
 
 ```typescript
 interface ChatMessageRequest {
   message: string;
   conversationId?: string;
-  userContext: {
-    youtubeProfile: YouTubeUser;
-    interests: UserInterests;
+  context?: {
+    currentFile?: string;
+    currentTime?: number;
   };
 }
 
@@ -115,7 +259,8 @@ interface ChatMessageResponse {
   response: string;
   conversationId: string;
   timestamp: string;
-  podcastRecommendations?: PodcastRecommendation[];
+  recommendations?: Recommendation[];
+  relatedSegments?: TranscriptionSegment[];
 }
 ```
 
@@ -137,201 +282,115 @@ interface ChatMessage {
   content: string;
   timestamp: string;
   metadata?: {
-    podcastRecommendations?: PodcastRecommendation[];
+    recommendations?: Recommendation[];
+    relatedSegments?: TranscriptionSegment[];
   };
-}
-```
-
-## Podcast Endpoints
-
-### GET /podcasts/search
-
-Search YouTube podcasts with personalized results (query parameters)
-
-```typescript
-interface PodcastSearchParams {
-  query: string;
-  limit?: number;
-  offset?: number;
-}
-
-interface PodcastSearchResponse {
-  podcasts: YouTubeChannel[];
-  videos: YouTubeVideo[];
-  total: number;
-  limit: number;
-  offset: number;
-}
-```
-
-### GET /podcasts/recommendations
-
-Get personalized podcast recommendations (uses authenticated user context)
-
-```typescript
-interface PodcastRecommendationsParams {
-  limit?: number;
-}
-
-interface PodcastRecommendationsResponse {
-  recommendations: PodcastRecommendation[];
-  reasoning: string;
-}
-```
-
-### GET /podcasts/channels/:channelId/videos
-
-Get videos for a specific podcast channel
-
-```typescript
-interface ChannelVideosResponse {
-  videos: YouTubeVideo[];
-  total: number;
-  limit: number;
-  offset: number;
-}
-```
-
-### POST /podcasts/videos/:videoId/synopsis
-
-Generate AI synopsis for podcast video (uses authenticated user context)
-
-```typescript
-interface VideoSynopsisRequest {
-  // No body required - uses authenticated user context
-}
-
-interface VideoSynopsisResponse {
-  synopsis: string;
-  keyTopics: string[];
-  relevanceScore: number;
-  personalizedHighlights: string[];
-  estimatedReadTime: number;
-  captionHighlights: CaptionSegment[];
-}
-```
-
-### GET /podcasts/videos/:videoId/captions
-
-Get captions for a specific video
-
-```typescript
-interface VideoCaptionsResponse {
-  captions: CaptionSegment[];
-  language: string;
-  duration: number;
 }
 ```
 
 ## Playback Endpoints
 
-### POST /playback/initialize
+### POST /playback/start
 
-Initialize YouTube Player
-
-```typescript
-interface PlaybackInitializeRequest {
-  videoId: string;
-  playerId: string;
-}
-
-interface PlaybackInitializeResponse {
-  ready: boolean;
-  videoDetails: YouTubeVideo;
-}
-```
-
-### POST /playback/play
-
-Start playback of podcast video
+Start playback session
 
 ```typescript
-interface PlaybackPlayRequest {
-  videoId: string;
+interface PlaybackStartRequest {
+  fileId: string;
   startTime?: number;
 }
 
-interface PlaybackPlayResponse {
-  success: boolean;
-  currentVideo?: YouTubeVideo;
-  playbackState: PlaybackState;
+interface PlaybackStartResponse {
+  sessionId: string;
+  file: MediaFile;
+  streamUrl: string;
+  transcription?: Transcription;
 }
 ```
 
-### GET /playback/state
+### PUT /playback/sessions/:sessionId/progress
+
+Update playback progress
+
+```typescript
+interface PlaybackProgressRequest {
+  currentTime: number;
+  duration: number;
+}
+
+interface PlaybackProgressResponse {
+  success: boolean;
+  currentSegment?: TranscriptionSegment;
+}
+```
+
+### GET /playback/sessions/:sessionId/state
 
 Get current playback state
 
 ```typescript
 interface PlaybackState {
-  isPlaying: boolean;
-  currentVideo?: YouTubeVideo;
+  sessionId: string;
+  file: MediaFile;
   currentTime: number;
   duration: number;
-  volume: number;
-  playbackRate: number;
-  quality: string;
+  isPlaying: boolean;
+  currentSegment?: TranscriptionSegment;
+  lastUpdated: string;
 }
 ```
 
-## TypeScript Interfaces
+## Admin/Processing Endpoints
 
-### Core YouTube Types
+### GET /admin/processing/status
+
+Get processing queue status (admin only)
 
 ```typescript
-interface YouTubeChannel {
+interface ProcessingStatus {
+  queueLength: number;
+  processing: ProcessingJob[];
+  completed: number;
+  failed: number;
+}
+
+interface ProcessingJob {
   id: string;
-  title: string;
-  description: string;
-  thumbnails: YouTubeThumbnail[];
-  subscriberCount: number;
-  videoCount: number;
-  customUrl: string;
-  publishedAt: string;
-  categories: string[];
-}
-
-interface YouTubeVideo {
-  id: string;
-  title: string;
-  description: string;
-  thumbnails: YouTubeThumbnail[];
-  channelId: string;
-  channelTitle: string;
-  duration: string;
-  publishedAt: string;
-  viewCount: number;
-  likeCount: number;
-  commentCount: number;
-  tags: string[];
-  categoryId: string;
-  liveBroadcastContent: 'none' | 'upcoming' | 'live';
-  defaultAudioLanguage?: string;
-}
-
-interface YouTubeThumbnail {
-  url: string;
-  width: number;
-  height: number;
-}
-
-interface CaptionSegment {
-  start: number;
-  duration: number;
-  text: string;
-  confidence?: number;
+  fileId: string;
+  filename: string;
+  status: 'pending' | 'processing' | 'completed' | 'failed';
+  progress: number;
+  startedAt?: string;
+  completedAt?: string;
+  error?: string;
 }
 ```
 
-### Application-Specific Types
+### POST /admin/files/:fileId/reprocess
+
+Reprocess a media file (admin only)
 
 ```typescript
-interface PodcastRecommendation {
-  channel?: YouTubeChannel;
-  video?: YouTubeVideo;
-  reasoningText: string;
-  relevanceScore: number;
-  matchedInterests: string[];
+interface ReprocessResponse {
+  success: boolean;
+  jobId: string;
+}
+```
+
+## WebSocket Events
+
+### /ws/processing
+
+Real-time updates for file processing
+
+```typescript
+interface ProcessingUpdate {
+  type: 'processing_started' | 'processing_progress' | 'processing_completed' | 'processing_failed';
+  fileId: string;
+  filename: string;
+  progress?: number;
+  error?: string;
+  transcription?: Transcription;
 }
 ```
 
@@ -355,22 +414,25 @@ Common error codes:
 
 - `AUTH_REQUIRED`: Authentication required
 - `TOKEN_EXPIRED`: Access token expired
-- `YOUTUBE_API_ERROR`: YouTube API returned an error
-- `AI_SERVICE_ERROR`: Llama 4.0 API error
 - `VALIDATION_ERROR`: Request validation failed
+- `FILE_NOT_FOUND`: Media file not found
+- `TRANSCRIPTION_ERROR`: Transcription processing failed
+- `STORAGE_ERROR`: File storage error
+- `AI_SERVICE_ERROR`: Llama API error
 - `RATE_LIMIT_EXCEEDED`: API rate limit exceeded
-- `QUOTA_EXCEEDED`: YouTube API quota exceeded
+- `INSUFFICIENT_PERMISSIONS`: User lacks required permissions
 
 ## Rate Limiting
 
 - Authentication endpoints: 10 requests per minute
 - Chat endpoints: 30 requests per minute
-- Podcast endpoints: 100 requests per minute
-- Playback endpoints: 60 requests per minute
+- Media endpoints: 100 requests per minute
+- Search endpoints: 50 requests per minute
+- Playback endpoints: 200 requests per minute
 
 ## Authentication
 
-All endpoints except `/auth/google/login` require authentication via Bearer token:
+All endpoints except `/auth/login` and `/auth/register` require authentication via Bearer token:
 
 ```http
 Authorization: Bearer <access_token>
