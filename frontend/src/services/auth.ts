@@ -1,5 +1,5 @@
 import { apiClient } from '../api/client';
-import { YouTubeUser, AuthState } from '../types';
+import type { YouTubeUser, AuthState } from '../types';
 
 interface GoogleLoginResponse {
   authUrl: string;
