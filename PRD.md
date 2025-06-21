@@ -51,11 +51,11 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 
 ## MVP Scope
 1. Spotify OAuth 2.0 authentication flow
-2. User interest extraction from Spotify listening history
-3. Basic chat interface with personalized context
-4. Spotify podcast search and recommendations
-5. Episode synopsis generation using AI
-6. Spotify Web Playback SDK integration
+2. User interest extraction from real Spotify listening history
+3. Chat interface with live user Spotify data context
+4. Real-time Spotify podcast search and recommendations
+5. AI episode synopsis generation using actual podcast content
+6. Spotify Web Playback SDK integration with live streaming
 
 ## Future Enhancements
 - Native mobile apps (iOS/Android)

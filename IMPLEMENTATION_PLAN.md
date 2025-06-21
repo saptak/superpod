@@ -57,56 +57,56 @@
 ### Phase 3: Core Chat Interface 💬
 **Goal**: Build functional chat UI with user context
 
-1. **Implement chat interface with user context**
+1. **Implement chat interface with live Spotify user context**
    - Create ChatContainer, MessageList, MessageInput components
    - Use shadcn/ui components (Card, Input, Button, ScrollArea)
-   - Include user's Spotify interests in chat context
+   - Include real user's Spotify interests and listening history in chat context
    - Implement message state management with useState
 
-2. **Test chat UI with mock data**
-   - Add sample conversations with personalized context
-   - Test message rendering and scrolling
+2. **Test chat UI with real user data from Spotify API**
+   - Fetch and display actual user listening preferences
+   - Test message rendering with live Spotify data
    - Ensure responsive design on mobile
 
-**Deliverable**: Interactive chat interface with user interest context
+**Deliverable**: Interactive chat interface with live Spotify user context
 
 ---
 
 ### Phase 4: AI Integration 🤖
 **Goal**: Connect chat to Llama 4.0 with personalized context
 
-1. **Set up Llama 4.0 API integration with Spotify context**
+1. **Set up Llama 4.0 API integration with real Spotify context**
    - Configure API client with proper authentication
    - Create API service layer with error handling
-   - Include user's Spotify interests in AI prompts
+   - Include user's real Spotify listening data in AI prompts
    - Add loading states and retry logic
 
-2. **Connect chat interface to Llama 4.0**
-   - Replace mock data with real AI responses
+2. **Connect chat interface to Llama 4.0 with live data**
+   - Integrate real AI responses with live Spotify user context
    - Handle streaming responses if supported
-   - Add conversation context management
-   - Personalize responses based on user's music taste
+   - Add conversation context management with actual user data
+   - Personalize responses based on real user's music taste and history
 
-**Deliverable**: Working AI chat with personalized Llama 4.0 responses
+**Deliverable**: Working AI chat with personalized Llama 4.0 responses using live data
 
 ---
 
 ### Phase 5: Spotify Podcast Features 🎧
 **Goal**: Add Spotify podcast discovery and playback
 
-1. **Integrate Spotify podcast search and recommendations**
-   - Build SearchBar with shadcn/ui Input
-   - Create PodcastCard and PodcastList components
-   - Use Spotify Web API for podcast search
-   - Implement personalized recommendations based on user interests
+1. **Integrate real-time Spotify podcast search and recommendations**
+   - Build SearchBar with shadcn/ui Input for live Spotify search
+   - Create PodcastCard and PodcastList components with real podcast data
+   - Use Spotify Web API for live podcast search results
+   - Implement personalized recommendations using actual user listening history
 
-2. **Implement Spotify Web Playback SDK**
+2. **Implement Spotify Web Playback SDK with live streaming**
    - Set up Premium account requirement check
-   - Create AudioPlayer component with Spotify SDK
-   - Add play/pause, progress bar, volume controls
-   - Use shadcn/ui components for player UI
+   - Create AudioPlayer component with Spotify SDK for actual streaming
+   - Add play/pause, progress bar, volume controls for real playback
+   - Use shadcn/ui components for player UI with live audio data
 
-**Deliverable**: Searchable Spotify podcast catalog with native playback
+**Deliverable**: Live Spotify podcast catalog with real-time search and streaming
 
 ---
 
@@ -137,14 +137,16 @@
 
 ### Key Considerations
 - Start with simple implementations, iterate to add complexity
-- Test UI components in isolation before integration
+- Test UI components with real data from the beginning
 - Keep API calls abstracted in service layer (Spotify + Llama 4.0)
 - Maintain responsive design throughout development
 - Handle Spotify Premium account requirements gracefully
 - Implement proper error handling for OAuth flows
 - Store Spotify tokens securely with refresh logic
+- Never use placeholder or mock data - always integrate with live APIs
 
 ### Future Enhancements (Post-MVP)
+
 - Voice commands integration
 - Segment-based playback with timestamps
 - User preference learning
