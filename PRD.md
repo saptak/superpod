@@ -1,4 +1,3 @@
-Discord URL - https://discord.gg/V48rmhGM
 
 # SuperPod - AI-Powered Podcast Discovery Platform
 
