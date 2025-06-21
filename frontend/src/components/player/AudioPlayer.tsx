@@ -11,15 +11,19 @@ import {
   Volume2, 
   VolumeX,
   Maximize2,
-  MessageCircle
+  MessageCircle,
+  Square
 } from 'lucide-react';
 
 interface AudioPlayerProps {
   podcast: MediaFile | null;
   onToggleChat?: () => void;
+  onStop?: () => void;
+  onPlayStateChange?: (isPlaying: boolean) => void;
+  shouldAutoPlay?: boolean;
 }
 
-export function AudioPlayer({ podcast, onToggleChat }: AudioPlayerProps) {
+export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, shouldAutoPlay }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(1);
@@ -72,6 +76,7 @@ export function AudioPlayer({ podcast, onToggleChat }: AudioPlayerProps) {
     const handleEnded = () => {
       setIsPlaying(false);
       setCurrentTime(0);
+      onPlayStateChange?.(false);
     };
 
     audio.addEventListener('timeupdate', updateTime);
@@ -81,7 +86,21 @@ export function AudioPlayer({ podcast, onToggleChat }: AudioPlayerProps) {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, [mockSegments]);
+  }, [mockSegments, onPlayStateChange]);
+
+  // Auto-start playing when a new podcast is selected and shouldAutoPlay is true
+  useEffect(() => {
+    if (podcast && shouldAutoPlay && !isPlaying) {
+      const audio = audioRef.current;
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play().then(() => {
+          setIsPlaying(true);
+          onPlayStateChange?.(true);
+        }).catch(console.error);
+      }
+    }
+  }, [podcast, shouldAutoPlay, isPlaying, onPlayStateChange]);
 
   const togglePlay = async () => {
     const audio = audioRef.current;
@@ -90,13 +109,28 @@ export function AudioPlayer({ podcast, onToggleChat }: AudioPlayerProps) {
     try {
       if (isPlaying) {
         audio.pause();
+        setIsPlaying(false);
+        onPlayStateChange?.(false);
       } else {
         await audio.play();
+        setIsPlaying(true);
+        onPlayStateChange?.(true);
       }
-      setIsPlaying(!isPlaying);
     } catch (error) {
       console.error('Playback error:', error);
     }
+  };
+
+  const stopPlayback = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.pause();
+    audio.currentTime = 0;
+    setIsPlaying(false);
+    setCurrentTime(0);
+    onPlayStateChange?.(false);
+    onStop?.();
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -245,6 +279,14 @@ export function AudioPlayer({ podcast, onToggleChat }: AudioPlayerProps) {
                   ) : (
                     <Play className="w-4 h-4" />
                   )}
+                </Button>
+
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={stopPlayback}
+                >
+                  <Square className="w-4 h-4" />
                 </Button>
                 
                 <Button

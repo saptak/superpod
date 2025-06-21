@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button } from '../components/ui/button';
-import { ChatInterface } from '../components/chat/ChatInterface';
-import { PodcastList } from '../components/podcasts/PodcastList';
+import { AudioChatInterface } from '../components/chat/AudioChatInterface';
+import { PodcastGrid } from '../components/podcasts/PodcastGrid';
 import { AudioPlayer } from '../components/player/AudioPlayer';
 import { mockApiService } from '../services/mockApi';
 import type { MediaFile, Recommendation } from '../types/api';
-import { LogOut, MessageCircle, Library, User } from 'lucide-react';
+import { LogOut, User } from 'lucide-react';
 
 interface DashboardProps {
   onLogout: () => void;
@@ -13,8 +13,8 @@ interface DashboardProps {
 
 export function Dashboard({ onLogout }: DashboardProps) {
   const [selectedPodcast, setSelectedPodcast] = useState<MediaFile | null>(null);
-  const [activeView, setActiveView] = useState<'podcasts' | 'chat'>('podcasts');
-  const [showChat, setShowChat] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
 
   const handleLogout = async () => {
     await mockApiService.logout();
@@ -23,18 +23,43 @@ export function Dashboard({ onLogout }: DashboardProps) {
 
   const handlePodcastSelect = (podcast: MediaFile) => {
     setSelectedPodcast(podcast);
+    setShouldAutoPlay(false);
+  };
+
+  const handlePodcastPlay = (podcast: MediaFile) => {
+    setSelectedPodcast(podcast);
+    setShouldAutoPlay(true);
+    setIsPlaying(true);
   };
 
   const handleRecommendationSelect = (recommendation: Recommendation) => {
     setSelectedPodcast(recommendation.file);
-    setActiveView('podcasts');
+    setShouldAutoPlay(true);
+    setIsPlaying(true);
   };
 
-  const toggleChat = () => {
-    setShowChat(!showChat);
-    if (!showChat) {
-      setActiveView('chat');
+  const handleStopPlayback = () => {
+    setSelectedPodcast(null);
+    setIsPlaying(false);
+    setShouldAutoPlay(false);
+  };
+
+  const handlePlayStateChange = (playing: boolean) => {
+    setIsPlaying(playing);
+    if (playing) {
+      setShouldAutoPlay(false); // Reset after successful auto-play
     }
+  };
+
+  const handleAudioChatStart = () => {
+    // When audio chat starts, pause any playing podcast
+    if (isPlaying) {
+      setIsPlaying(false);
+    }
+  };
+
+  const handleAudioChatStop = () => {
+    // Audio chat stopped, can resume podcast playback if needed
   };
 
   return (
@@ -44,25 +69,9 @@ export function Dashboard({ onLogout }: DashboardProps) {
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center gap-4">
             <h1 className="text-xl font-bold">SuperPod</h1>
-            
-            <nav className="flex gap-2">
-              <Button
-                variant={activeView === 'podcasts' ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => setActiveView('podcasts')}
-              >
-                <Library className="w-4 h-4 mr-2" />
-                Library
-              </Button>
-              <Button
-                variant={activeView === 'chat' ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => setActiveView('chat')}
-              >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Chat
-              </Button>
-            </nav>
+            <p className="text-sm text-muted-foreground">
+              AI-powered podcast discovery
+            </p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -79,41 +88,36 @@ export function Dashboard({ onLogout }: DashboardProps) {
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar/Main Content */}
-        <div className={`flex-1 ${showChat ? 'flex' : ''}`}>
-          {/* Primary Content */}
-          <div className={`${showChat ? 'flex-1 border-r' : 'w-full'} p-4`}>
-            {activeView === 'podcasts' ? (
-              <PodcastList
-                onPodcastSelect={handlePodcastSelect}
-                selectedPodcast={selectedPodcast}
-              />
-            ) : (
-              <ChatInterface
-                onRecommendationSelect={handleRecommendationSelect}
-              />
-            )}
-          </div>
+      <div className="flex-1 overflow-hidden p-6">
+        <div className="max-w-7xl mx-auto space-y-6">
+          {/* Podcast Grid */}
+          <PodcastGrid
+            onPodcastSelect={handlePodcastSelect}
+            onPodcastPlay={handlePodcastPlay}
+            selectedPodcast={selectedPodcast}
+            isPlaying={isPlaying}
+          />
 
-          {/* Chat Sidebar */}
-          {showChat && (
-            <div className="w-96 p-4">
-              <ChatInterface
-                onRecommendationSelect={handleRecommendationSelect}
-              />
-            </div>
-          )}
+          {/* Chat Interface */}
+          <AudioChatInterface
+            onRecommendationSelect={handleRecommendationSelect}
+            onAudioStart={handleAudioChatStart}
+            onAudioStop={handleAudioChatStop}
+          />
         </div>
       </div>
 
       {/* Audio Player Footer */}
-      <footer className="border-t bg-card p-4">
-        <AudioPlayer 
-          podcast={selectedPodcast} 
-          onToggleChat={toggleChat}
-        />
-      </footer>
+      {selectedPodcast && (
+        <footer className="border-t bg-card p-4">
+          <AudioPlayer 
+            podcast={selectedPodcast}
+            onStop={handleStopPlayback}
+            onPlayStateChange={handlePlayStateChange}
+            shouldAutoPlay={shouldAutoPlay}
+          />
+        </footer>
+      )}
     </div>
   );
 }

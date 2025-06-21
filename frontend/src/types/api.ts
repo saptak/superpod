@@ -41,6 +41,7 @@ export interface MediaFile {
   uploadedAt: string;
   processedAt?: string;
   streamUrl: string;
+  albumArt?: string;
 }
 
 export interface Transcription {
