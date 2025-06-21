@@ -4,9 +4,9 @@
 - **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **UI Components**: shadcn/ui + Tailwind CSS
-- **Authentication**: Spotify OAuth 2.0 with PKCE
-- **Audio**: Spotify Web Playback SDK
-- **API Integration**: Spotify Web API
+- **Authentication**: Google OAuth 2.0 for YouTube access
+- **Video/Audio**: YouTube Player API
+- **API Integration**: YouTube Data API v3
 - **AI Integration**: Llama 4.0 API
 - **PWA**: Workbox (later phases)
 
@@ -30,46 +30,46 @@
    - Define core TypeScript interfaces from API specification
    - Create API client service layer for backend communication
    - Create initial routing with React Router
-   - Set up environment variables for API base URL and keys
+   - Set up environment variables for API base URL and Google OAuth keys
 
 **Deliverable**: Working development environment with styled hello world
 
 ---
 
-### Phase 2: Spotify Authentication 🔐
-**Goal**: Implement Spotify OAuth and extract user interests
+### Phase 2: YouTube Authentication 🔐
+**Goal**: Implement Google OAuth and extract user interests
 
-1. **Implement Spotify OAuth 2.0 login flow via service API**
-   - Create API client methods for auth endpoints (/auth/spotify/*)
-   - Implement PKCE OAuth flow using service layer
+1. **Implement Google OAuth 2.0 login flow for YouTube access**
+   - Create API client methods for auth endpoints (/auth/google/*)
+   - Implement Google OAuth flow using service layer
    - Create login/logout components with shadcn/ui
    - Handle authentication state management with API tokens
 
-2. **Extract user interests from Spotify listening history via API**
+2. **Extract user interests from YouTube watch history and subscriptions**
    - Implement API client for user profile endpoints (/user/*)
-   - Fetch user's interests through service layer
-   - Create user interest profile from API responses
+   - Fetch user's YouTube interests through service layer
+   - Create user interest profile from YouTube data
    - Store user preferences with proper token refresh logic
 
-**Deliverable**: Working Spotify authentication with user interest extraction
+**Deliverable**: Working YouTube authentication with user interest extraction
 
 ---
 
 ### Phase 3: Core Chat Interface 💬
 **Goal**: Build functional chat UI with user context
 
-1. **Implement chat interface with live Spotify user context via API**
+1. **Implement chat interface with live YouTube user context via API**
    - Create ChatContainer, MessageList, MessageInput components
    - Use shadcn/ui components (Card, Input, Button, ScrollArea)
    - Implement API client for chat endpoints (/chat/*)
-   - Include real user's Spotify context in API requests
+   - Include real user's YouTube context in API requests
 
 2. **Test chat UI with real user data from service API**
    - Use live API calls to backend service
    - Test message rendering with actual API responses
    - Ensure responsive design on mobile with real data
 
-**Deliverable**: Interactive chat interface with live Spotify user context
+**Deliverable**: Interactive chat interface with live YouTube user context
 
 ---
 
@@ -78,7 +78,7 @@
 
 1. **Backend service handles Llama 4.0 integration (frontend connects via API)**
    - Frontend uses existing chat API endpoints
-   - Service layer handles AI integration with Spotify context
+   - Service layer handles AI integration with YouTube context
    - Frontend implements proper error handling for API responses
    - Add loading states and retry logic for API calls
 
@@ -92,22 +92,22 @@
 
 ---
 
-### Phase 5: Spotify Podcast Features 🎧
-**Goal**: Add Spotify podcast discovery and playback
+### Phase 5: YouTube Podcast Features 🎧
+**Goal**: Add YouTube podcast discovery and playback
 
-1. **Integrate real-time Spotify podcast search and recommendations via API**
+1. **Integrate real-time YouTube podcast search and recommendations via API**
    - Build SearchBar with shadcn/ui Input
    - Create PodcastCard and PodcastList components
    - Implement API client for podcast endpoints (/podcasts/*)
    - Use service API for search results and personalized recommendations
 
-2. **Implement Spotify Web Playback SDK with API state management**
-   - Set up Premium account requirement check via API
-   - Create AudioPlayer component with Spotify SDK
+2. **Implement YouTube Player API with caption integration**
+   - Create VideoPlayer component with YouTube Player API
    - Implement playback API endpoints (/playback/*)
-   - Sync playback state between SDK and service API
+   - Add caption display and navigation features
+   - Sync playback state between Player API and service API
 
-**Deliverable**: Live Spotify podcast catalog with real-time search and streaming
+**Deliverable**: Live YouTube podcast catalog with real-time search and streaming
 
 ---
 
@@ -145,6 +145,8 @@
 - Handle API errors gracefully with proper user feedback
 - Implement proper token refresh logic through service API
 - Never use placeholder or mock data - always integrate with live service API
+- Handle YouTube API quota limits gracefully
+- Implement caption-based search and navigation features
 
 ### Future Enhancements (Post-MVP)
 

@@ -6,14 +6,14 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 ## Core Features
 
 ### Authentication & User Profiling
-- Spotify OAuth 2.0 login for seamless authentication
-- Automatic user interest extraction from Spotify listening history
-- Profile building based on music genres, artists, and listening patterns
+- Google OAuth 2.0 login for seamless authentication
+- Automatic user interest extraction from YouTube watch history and subscriptions
+- Profile building based on subscribed channels, viewed content, and engagement patterns
 
 ### Discovery & Personalization
-- Interest-based podcast recommendations from Spotify's catalog
+- Interest-based podcast recommendations from YouTube's catalog
 - Natural language search ("Find podcasts about startup funding")
-- Learning user preferences through chat interactions and Spotify data
+- Learning user preferences through chat interactions and YouTube data
 
 ### Content Exploration
 - AI-generated podcast synopses with personalized highlights
@@ -21,10 +21,11 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - Topic extraction and categorization per episode (Future Enhancement)
 
 ### Smart Playback
-- Spotify Web Playback SDK integration for seamless audio streaming
+- YouTube Player API integration for seamless video/audio streaming
 - Standard podcast playback controls (play, pause, skip, volume)
+- Caption-based navigation and search within episodes
 - Segment-specific playback based on user interests (Future Enhancement)
-- Skip to relevant parts functionality (Future Enhancement)
+- Skip to relevant parts functionality using YouTube captions (Future Enhancement)
 
 ### Follow-Up Questions (Future Enhancement)
 - Real-time Q&A via text or voice for any unclear concept
@@ -38,10 +39,10 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 
 ## Technical Stack
 - **Frontend**: Progressive Web App (PWA) for web/mobile
-- **Authentication**: Spotify OAuth 2.0 with PKCE flow
-- **Audio**: Spotify Web Playback SDK for streaming
+- **Authentication**: Google OAuth 2.0 for YouTube access
+- **Video/Audio**: YouTube Player API for streaming
 - **AI/ML**: LLM integration for chat, content analysis
-- **Data**: Spotify Web API for podcasts, user profiles, listening history
+- **Data**: YouTube Data API v3 for videos, channels, captions, user data
 - **Service Layer**: RESTful API with TypeScript interfaces for frontend integration
 
 ## Success Metrics
@@ -51,12 +52,12 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - Chat interaction frequency
 
 ## MVP Scope
-1. Spotify OAuth 2.0 authentication flow with service API
-2. User interest extraction from real Spotify listening history via API
-3. Chat interface with live user Spotify data context through service layer
-4. Real-time Spotify podcast search and recommendations via RESTful API
-5. AI episode synopsis generation using actual podcast content through service
-6. Spotify Web Playback SDK integration with live streaming and API state management
+1. Google OAuth 2.0 authentication flow for YouTube access
+2. User interest extraction from real YouTube watch history and subscriptions
+3. Chat interface with live user YouTube data context through service layer
+4. Real-time YouTube podcast search and recommendations via RESTful API
+5. AI episode synopsis generation using YouTube captions and metadata
+6. YouTube Player API integration with live streaming and API state management
 
 ## Future Enhancements
 - Native mobile apps (iOS/Android)
