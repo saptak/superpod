@@ -4,19 +4,21 @@ import { Input } from '../ui/input';
 import { ScrollArea } from '../ui/scroll-area';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { mockApiService } from '../../services/mockApi';
-import type { ChatMessage, Recommendation } from '../../types/api';
-import { Send, Bot, User } from 'lucide-react';
+import { usePlayback } from '../../contexts/PlaybackContext';
+import type { ChatMessage, Recommendation, TranscriptionSegment } from '../../types/api';
+import { Send, Bot, User, Play, Clock } from 'lucide-react';
 
 interface ChatInterfaceProps {
   onRecommendationSelect?: (recommendation: Recommendation) => void;
 }
 
 export function ChatInterface({ onRecommendationSelect }: ChatInterfaceProps) {
+  const { playSegment } = usePlayback();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
       role: 'assistant',
-      content: 'Hi! I\'m here to help you discover amazing podcast content. What topics are you interested in today?',
+      content: 'Hi! I\'m here to help you discover amazing podcast content. Ask me about specific topics, or say something like "play the part about startup funding" to jump directly to relevant segments!',
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -28,7 +30,9 @@ export function ChatInterface({ onRecommendationSelect }: ChatInterfaceProps) {
     if (scrollAreaRef.current) {
       const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
       if (scrollContainer) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        setTimeout(() => {
+          scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        }, 100);
       }
     }
   };
@@ -65,10 +69,16 @@ export function ChatInterface({ onRecommendationSelect }: ChatInterfaceProps) {
         timestamp: response.timestamp,
         metadata: {
           recommendations: response.recommendations,
+          relatedSegments: response.relatedSegments,
         },
       };
 
       setMessages(prev => [...prev, assistantMessage]);
+
+      // Auto-trigger playback if the AI detected play intent
+      if (response.playbackAction) {
+        await playSegment(response.playbackAction.fileId, response.playbackAction.segment);
+      }
     } catch (error) {
       const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
@@ -91,16 +101,17 @@ export function ChatInterface({ onRecommendationSelect }: ChatInterfaceProps) {
 
   return (
     <Card className="h-full flex flex-col">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg flex items-center gap-2">
-          <Bot className="w-5 h-5" />
-          AI Chat Assistant
-        </CardTitle>
+      <CardHeader className="pb-2 pt-3 flex-shrink-0">
+        <div className="text-center">
+          <span className="text-sm text-muted-foreground">
+            Try: "play the startup funding part"
+          </span>
+        </div>
       </CardHeader>
       
-      <CardContent className="flex-1 flex flex-col p-0">
-        <ScrollArea ref={scrollAreaRef} className="flex-1 px-6">
-          <div className="space-y-4 pb-4">
+      <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
+        <ScrollArea ref={scrollAreaRef} className="flex-1 min-h-0">
+          <div className="space-y-4 p-6 pb-4">
             {messages.map((message) => (
               <div key={message.id} className="space-y-2">
                 <div
@@ -136,8 +147,58 @@ export function ChatInterface({ onRecommendationSelect }: ChatInterfaceProps) {
                   </div>
                 </div>
 
+                {/* Related Segments */}
+                {message.metadata?.relatedSegments && message.metadata.relatedSegments.length > 0 && (
+                  <div className="ml-11 space-y-2 max-w-lg">
+                    <p className="text-sm font-medium text-muted-foreground">
+                      Relevant segments:
+                    </p>
+                    {message.metadata.relatedSegments.map((segment, index) => (
+                      <Card
+                        key={segment.id}
+                        className="cursor-pointer hover:bg-accent transition-colors"
+                        onClick={() => playSegment('file-1', segment)}
+                      >
+                        <CardContent className="p-3">
+                          <div className="flex items-start gap-2">
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="p-1 h-6 w-6 shrink-0"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                playSegment('file-1', segment);
+                              }}
+                            >
+                              <Play className="w-3 h-3" />
+                            </Button>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm leading-relaxed break-words">
+                                "{segment.text.length > 80 ? segment.text.substring(0, 80) + '...' : segment.text}"
+                              </p>
+                              <div className="flex items-center gap-2 mt-1 flex-wrap">
+                                <Clock className="w-3 h-3 text-muted-foreground shrink-0" />
+                                <span className="text-xs text-muted-foreground">
+                                  {Math.floor(segment.startTime / 60)}:
+                                  {String(Math.floor(segment.startTime % 60)).padStart(2, '0')}
+                                </span>
+                                {segment.confidence && (
+                                  <span className="text-xs text-muted-foreground">
+                                    • {Math.round(segment.confidence * 100)}% confident
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+
+                {/* Recommendations */}
                 {message.metadata?.recommendations && message.metadata.recommendations.length > 0 && (
-                  <div className="ml-11 space-y-2">
+                  <div className="ml-11 space-y-2 max-w-lg">
                     <p className="text-sm font-medium text-muted-foreground">
                       Recommended for you:
                     </p>
@@ -148,13 +209,13 @@ export function ChatInterface({ onRecommendationSelect }: ChatInterfaceProps) {
                         onClick={() => onRecommendationSelect?.(rec)}
                       >
                         <CardContent className="p-3">
-                          <h4 className="font-medium text-sm mb-1">{rec.file.title}</h4>
-                          <p className="text-xs text-muted-foreground mb-2">
+                          <h4 className="font-medium text-sm mb-1 line-clamp-1">{rec.file.title}</h4>
+                          <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
                             {rec.file.description}
                           </p>
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between flex-wrap gap-1">
                             <span className="text-xs text-muted-foreground">
-                              {Math.floor(rec.file.duration / 60)} minutes • {rec.file.genre}
+                              {Math.floor(rec.file.duration / 60)} min • {rec.file.genre}
                             </span>
                             <span className="text-xs font-medium text-primary">
                               {Math.round(rec.relevanceScore * 100)}% match
@@ -185,12 +246,12 @@ export function ChatInterface({ onRecommendationSelect }: ChatInterfaceProps) {
           </div>
         </ScrollArea>
 
-        <div className="border-t p-4">
+        <div className="border-t p-4 shrink-0">
           <form onSubmit={handleSendMessage} className="flex gap-2">
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Ask about podcasts, topics, or anything..."
+              placeholder="Ask about podcasts, topics, or say 'play the startup part'..."
               disabled={isLoading}
               className="flex-1"
             />

@@ -9,6 +9,8 @@ import type {
   Recommendation,
   SearchResult,
   PlaybackState,
+  PlaybackAction,
+  TranscriptionSegment,
 } from '../types/api';
 
 // Mock data
@@ -134,6 +136,57 @@ const mockRecommendations: Recommendation[] = [
   },
 ];
 
+// Mock transcription segments for demos
+const mockSegments: { [fileId: string]: TranscriptionSegment[] } = {
+  'file-1': [
+    {
+      id: 'seg-1',
+      startTime: 120,
+      endTime: 180,
+      text: 'When it comes to startup funding, timing and preparation are absolutely crucial for success. Many entrepreneurs make the mistake of approaching investors too early.',
+      confidence: 0.94,
+    },
+    {
+      id: 'seg-2',
+      startTime: 180,
+      endTime: 240,
+      text: 'Venture capital firms typically look for companies that have achieved product-market fit and are ready to scale rapidly with the right capital injection.',
+      confidence: 0.91,
+    },
+    {
+      id: 'seg-3',
+      startTime: 420,
+      endTime: 480,
+      text: 'Building a strong founding team is essential. Investors invest in people just as much as they invest in ideas and market opportunities.',
+      confidence: 0.93,
+    },
+  ],
+  'file-2': [
+    {
+      id: 'seg-4',
+      startTime: 60,
+      endTime: 120,
+      text: 'Artificial intelligence is transforming every industry, from healthcare to transportation. The pace of innovation is unprecedented.',
+      confidence: 0.96,
+    },
+    {
+      id: 'seg-5',
+      startTime: 300,
+      endTime: 360,
+      text: 'Machine learning algorithms are becoming more sophisticated, enabling applications we couldn\'t imagine just a few years ago.',
+      confidence: 0.92,
+    },
+  ],
+};
+
+// Intent recognition patterns
+const playbackIntents = [
+  { patterns: ['play', 'start', 'listen'], action: 'play_segment' },
+  { patterns: ['jump to', 'go to', 'skip to'], action: 'play_segment' },
+  { patterns: ['hear', 'listen to'], action: 'play_segment' },
+  { patterns: ['show me', 'find', 'locate'], action: 'play_segment' },
+];
+
 // Mock delay helper
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -238,21 +291,74 @@ export const mockApiService = {
     // Generate mock AI response based on message content
     let response = '';
     let recommendations: Recommendation[] = [];
+    let playbackAction: PlaybackAction | undefined;
+    let relatedSegments: TranscriptionSegment[] = [];
     
     const message = request.message.toLowerCase();
     
-    if (message.includes('startup') || message.includes('business')) {
-      response = 'I found some great content about startups and entrepreneurship! The startup journey involves many challenges, but with the right mindset and preparation, success is achievable. Would you like me to recommend some specific episodes about startup funding or scaling strategies?';
-      recommendations = [mockRecommendations[0]];
-    } else if (message.includes('ai') || message.includes('technology')) {
-      response = 'AI and technology are fascinating topics! The current revolution in artificial intelligence is transforming every industry. From machine learning to neural networks, there\'s so much to explore. Let me suggest some episodes that dive deep into these topics.';
-      recommendations = [mockRecommendations[1]];
-    } else if (message.includes('meditation') || message.includes('wellness')) {
-      response = 'Mindfulness and meditation are excellent for mental well-being. Starting with just 10 minutes a day can make a significant difference in your stress levels and overall happiness. I have some beginner-friendly meditation content that might help.';
-      recommendations = [{ file: mockMediaFiles[2], reasoningText: 'Perfect for beginners interested in meditation', relevanceScore: 0.95, matchedInterests: ['meditation', 'wellness'] }];
+    // Check for playback intent first
+    const hasPlayIntent = playbackIntents.some(intent =>
+      intent.patterns.some(pattern => message.includes(pattern))
+    );
+
+    if (hasPlayIntent) {
+      // Determine which content to play based on message
+      if (message.includes('startup') || message.includes('funding') || message.includes('venture')) {
+        const segment = mockSegments['file-1'][0]; // Startup funding segment
+        playbackAction = {
+          type: 'play_segment',
+          fileId: 'file-1',
+          segment,
+          intent: 'User requested to play startup funding content',
+        };
+        response = `🎧 Starting playback: "${segment.text.substring(0, 80)}..." I found the perfect segment about startup funding strategies. This discusses the crucial timing and preparation needed for successful fundraising.`;
+      } else if (message.includes('ai') || message.includes('artificial intelligence') || message.includes('machine learning')) {
+        const segment = mockSegments['file-2'][0]; // AI segment
+        playbackAction = {
+          type: 'play_segment',
+          fileId: 'file-2',
+          segment,
+          intent: 'User requested to play AI content',
+        };
+        response = `🎧 Starting playback: "${segment.text.substring(0, 80)}..." Here's a great segment about AI transforming industries. This covers the unprecedented pace of innovation we're seeing today.`;
+      } else if (message.includes('team') || message.includes('founding') || message.includes('investors')) {
+        const segment = mockSegments['file-1'][2]; // Team building segment
+        playbackAction = {
+          type: 'play_segment',
+          fileId: 'file-1',
+          segment,
+          intent: 'User requested content about team building',
+        };
+        response = `🎧 Starting playback: "${segment.text.substring(0, 80)}..." This segment discusses the importance of building a strong founding team and what investors really look for.`;
+      } else {
+        // Default to first startup segment if play intent detected but no specific topic
+        const segment = mockSegments['file-1'][0];
+        playbackAction = {
+          type: 'play_segment',
+          fileId: 'file-1',
+          segment,
+          intent: 'User requested playback - showing popular content',
+        };
+        response = `🎧 Starting playback: Here's one of our most popular segments about startup funding. You can always ask me to "play the part about [specific topic]" to find exactly what you're looking for!`;
+      }
     } else {
-      response = 'That\'s an interesting question! Based on your listening history and interests, I can help you discover relevant podcast content. What specific topics are you most curious about right now?';
-      recommendations = mockRecommendations.slice(0, 2);
+      // Regular chat responses with related segments
+      if (message.includes('startup') || message.includes('business') || message.includes('funding')) {
+        response = 'I found some excellent content about startups and entrepreneurship! The startup journey involves many challenges, but with the right mindset and preparation, success is achievable. Try saying "play the part about startup funding" to jump directly to relevant segments.';
+        recommendations = [mockRecommendations[0]];
+        relatedSegments = mockSegments['file-1'].slice(0, 2);
+      } else if (message.includes('ai') || message.includes('technology') || message.includes('artificial intelligence')) {
+        response = 'AI and technology are fascinating topics! The current revolution in artificial intelligence is transforming every industry. From machine learning to neural networks, there\'s so much to explore. You can say "play the AI segment" to hear about industry transformation.';
+        recommendations = [mockRecommendations[1]];
+        relatedSegments = mockSegments['file-2'];
+      } else if (message.includes('meditation') || message.includes('wellness')) {
+        response = 'Mindfulness and meditation are excellent for mental well-being. Starting with just 10 minutes a day can make a significant difference in your stress levels and overall happiness. I have some beginner-friendly meditation content that might help.';
+        recommendations = [{ file: mockMediaFiles[2], reasoningText: 'Perfect for beginners interested in meditation', relevanceScore: 0.95, matchedInterests: ['meditation', 'wellness'] }];
+      } else {
+        response = 'That\'s an interesting question! I can help you discover relevant podcast content and even play specific segments. Try saying something like "play the part about startup funding" or "listen to the AI discussion" to jump directly to relevant content.';
+        recommendations = mockRecommendations.slice(0, 2);
+        relatedSegments = [...mockSegments['file-1'].slice(0, 1), ...mockSegments['file-2'].slice(0, 1)];
+      }
     }
     
     return {
@@ -260,6 +366,8 @@ export const mockApiService = {
       conversationId: request.conversationId || currentConversationId,
       timestamp: new Date().toISOString(),
       recommendations: recommendations.length > 0 ? recommendations : undefined,
+      relatedSegments: relatedSegments.length > 0 ? relatedSegments : undefined,
+      playbackAction,
     };
   },
 

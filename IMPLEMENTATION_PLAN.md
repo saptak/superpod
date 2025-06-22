@@ -1,18 +1,22 @@
 # SuperPod Implementation Plan
 
 ## Tech Stack
+
 - **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **UI Components**: shadcn/ui + Tailwind CSS
-- **Authentication**: Google OAuth 2.0 for YouTube access
-- **Video/Audio**: YouTube Player API
-- **API Integration**: YouTube Data API v3
-- **AI Integration**: Llama 4.0 API
+- **Authentication**: JWT-based with email/password
+- **Backend**: Python FastAPI with async processing
+- **Database**: PostgreSQL with SQLAlchemy
+- **Vector Database**: ChromaDB for semantic search
+- **AI Integration**: Llama 4.0 API for transcription and chat
+- **File Processing**: FFmpeg + Watchdog file monitoring
 - **PWA**: Workbox (later phases)
 
 ## Iterative Development Phases
 
 ### Phase 1: Project Foundation 🏗️
+
 **Goal**: Set up development environment and basic structure
 
 1. **Initialize React + TypeScript project with Vite**
@@ -23,137 +27,175 @@
 2. **Install and configure shadcn/ui + Tailwind CSS**
    - Install Tailwind CSS and configure
    - Initialize shadcn/ui CLI
-   - Add basic components (Button, Input, Card)
+   - Add basic components (Button, Input, Card, ScrollArea)
 
 3. **Create basic project structure and TypeScript types**
    - Set up folder structure (components, hooks, utils, types, services, api)
    - Define core TypeScript interfaces from API specification
-   - Create API client service layer for backend communication
+   - Create API client service layer for FastAPI backend communication
    - Create initial routing with React Router
-   - Set up environment variables for API base URL and Google OAuth keys
+   - Set up environment variables for API base URL
 
 **Deliverable**: Working development environment with styled hello world
 
 ---
 
-### Phase 2: YouTube Authentication 🔐
-**Goal**: Implement Google OAuth and extract user interests
+### Phase 2: Backend API Foundation 🔧
 
-1. **Implement Google OAuth 2.0 login flow for YouTube access**
-   - Create API client methods for auth endpoints (/auth/google/*)
-   - Implement Google OAuth flow using service layer
-   - Create login/logout components with shadcn/ui
-   - Handle authentication state management with API tokens
+**Goal**: Set up FastAPI backend with core infrastructure
 
-2. **Extract user interests from YouTube watch history and subscriptions**
-   - Implement API client for user profile endpoints (/user/*)
-   - Fetch user's YouTube interests through service layer
-   - Create user interest profile from YouTube data
-   - Store user preferences with proper token refresh logic
+1. **Initialize FastAPI project with async PostgreSQL**
+   - Create FastAPI project structure
+   - Configure PostgreSQL with SQLAlchemy async
+   - Set up database models for users, media files, transcriptions
+   - Create authentication middleware with JWT
 
-**Deliverable**: Working YouTube authentication with user interest extraction
+2. **Implement file storage and monitoring system**
+   - Set up file watcher with Watchdog
+   - Create media file detection and validation
+   - Implement database record creation for new files
+   - Add basic file serving endpoints
+
+**Deliverable**: Working FastAPI backend with file monitoring and database
 
 ---
 
-### Phase 3: Core Chat Interface 💬
-**Goal**: Build functional chat UI with user context
+### Phase 3: Authentication System 🔐
 
-1. **Implement chat interface with live YouTube user context via API**
+**Goal**: Implement JWT authentication flow
+
+1. **Implement JWT authentication endpoints**
+   - Create API endpoints for login, register, refresh
+   - Implement user registration and login logic
+   - Add JWT token generation and validation
+   - Create protected route middleware
+
+2. **Build frontend authentication components**
+   - Create LoginForm and RegisterForm components with shadcn/ui
+   - Implement authentication state management
+   - Add API client methods for auth endpoints
+   - Handle token refresh and storage
+
+**Deliverable**: Working authentication system with protected routes
+
+---
+
+### Phase 4: File Processing Pipeline 🎵
+
+**Goal**: Implement automatic media file processing
+
+1. **Build transcription pipeline**
+   - Integrate FFmpeg for audio extraction
+   - Connect Llama 4.0 API for transcription
+   - Implement timestamped segment processing
+   - Add transcription status tracking
+
+2. **Set up vector database integration**
+   - Configure ChromaDB for vector storage
+   - Generate embeddings for transcribed content
+   - Implement semantic search functionality
+   - Add content indexing for new files
+
+**Deliverable**: Automatic file processing with transcription and search indexing
+
+---
+
+### Phase 5: Core Chat Interface 💬
+
+**Goal**: Build functional chat UI with content context
+
+1. **Implement chat interface components**
    - Create ChatContainer, MessageList, MessageInput components
    - Use shadcn/ui components (Card, Input, Button, ScrollArea)
-   - Implement API client for chat endpoints (/chat/*)
-   - Include real user's YouTube context in API requests
+   - Implement API client for chat endpoints
+   - Add conversation history management
 
-2. **Test chat UI with real user data from service API**
-   - Use live API calls to backend service
-   - Test message rendering with actual API responses
-   - Ensure responsive design on mobile with real data
+2. **Connect chat to content context**
+   - Include transcription context in chat requests
+   - Implement content-aware AI responses
+   - Add file reference and segment navigation
+   - Display relevant content snippets
 
-**Deliverable**: Interactive chat interface with live YouTube user context
-
----
-
-### Phase 4: AI Integration 🤖
-**Goal**: Connect chat to Llama 4.0 with personalized context
-
-1. **Backend service handles Llama 4.0 integration (frontend connects via API)**
-   - Frontend uses existing chat API endpoints
-   - Service layer handles AI integration with YouTube context
-   - Frontend implements proper error handling for API responses
-   - Add loading states and retry logic for API calls
-
-2. **Connect chat interface to service API with live data**
-   - Use chat API endpoints for AI-powered responses
-   - Handle API response streaming if supported by service
-   - Add conversation context management through API
-   - Display personalized responses from service layer
-
-**Deliverable**: Working AI chat with personalized Llama 4.0 responses using live data
+**Deliverable**: Interactive chat interface with content-aware responses
 
 ---
 
-### Phase 5: YouTube Podcast Features 🎧
-**Goal**: Add YouTube podcast discovery and playback
+### Phase 6: Media Discovery & Player 🎧
 
-1. **Integrate real-time YouTube podcast search and recommendations via API**
-   - Build SearchBar with shadcn/ui Input
-   - Create PodcastCard and PodcastList components
-   - Implement API client for podcast endpoints (/podcasts/*)
-   - Use service API for search results and personalized recommendations
+**Goal**: Add media browsing and playback functionality
 
-2. **Implement YouTube Player API with caption integration**
-   - Create VideoPlayer component with YouTube Player API
-   - Implement playback API endpoints (/playback/*)
-   - Add caption display and navigation features
-   - Sync playback state between Player API and service API
+1. **Build media discovery interface**
+   - Create PodcastGrid and PodcastList components
+   - Implement search functionality with semantic search
+   - Add filtering by topics and metadata
+   - Display processing status for files
 
-**Deliverable**: Live YouTube podcast catalog with real-time search and streaming
+2. **Implement audio player with transcript navigation**
+   - Create AudioPlayer component with standard controls
+   - Add transcript overlay and segment navigation
+   - Implement click-to-seek functionality
+   - Sync playback with transcription display
+
+**Deliverable**: Complete media discovery and playback system
 
 ---
 
-### Phase 6: Polish & PWA 🚀
-**Goal**: Production-ready application
+### Phase 7: Advanced Features & Polish 🚀
 
-1. **Add PWA configuration**
+**Goal**: Production-ready application with advanced features
+
+1. **Add real-time processing updates**
+   - Implement WebSocket connections for processing status
+   - Add real-time file processing notifications
+   - Update UI dynamically as files are processed
+   - Handle processing errors gracefully
+
+2. **Implement content analysis features**
+   - Add AI-generated episode summaries
+   - Create topic extraction and categorization
+   - Build personalized recommendation system
+   - Add advanced search with filters
+
+3. **PWA configuration and mobile optimization**
    - Configure service worker with Workbox
    - Add app manifest for mobile installation
-   - Implement offline functionality for basic features
+   - Implement offline functionality for cached content
+   - Optimize for mobile performance and touch gestures
 
-2. **Mobile optimization**
-   - Enhance responsive design
-   - Add touch gestures for audio player
-   - Optimize for mobile performance
-
-**Deliverable**: Production-ready PWA with offline support
+**Deliverable**: Production-ready PWA with advanced AI features
 
 ---
 
 ## Development Notes
 
 ### After Each Phase
+
 - Test all functionality on desktop and mobile
 - Update TypeScript types as needed
 - Refactor components for reusability
 - Update this plan with learnings
 
 ### Key Considerations
+
 - Start with simple implementations, iterate to add complexity
-- Test UI components with real data from service API
+- Test UI components with real data from FastAPI service
 - Keep all external API calls abstracted in backend service layer
-- Frontend communicates only with internal service API
+- Frontend communicates only with internal FastAPI service
 - Maintain responsive design throughout development
 - Handle API errors gracefully with proper user feedback
-- Implement proper token refresh logic through service API
+- Implement proper JWT token refresh logic
 - Never use placeholder or mock data - always integrate with live service API
-- Handle YouTube API quota limits gracefully
-- Implement caption-based search and navigation features
+- Handle file processing errors and provide user feedback
+- Implement proper error boundaries and loading states
 
 ### Future Enhancements (Post-MVP)
 
-- Voice commands integration
-- Segment-based playback with timestamps
-- Real-time Q&A during podcast playback
-- Topic extraction and categorization per episode
-- User preference learning algorithms
-- Social features (sharing, playlists)
-- Advanced recommendation algorithms
+- Voice commands integration for hands-free operation
+- Advanced segment-based playback with smart resumption
+- Real-time collaborative Q&A sessions during playback
+- Advanced topic modeling and content categorization
+- User preference learning algorithms with feedback loops
+- Social features (sharing, playlists, discussions)
+- Multi-language transcription and translation support
+- Advanced analytics dashboard for content insights
+- Integration with external podcast APIs for metadata enrichment

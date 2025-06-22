@@ -7,7 +7,9 @@ SuperPod is an AI-driven podcast discovery and consumption platform that uses lo
 - **Local Media Storage**: Automatically processes media files dropped into storage
 - **AI Transcription**: Uses Llama 4.0 for audio-to-text conversion with timestamped segments
 - **Vector Search**: Semantic search through transcribed content using ChromaDB
-- **AI-Powered Chat**: Conversational content discovery and Q&A about podcast content
+- **Intelligent Chat-to-Play**: Say "play the startup funding part" for instant segment playback
+- **Intent Recognition**: AI automatically detects playback requests and triggers audio
+- **Contextual Responses**: Chat includes both conversation and playable segment recommendations
 - **Real-time Processing**: File watcher automatically processes new media files
 - **Personalized Recommendations**: AI-powered content suggestions based on listening history
 
@@ -85,7 +87,7 @@ DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost/superpod
 
 # AI Services
 LLAMA_API_KEY=your-llama-api-key-here
-LLAMA_MODEL=gpt-3.5-turbo
+LLAMA_MODEL=llama-3.2-90b-text-preview
 
 # File Storage
 MEDIA_STORAGE_PATH=./data/media
