@@ -313,14 +313,28 @@ class SummarizationAgent:
             if not self._initialize_client():
                 return False
             
+            transcriptions_dir = os.path.join(os.path.dirname(__file__), "transcriptions")
+            transcript_file = None
+            for fname in os.listdir(transcriptions_dir):
+                if audioid in fname:
+                    transcript_file = os.path.join(transcriptions_dir, fname)
+                    break
+
+            if not transcript_file or not os.path.isfile(transcript_file):
+                return {"status": "error", "message": f"Transcript for audioid {audioid} not found"}
+
+            # Load audio segments from the transcript file (assuming JSON format)
+            with open(transcript_file, "r") as f:
+                audio_segments = json.load(f)
             # Load transcript
-            transcript_data = self._load_transcript(transcript_file)
+            transcript_data = audio_segments
+            #self._load_transcript(transcript_file)
             if not transcript_data:
                 return False
             
             # Create output directory
-            output_path = Path(output_dir)
-            output_path.mkdir(parents=True, exist_ok=True)
+            # output_path = Path(output_dir)
+            # output_path.mkdir(parents=True, exist_ok=True)
             
             # Generate summary
             print(f"\nGenerating summary...")
