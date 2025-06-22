@@ -143,6 +143,7 @@ const MediaPlayer: React.FC<MediaPlayerProps> = ({
             </div>
           </div>
           
+          
           <div className="flex-1 mx-4">
             <div className="text-center mb-1 text-sm font-medium" style={{ color: '#ffffff' }}>
               {podcastName}

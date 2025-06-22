@@ -10,6 +10,7 @@ interface PodcastCardProps {
   imageUrl?: string;
 }
 
+
 const PodcastCard: React.FC<PodcastCardProps> = ({ 
   title, 
   author, 
