@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthPage } from './pages/AuthPage';
 import { Dashboard } from './pages/Dashboard';
+import { PlaybackProvider } from './contexts/PlaybackContext';
 import { mockApiService } from './services/mockApi';
 
 function App() {
@@ -44,40 +45,42 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              isAuthenticated ? (
-                <Navigate to="/dashboard" replace />
-              ) : (
-                <AuthPage onAuthenticated={handleAuthenticated} />
-              )
-            } 
-          />
-          <Route 
-            path="/dashboard" 
-            element={
-              isAuthenticated ? (
-                <Dashboard onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            } 
-          />
-          <Route 
-            path="/auth/callback" 
-            element={<div>Processing login...</div>} 
-          />
-          <Route 
-            path="*" 
-            element={<Navigate to="/" replace />} 
-          />
-        </Routes>
-      </div>
-    </Router>
+    <PlaybackProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                isAuthenticated ? (
+                  <Navigate to="/dashboard" replace />
+                ) : (
+                  <AuthPage onAuthenticated={handleAuthenticated} />
+                )
+              } 
+            />
+            <Route 
+              path="/dashboard" 
+              element={
+                isAuthenticated ? (
+                  <Dashboard onLogout={handleLogout} />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              } 
+            />
+            <Route 
+              path="/auth/callback" 
+              element={<div>Processing login...</div>} 
+            />
+            <Route 
+              path="*" 
+              element={<Navigate to="/" replace />} 
+            />
+          </Routes>
+        </div>
+      </Router>
+    </PlaybackProvider>
   );
 }
 
