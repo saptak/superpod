@@ -9,7 +9,7 @@ import json
 import re
 import ast
 from smart_file_manager import SmartFileManager
-from workflow_orchestrator import WorkflowOrchestrator
+#from workflow_orchestrator import WorkflowOrchestrator
 from typing import Dict, Any
 
 class LlamaNodeConnector:
@@ -179,6 +179,37 @@ class LlamaNodeConnector:
                     user_message=args.get("user_message")
                 )
                 return tool_result
+        
+        elif response.get("category") == "summarization" and isinstance(response.get("response"), list):
+            tool_call = response["response"][0]
+            match = re.match(r'call_summarization_agent\((.*)\)', tool_call)
+            if match:
+                args_str = match.group(1)
+                args = {}
+                for arg in args_str.split(","):
+                    k, v = arg.split("=", 1)
+                    args[k.strip()] = v.strip().strip('"').strip("'")
+                tool_result = self.call_summarization_agent(
+                    transcript_file=args.get("transcript_file"),
+                    output_dir=args.get("output_dir")
+                )
+                return tool_result
+
+        elif response.get("category") == "question_answering" and isinstance(response.get("response"), list):
+            tool_call = response["response"][0]
+            match = re.match(r'call_qa_agent\((.*)\)', tool_call)
+            if match:
+                args_str = match.group(1)
+                args = {}
+                for arg in args_str.split(","):
+                    k, v = arg.split("=", 1)
+                    args[k.strip()] = v.strip().strip('"').strip("'")
+                tool_result = self.call_qa_agent(
+                    question=args.get("question"),
+                    transcript_file=args.get("transcript_file"),
+                    summary_file=args.get("summary_file")
+                )
+                return tool_result
 
         return response
 
@@ -194,7 +225,8 @@ class LlamaNodeConnector:
             dict: The response from the TranscriptionAgent.
         """
         # Using the workflow orchestrator's transcription agent
-        success = self.workflow_orchestrator.transcription_agent.process(audio_file_path, output_dir)
+        success = ""
+        # self.workflow_orchestrator.transcription_agent.process(audio_file_path, output_dir)
         if success:
             return {
                 "status": "success",
@@ -232,7 +264,8 @@ class LlamaNodeConnector:
             dict: The response from the SummarizationAgent.
         """
         # Using the workflow orchestrator's summarization agent
-        success = self.workflow_orchestrator.summarization_agent.process(transcript_file, output_dir)
+        success = ""
+        #self.workflow_orchestrator.summarization_agent.process(transcript_file, output_dir)
         if success:
             return {
                 "status": "success",

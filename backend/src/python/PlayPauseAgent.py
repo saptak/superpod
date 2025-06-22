@@ -49,6 +49,31 @@ class PlayPauseAgent:
             temperature=0.6,
             max_completion_tokens=2048,
             top_p=0.9,
-            repetition_penalty=1
+            repetition_penalty=1,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "json_schema",
+                    "schema": {
+                        "properties": {
+                            "message": {
+                                "type": "string"
+                            },
+                            "start_time": {
+                                "type": "string"
+                            },
+                            "end_time": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "start_time",
+                            "end_time"
+                        ],
+                        "type": "object"
+                    }
+                },
+                },
         )
         return llama_response.completion_message.content.text
