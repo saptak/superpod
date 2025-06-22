@@ -1,5 +1,4 @@
 import requests
-from langchain.llms import OpenAI
 import os
 from llama_api_client import LlamaAPIClient
 from chromadb import Client as ChromaClient

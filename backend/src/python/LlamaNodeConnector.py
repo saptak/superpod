@@ -1,5 +1,4 @@
 import requests
-from langchain.llms import OpenAI
 import os
 from llama_api_client import LlamaAPIClient
 from PlayPauseAgent import PlayPauseAgent
@@ -16,7 +15,7 @@ class LlamaNodeConnector:
         self.model = "Llama-4-Maverick-17B-128E-Instruct-FP8"
         
         # Initialize only transcription agent by default
-        self.transcription_agent = TranscriptionAgent()
+        # self.transcription_agent = TranscriptionAgent()
         print("TranscriptionAgent initialized and ready")
 
     def process_client_request(self, prompt):
@@ -98,7 +97,7 @@ class LlamaNodeConnector:
                 },
         ],
         )
-        return llama_response
+        return llama_response.completion_message.content.text
 
     def call_transcription_agent(self, audio_file_path, output_dir):
         """

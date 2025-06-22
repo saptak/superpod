@@ -7,9 +7,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 from llama_api_client import LlamaAPIClient
 
-from .base import BaseAgent
-
-class QAAgent(BaseAgent):
+class QAAgent():
     """Agent for interactive podcast Q&A"""
     
     def __init__(self):

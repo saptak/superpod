@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from LlamaNodeConnector import LlamaNodeConnector as llama_node_connector
-
+import json
 
 class PodAPIs:
     def __init__(self):
@@ -14,10 +14,14 @@ class PodAPIs:
             data = request.json
             llama_node_connector_instance = llama_node_connector()
             response = llama_node_connector_instance.process_client_request(data['message'])
-            # Replace with actual implementation
+            if isinstance(response, str):
+                try:
+                    response = json.loads(response)
+                except Exception:
+                    pass
             return jsonify(response)
 
-    def run(self, host='0.0.0.0', port=5000):
+    def run(self, host='0.0.0.0', port=50000):
         self.app.run(host=host, port=port)
 
 if __name__ == "__main__":
