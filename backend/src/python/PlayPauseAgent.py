@@ -1,8 +1,8 @@
 import requests
 import os
 from llama_api_client import LlamaAPIClient
-from chromadb import Client as ChromaClient
 from chromadb.config import Settings
+import json
 
 
 class PlayPauseAgent:
@@ -18,12 +18,20 @@ class PlayPauseAgent:
             dict: The response containing audio details or an error message.
         """
         # Placeholder for actual implementation
-        chroma_client = ChromaClient(Settings(chroma_db_impl="duckdb+parquet", persist_directory="./chroma_db"))
-        collection = chroma_client.get_collection("audio_collection")
-        audio_segments = collection.query(
-            query_texts=[audioid],
-            n_results=1
-        )
+        # Search for transcript file in transcriptions folder
+        transcriptions_dir = os.path.join(os.path.dirname(__file__), "transcriptions")
+        transcript_file = None
+        for fname in os.listdir(transcriptions_dir):
+            if audioid in fname:
+                transcript_file = os.path.join(transcriptions_dir, fname)
+                break
+
+        if not transcript_file or not os.path.isfile(transcript_file):
+            return {"status": "error", "message": f"Transcript for audioid {audioid} not found"}
+
+        # Load audio segments from the transcript file (assuming JSON format)
+        with open(transcript_file, "r") as f:
+            audio_segments = json.load(f)
 
         llama_response = llama_client.chat.completions.create(
             messages=[{
@@ -32,9 +40,9 @@ class PlayPauseAgent:
             },
             {
                 "role": "user", 
-                "content": "Look at all the audio segments and find the audio that matches the query: " + user_message + 
-                "Here is the list of all audio segments: " + str(audio_segments["documents"]) +
-                "Find earliest start time from all segments and latest end time from all segments. Return this information in JSON format with keys 'audio_id', 'start_time' and 'end_time'."
+                "content": "Look at all the audio segments and find the audio that matches the user query: " + user_message + 
+                "Find earliest start time from all segments and latest end time from all segments. Return this information in valid JSON format with keys 'audio_id', 'start_time' and 'end_time'." +
+                "Here is the list of all audio segments: " + json.dumps(audio_segments)  
             }],
             model="Llama-4-Maverick-17B-128E-Instruct-FP8",
             stream=False,
@@ -43,9 +51,4 @@ class PlayPauseAgent:
             top_p=0.9,
             repetition_penalty=1
         )
-
-        if not audio_segments or not audio_segments[0] or not audio_segments["documents"]:
-            return {"status": "error", "message": "Audio not found"}
-        
-
-        return llama_response
+        return llama_response.completion_message.content.text

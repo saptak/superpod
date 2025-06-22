@@ -5,6 +5,9 @@ from PlayPauseAgent import PlayPauseAgent
 from summarization_agent import SummarizationAgent
 from qa_agent import QAAgent
 from transcription_agent import TranscriptionAgent
+import json
+import re
+import ast
 
 class LlamaNodeConnector:
 
@@ -37,7 +40,7 @@ class LlamaNodeConnector:
                 },
                 {
                     "role": "user", 
-                    "content": prompt
+                    "content": str(prompt)
                  }
                 ],
             model=self.model,
@@ -97,7 +100,47 @@ class LlamaNodeConnector:
                 },
         ],
         )
-        return llama_response.completion_message.content.text
+
+         # Parse the response string to dict
+        try:
+            response_str = llama_response.completion_message.content.text.replace("'", "\"")
+            response = json.loads(response_str)
+        except Exception as e:
+            print(f"Error parsing response: {e}")
+            fixed = self.fix_llm_json(response_str)
+            try:
+                response = json.loads(fixed)
+            except Exception:
+                # fallback logic
+                response = {"category": "unknown", "response": response_str}
+                
+
+        # Tool calling logic
+        if response.get("category") == "audio_playback" and isinstance(response.get("response"), list):
+            # Example: [call_pause_play_agent(location="audio_1", user_message="...")]
+            tool_call = response["response"][0]
+            match = re.match(r'call_pause_play_agent\((.*)\)', tool_call)
+            if match:
+                args_str = match.group(1)
+                 # Use shlex to split arguments safely
+                args = {}
+                if args_str.startswith("location="):
+                    json_part = args_str[len("location="):]
+                    try:
+                        # Safely evaluate the dict string
+                        data = ast.literal_eval(json_part)
+                        args["audioid"] = data.get("audioid")
+                        args["user_message"] = data.get("user_message")
+                    except Exception as e:
+                        print(f"Error parsing location argument: {e}")
+                
+                tool_result = self.call_pause_play_agent(
+                    audioid=args.get("audioid"),
+                    user_message=args.get("user_message")
+                )
+                return tool_result
+
+        return response
 
     def call_transcription_agent(self, audio_file_path, output_dir):
         """
@@ -153,6 +196,7 @@ class LlamaNodeConnector:
         return summarizationagent.process(transcript_file, output_dir)
 
     def call_qa_agent(self, question, transcript_file, summary_file):
+
         """
         Calls the QAAgent with the given prompt.
         
@@ -166,3 +210,18 @@ class LlamaNodeConnector:
         qaagent = QAAgent()
         qaagent.load_data(transcript_file, summary_file)
         return qaagent.ask_question(question)
+    
+    def fix_llm_json(self, json_str):
+        # Replace single quotes with double quotes
+        fixed = json_str.replace("'", '"')
+
+        # Quote function calls in arrays
+        def quote_func_call(match):
+            func_call = match.group(2)
+            # Escape inner double quotes inside the function call
+            func_call = re.sub(r'(?<!\\)"', r'\\"', func_call)
+            return f'["{func_call}"]'
+
+        fixed = re.sub(r'(\[)(\s*call_\w+\(.*?\)\s*)(\])', quote_func_call, fixed)
+
+        return fixed
