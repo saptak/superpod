@@ -264,19 +264,8 @@ class LlamaNodeConnector:
             dict: The response from the SummarizationAgent.
         """
         # Using the workflow orchestrator's summarization agent
-        success = self.workflow_orchestrator.summarization_agent.process(transcript_file, output_dir)
-        if success:
-            return {
-                "status": "success",
-                "message": f"Successfully summarized {transcript_file}",
-                "output_dir": output_dir
-            }
-        else:
-            return {
-                "status": "error",
-                "message": f"Failed to summarize {transcript_file}"
-            }
-
+        return self.workflow_orchestrator.summarization_agent.process(transcript_file, output_dir)
+        
     def call_qa_agent(self, question, transcript_file, summary_file):
 
         """

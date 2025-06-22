@@ -314,9 +314,8 @@ class SummarizationAgent:
                 return False
             
             transcriptions_dir = os.path.join(os.path.dirname(__file__), "transcriptions")
-            transcript_file = None
             for fname in os.listdir(transcriptions_dir):
-                if audioid in fname:
+                if transcript_file in fname:
                     transcript_file = os.path.join(transcriptions_dir, fname)
                     break
 
@@ -333,8 +332,8 @@ class SummarizationAgent:
                 return False
             
             # Create output directory
-            # output_path = Path(output_dir)
-            # output_path.mkdir(parents=True, exist_ok=True)
+            output_path = Path("./")
+            output_path.mkdir(parents=True, exist_ok=True)
             
             # Generate summary
             print(f"\nGenerating summary...")
@@ -366,18 +365,19 @@ class SummarizationAgent:
                 "full_transcript": transcript_data.get('full_text', '')
             }
             
-            # Save summary
-            output_file = output_path / f"{base_name}_summary.json"
-            success = self._save_summary(summary_data, str(output_file))
+            return summary
+            # # Save summary
+            # output_file = output_path / f"{base_name}_summary.json"
+            # success = self._save_summary(summary_data, str(output_file))
             
-            if success:
-                print(f"\nCasual podcast synopsis completed!")
-                print(f"Topics noted: {len(summary.get('topics_analysis', '').split())} words")
-                print(f"Synopsis: {len(summary.get('comprehensive_summary', '').split())} words")
-                print(f"Key moments captured: {len(summary.get('key_moments', []))}")
-                print(f"Saved to: {output_file}")
+            # if success:
+            #     print(f"\nCasual podcast synopsis completed!")
+            #     print(f"Topics noted: {len(summary.get('topics_analysis', '').split())} words")
+            #     print(f"Synopsis: {len(summary.get('comprehensive_summary', '').split())} words")
+            #     print(f"Key moments captured: {len(summary.get('key_moments', []))}")
+            #     print(f"Saved to: {output_file}")
                 
-            return success
+            # return success
             
         except Exception as e:
             self.logger.error(f"Summarization process failed: {e}")
