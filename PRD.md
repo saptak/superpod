@@ -30,15 +30,23 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 - Segment-specific playback based on user interests and AI analysis
 - Skip to relevant parts functionality using transcribed timestamps
 
-### Follow-Up Questions
-- Real-time Q&A via text about podcast content
-- Context-aware answers generated from transcriptions and current segment
+### Intelligent Playback Control
+- **Natural Language Commands**: Users can say "play the part about startup funding" to jump directly to relevant segments
+- **Intent Recognition**: AI automatically detects playback requests and triggers segment playback
+- **Context-Aware Responses**: Chat interface provides both conversation and immediate segment access
+- **Seamless Integration**: No separate buttons needed - chat and playback work as one unified experience
+
+### Interactive Q&A Experience
+- Real-time Q&A via text about podcast content with automatic segment playback
+- Context-aware answers generated from transcriptions with direct links to relevant moments
+- **Smart Segment Discovery**: AI identifies and plays the most relevant 30-60 second segments based on user questions
 - Automatic resume: continue playback exactly where the listener paused after questions are answered
 
-### Natural Language Interface
-- Text chat interaction for podcast discovery and content exploration
-- Conversational podcast browsing with semantic understanding
-- AI-powered content recommendations based on natural language queries
+### Conversational Interface
+- **Voice-to-Playback Flow**: "Show me the AI discussion" → Instant segment playback
+- **Contextual Discovery**: AI suggests related segments during conversation
+- **Playback Integration**: Chat responses include playable segment previews
+- Hands-free content exploration through natural conversation
 
 ## Technical Stack
 - **Frontend**: Progressive Web App (PWA) for web/mobile
@@ -53,20 +61,32 @@ AI-driven podcast discovery and consumption platform enabling natural language i
 
 ## Success Metrics
 - User engagement time per session
-- Podcast discovery conversion rate
+- Content discovery accuracy through semantic search
 - Segment completion rates
-- Chat interaction frequency
+- Chat interaction frequency and relevance
 
 ## MVP Scope
-1. File storage system with automatic media file detection and processing
-2. Llama-powered transcription service for new media files
-3. Vector database integration for semantic search capabilities
-4. Chat interface with AI-powered content discovery and recommendations
-5. Media file streaming with transcription-based navigation
-6. AI episode synopsis generation using transcriptions and content analysis
+
+1. **File Storage System**: Automatic media file detection and processing with file watcher
+2. **AI Transcription Pipeline**: Llama 4.0-powered transcription with timestamped segments
+3. **Vector Database Integration**: ChromaDB for semantic search capabilities
+4. **Chat Interface**: AI-powered content discovery and Q&A about transcribed content
+5. **Audio Player**: Media streaming with transcription-based navigation and segment jumping
+6. **Content Analysis**: AI episode synopsis generation and topic extraction
+
+## Architecture Overview
+
+- **Frontend**: React 18 + TypeScript with shadcn/ui components
+- **Backend**: Python FastAPI with async processing
+- **Database**: PostgreSQL with SQLAlchemy for metadata
+- **Vector Storage**: ChromaDB for semantic embeddings
+- **File Processing**: FFmpeg + Watchdog for automated pipeline
+- **AI Integration**: Llama 4.0 API for transcription and chat
 
 ## Future Enhancements
+
 - Native mobile apps (iOS/Android)
-- Social features (sharing, playlists)
-- Creator analytics dashboard
-- Multi-language support
+- Social features (sharing, playlists, discussions)
+- Advanced analytics dashboard for content insights
+- Multi-language support and translation
+- Real-time collaborative listening sessions
