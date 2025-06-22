@@ -1,20 +1,26 @@
 """
 Workflow Orchestrator
 Automated workflow management for SuperPod agents
+Compatible with Python 3.11+
 """
 import logging
+import sys
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Union
 from smart_file_manager import SmartFileManager
 from transcription_agent import TranscriptionAgent
 from summarization_agent import SummarizationAgent
 from qa_agent import QAAgent
 from message_processor import MessageProcessor
 
+# Ensure Python 3.11+ compatibility
+if sys.version_info < (3, 11):
+    raise RuntimeError("This script requires Python 3.11 or higher")
+
 class WorkflowOrchestrator:
     """Automated workflow orchestration for SuperPod agents"""
     
-    def __init__(self):
+    def __init__(self) -> None:
         self.logger = self._setup_logger()
         self.file_manager = SmartFileManager()
         self.message_processor = MessageProcessor()
@@ -25,22 +31,28 @@ class WorkflowOrchestrator:
         self.qa_agent = QAAgent()
         
         # Workflow status tracking
-        self.workflow_status = {}
+        self.workflow_status: Dict[str, Any] = {}
         
     def _setup_logger(self) -> logging.Logger:
-        """Set up logging"""
+        """Set up logging with proper configuration"""
         logger = logging.getLogger("WorkflowOrchestrator")
         logger.setLevel(logging.INFO)
         
         if not logger.handlers:
             handler = logging.StreamHandler()
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            )
             handler.setFormatter(formatter)
             logger.addHandler(handler)
         
         return logger
     
-    def process_user_request(self, user_message: str, intent: str = None) -> Dict[str, Any]:
+    def process_user_request(
+        self, 
+        user_message: str, 
+        intent: Optional[str] = None
+    ) -> Dict[str, Any]:
         """
         Process user request with intelligent message processing
         
@@ -76,61 +88,79 @@ class WorkflowOrchestrator:
                 }
                 
         except Exception as e:
-            self.logger.error(f"Error processing user request: {e}")
+            self.logger.error(f"Error processing user request: {e}", exc_info=True)
             return {
                 'status': 'error',
                 'message': f'Error processing request: {str(e)}'
             }
     
     def _handle_summarization_request(self, message_result: Dict[str, Any]) -> Dict[str, Any]:
-        """Handle summarization request"""
+        """Handle summarization request with proper error handling"""
         try:
             agent_context = message_result['agent_context']
             result = self.summarization_agent.summarize_from_message(agent_context)
             
-            # Add workflow information
-            result['workflow_info'] = {
+            # Add workflow information using dict merge (Python 3.9+)
+            workflow_info = {
                 'message_processed': True,
                 'intent': message_result['intent'],
                 'target_audio_id': message_result['target_audio_id']
             }
             
+            # Use dict.update() for Python 3.11 compatibility
+            if isinstance(result, dict):
+                result.update({'workflow_info': workflow_info})
+            else:
+                result = {'workflow_info': workflow_info, 'result': result}
+            
             return result
             
         except Exception as e:
-            self.logger.error(f"Error in summarization request: {e}")
+            self.logger.error(f"Error in summarization request: {e}", exc_info=True)
             return {
                 'status': 'error',
                 'message': f'Error in summarization: {str(e)}'
             }
     
     def _handle_question_request(self, message_result: Dict[str, Any]) -> Dict[str, Any]:
-        """Handle question request"""
+        """Handle question request with proper error handling"""
         try:
             agent_context = message_result['agent_context']
             result = self.qa_agent.answer_from_message(agent_context)
             
             # Add workflow information
-            result['workflow_info'] = {
+            workflow_info = {
                 'message_processed': True,
                 'intent': message_result['intent'],
                 'target_audio_id': message_result['target_audio_id']
             }
             
+            # Use dict.update() for Python 3.11 compatibility
+            if isinstance(result, dict):
+                result.update({'workflow_info': workflow_info})
+            else:
+                result = {'workflow_info': workflow_info, 'result': result}
+            
             return result
             
         except Exception as e:
-            self.logger.error(f"Error in question request: {e}")
+            self.logger.error(f"Error in question request: {e}", exc_info=True)
             return {
                 'status': 'error',
                 'message': f'Error in Q&A: {str(e)}'
             }
     
     def _handle_play_request(self, message_result: Dict[str, Any]) -> Dict[str, Any]:
-        """Handle play request"""
+        """Handle play request with proper error handling"""
         try:
             target_audio_id = message_result['target_audio_id']
-            file_paths = message_result['file_context'].get('file_paths', {})
+            file_context = message_result.get('file_context', {})
+            file_paths = file_context.get('file_paths', {})
+            
+            workflow_info = {
+                'message_processed': True,
+                'intent': message_result['intent']
+            }
             
             if 'audio' in file_paths:
                 return {
@@ -139,23 +169,17 @@ class WorkflowOrchestrator:
                     'target_audio_id': target_audio_id,
                     'audio_file': file_paths['audio'],
                     'message': f'Ready to play audio_{target_audio_id}',
-                    'workflow_info': {
-                        'message_processed': True,
-                        'intent': message_result['intent']
-                    }
+                    'workflow_info': workflow_info
                 }
             else:
                 return {
                     'status': 'error',
                     'message': f'Audio file not available for audio_{target_audio_id}',
-                    'workflow_info': {
-                        'message_processed': True,
-                        'intent': message_result['intent']
-                    }
+                    'workflow_info': workflow_info
                 }
                 
         except Exception as e:
-            self.logger.error(f"Error in play request: {e}")
+            self.logger.error(f"Error in play request: {e}", exc_info=True)
             return {
                 'status': 'error',
                 'message': f'Error in audio playback: {str(e)}'
@@ -167,15 +191,18 @@ class WorkflowOrchestrator:
         query_lower = query.lower()
         
         # Question patterns
-        if any(word in query_lower for word in ['what', 'how', 'why', 'when', 'where', 'who', '?']):
+        question_words = ['what', 'how', 'why', 'when', 'where', 'who', '?']
+        if any(word in query_lower for word in question_words):
             return 'ask_question'
         
         # Summary patterns
-        if any(word in query_lower for word in ['summarize', 'summary', 'overview', 'recap']):
+        summary_words = ['summarize', 'summary', 'overview', 'recap']
+        if any(word in query_lower for word in summary_words):
             return 'summarize'
         
         # Play patterns
-        if any(word in query_lower for word in ['play', 'listen', 'audio', 'sound']):
+        play_words = ['play', 'listen', 'audio', 'sound']
+        if any(word in query_lower for word in play_words):
             return 'play_audio'
         
         # Default to question if unclear
@@ -192,7 +219,11 @@ class WorkflowOrchestrator:
         
         return requirements.get(intent, ['transcript'])
     
-    def _resolve_dependencies(self, audio_id: str, required_types: List[str]) -> Dict[str, Any]:
+    def _resolve_dependencies(
+        self, 
+        audio_id: str, 
+        required_types: List[str]
+    ) -> Dict[str, Any]:
         """
         Resolve missing dependencies by triggering appropriate agents
         
@@ -203,11 +234,19 @@ class WorkflowOrchestrator:
         Returns:
             Dict with resolution status and actions taken
         """
-        actions_taken = []
-        errors = []
+        actions_taken: List[str] = []
+        errors: List[str] = []
         
         # Check current state
-        dependency_check = self.file_manager.ensure_dependencies(audio_id, required_types)
+        try:
+            dependency_check = self.file_manager.ensure_dependencies(audio_id, required_types)
+        except Exception as e:
+            self.logger.error(f"Error checking dependencies: {e}", exc_info=True)
+            return {
+                'status': 'error',
+                'message': f'Error checking dependencies: {str(e)}',
+                'actions_taken': actions_taken
+            }
         
         if dependency_check['status'] == 'ready':
             return {
@@ -245,7 +284,7 @@ class WorkflowOrchestrator:
             except Exception as e:
                 error_msg = f'Error generating {missing_type}: {str(e)}'
                 errors.append(error_msg)
-                self.logger.error(error_msg)
+                self.logger.error(error_msg, exc_info=True)
         
         if errors:
             return {
@@ -262,7 +301,7 @@ class WorkflowOrchestrator:
         }
     
     def _generate_transcript(self, audio_id: str) -> Dict[str, Any]:
-        """Generate transcript for audio"""
+        """Generate transcript for audio with proper error handling"""
         try:
             # Get audio file path
             audio_paths = self.file_manager.get_file_paths(audio_id, ['audio'])
@@ -289,13 +328,14 @@ class WorkflowOrchestrator:
                 }
                 
         except Exception as e:
+            self.logger.error(f"Error generating transcript: {e}", exc_info=True)
             return {
                 'success': False,
                 'error': str(e)
             }
     
     def _generate_summary(self, audio_id: str) -> Dict[str, Any]:
-        """Generate summary for audio"""
+        """Generate summary for audio with proper error handling"""
         try:
             # Get transcript file path
             transcript_paths = self.file_manager.get_file_paths(audio_id, ['transcript'])
@@ -322,6 +362,7 @@ class WorkflowOrchestrator:
                 }
                 
         except Exception as e:
+            self.logger.error(f"Error generating summary: {e}", exc_info=True)
             return {
                 'success': False,
                 'error': str(e)
@@ -329,27 +370,42 @@ class WorkflowOrchestrator:
     
     def _get_available_content_suggestions(self) -> List[str]:
         """Get suggestions for available content"""
-        available = self.file_manager.list_available_content()
-        suggestions = []
-        
-        if available['complete']:
-            suggestions.append(f"Available complete content: {len(available['complete'])} items")
-        
-        if available['transcribed']:
-            suggestions.append(f"Available transcribed content: {len(available['transcribed'])} items")
-        
-        if available['audio_only']:
-            suggestions.append(f"Available audio-only content: {len(available['audio_only'])} items")
-        
-        return suggestions
+        try:
+            available = self.file_manager.list_available_content()
+            suggestions: List[str] = []
+            
+            if available.get('complete'):
+                suggestions.append(f"Available complete content: {len(available['complete'])} items")
+            
+            if available.get('transcribed'):
+                suggestions.append(f"Available transcribed content: {len(available['transcribed'])} items")
+            
+            if available.get('audio_only'):
+                suggestions.append(f"Available audio-only content: {len(available['audio_only'])} items")
+            
+            return suggestions
+        except Exception as e:
+            self.logger.error(f"Error getting content suggestions: {e}", exc_info=True)
+            return []
     
     def get_system_status(self) -> Dict[str, Any]:
-        """Get comprehensive system status"""
-        available = self.file_manager.list_available_content()
-        
-        return {
-            'status': 'operational',
-            'total_content': sum(len(items) for items in available.values()),
-            'content_breakdown': available,
-            'workflow_status': self.workflow_status
-        } 
+        """Get comprehensive system status with error handling"""
+        try:
+            available = self.file_manager.list_available_content()
+            
+            total_content = sum(len(items) for items in available.values() if isinstance(items, list))
+            
+            return {
+                'status': 'operational',
+                'total_content': total_content,
+                'content_breakdown': available,
+                'workflow_status': self.workflow_status,
+                'python_version': sys.version_info[:2]  # Include Python version info
+            }
+        except Exception as e:
+            self.logger.error(f"Error getting system status: {e}", exc_info=True)
+            return {
+                'status': 'error',
+                'message': f'Error getting system status: {str(e)}',
+                'python_version': sys.version_info[:2]
+            } 

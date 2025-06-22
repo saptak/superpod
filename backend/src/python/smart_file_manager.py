@@ -149,13 +149,13 @@ class SmartFileManager:
         """Extract audio ID from various query patterns"""
         import re
         
-        # Direct patterns: "audio_1", "audio1", "1", "podcast 1"
+        # Direct patterns: "audio_1", "audio 1", "audio1", "1", "podcast 1"
         patterns = [
-            r'audio_(\d+)',
-            r'audio(\d+)',
-            r'podcast\s*(\d+)',
-            r'episode\s*(\d+)',
-            r'^(\d+)$',
+            r'audio[_\s]+(\d+)',  # Matches "audio_1", "audio 1", "audio  1"
+            r'audio(\d+)',        # Matches "audio1"
+            r'podcast\s*(\d+)',   # Matches "podcast 1", "podcast1"
+            r'episode\s*(\d+)',   # Matches "episode 1", "episode1"
+            r'^(\d+)$',           # Matches just "1"
             r'first|1st',
             r'second|2nd',
             r'third|3rd',

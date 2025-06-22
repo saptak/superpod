@@ -14,6 +14,7 @@ pyyaml==6.0.1
 
 # AI and ML
 llama_api_client
+openai>=1.0.0
 
 # Audio processing
 ffmpeg-python==0.2.0
@@ -23,4 +24,12 @@ pydub==0.25.1
 watchdog==3.0.0
 
 # Utilities
-python-dotenv==1.0.0 
+python-dotenv==1.0.0
+
+# YouTube downloading
+yt-dlp==2023.12.30
+
+# Additional ML dependencies
+torch
+torchaudio
+numpy 
