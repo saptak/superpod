@@ -1,300 +1,264 @@
 # SuperPod AI Agent Prompts Configuration
-# This file contains all prompts used by all agents
-# Modify these prompts to experiment with different styles and approaches
+# Optimized for edge cases, robust response handling, and metadata extraction
 
 # Summarization Agent Prompts
 summarization:
-  # Main synopsis prompt - creates the primary podcast summary
   main_synopsis:
-    description: "Creates a casual, engaging podcast synopsis"
+    description: "Casual, engaging podcast synopsis with strong structure and fallback"
     template: |
-      You're a podcast enthusiast who just listened to this episode and wants to tell a friend what it's about. Write a casual, engaging synopsis that captures the vibe and key points.
+      You're a podcast enthusiast summarizing this episode for a friend. Write a casual, engaging synopsis that captures the vibe, content, and key takeaways.
 
-      PODCAST INFO:
+      CONTEXT:
       - Duration: {duration_minutes:.1f} minutes
       - Segments: {num_segments}
 
       TRANSCRIPT:
       {full_text}
 
-      TASK: Write a casual, engaging podcast synopsis in this format:
+      TASK: Write a synopsis under 200 words:
 
       ## WHAT'S THIS ABOUT?
-      [2-3 sentences in a conversational tone - what's the main vibe and topic?]
+      [Brief vibe + main topic in 2-3 sentences. If unclear, infer from intro/early segments.]
 
       ## KEY TOPICS COVERED
-      • [Topic 1 - casual description]
-      • [Topic 2 - casual description] 
-      • [Topic 3 - casual description]
+      • [Topic 1 - casual tone]
+      • [Topic 2 - casual tone]
+      • [Topic 3 - casual tone or "[Unclear/General Discussion]" if noisy]
 
       ## COOL INSIGHTS
-      [2-3 interesting takeaways in a friendly tone]
+      [Highlight 2–3 takeaways — ideas, quotes, or stats. If none found, say "Mostly general discussion."]
 
       ## WHO SHOULD LISTEN?
-      [Quick note on who'd enjoy this - keep it casual!]
+      [Audience hint — e.g. “Fans of tech debates” or “Anyone curious about ethics in AI.”]
 
-      Keep it conversational, engaging, and under 200 words total. Write like you're chatting with a friend about a podcast you just heard.
+      Be casual, informative, and resilient to poor transcripts.
 
-  # Topic extraction prompt - identifies main topics discussed
   topic_extraction:
-    description: "Extracts main topics in a casual tone"
+    description: "Extracts main topics from noisy or clear transcripts"
     template: |
-      Hey! I just listened to this podcast and want to quickly jot down what they talked about. Can you help me identify the main topics?
+      Extract 3–5 main topics discussed in this podcast. Keep it short and casual.
 
       TRANSCRIPT:
       {full_text}
 
-      Just give me a quick list of the main things they discussed, like you're telling a friend what the podcast was about. Keep it casual and to the point!
+      If unclear or off-topic, mention it. Format:
+      • Topic 1
+      • Topic 2
+      • Topic 3
 
-  # Alternative prompts for different styles
   formal_summary:
-    description: "Formal, academic-style summary"
+    description: "Formal breakdown for structured summaries"
     template: |
-      You are an expert content analyst. Please provide a comprehensive analysis of the following podcast transcript.
+      Provide a professional analysis of this podcast. Keep responses clean and dense with insights.
 
-      PODCAST INFORMATION:
+      PODCAST INFO:
       - Duration: {duration_minutes:.1f} minutes
-      - Number of segments: {num_segments}
+      - Segments: {num_segments}
       - Language: {language}
 
       TRANSCRIPT:
       {full_text}
 
-      Please provide a detailed analysis including:
+      Structure:
       1. Executive Summary
-      2. Main Topics and Themes
-      3. Key Insights and Takeaways
-      4. Important Quotes
-      5. Target Audience
-      6. Overall Assessment
-
-      Format your response in a professional, structured manner.
+      2. Themes & Topics
+      3. Insights & Takeaways
+      4. Quotes
+      5. Audience Fit
+      6. Assessment
 
   bullet_point_summary:
-    description: "Quick bullet-point style summary"
+    description: "Bullet summary under 150 words"
     template: |
-      Create a quick bullet-point summary of this podcast episode.
+      Create a fast, digestible bullet-point summary of this podcast:
 
       TRANSCRIPT:
       {full_text}
 
-      Format as:
-      • Main topic: [brief description]
-      • Key point 1: [description]
-      • Key point 2: [description]
-      • Key point 3: [description]
-      • Who should listen: [brief note]
-
-      Keep it under 150 words total.
+      Format:
+      • Main topic: ...
+      • Key point 1: ...
+      • Key point 2: ...
+      • Key point 3: ...
+      • Audience: ...
 
   social_media_summary:
-    description: "Social media friendly summary with hashtags"
+    description: "Tweet-style hook with CTA"
     template: |
-      Write a social media post about this podcast episode that would make people want to listen.
+      Create a Twitter/X-style post to promote this podcast.
 
       TRANSCRIPT:
       {full_text}
 
-      Include:
-      - Engaging hook
-      - 2-3 key points
-      - Call to action
-      - Relevant hashtags
-
-      Keep it under 280 characters for Twitter compatibility.
+      Format:
+      [1-liner hook] [2 key points] [CTA] [Hashtags]
+      Max 280 characters. Feel free to use emojis or phrasing that stands out.
 
 # QA Agent Prompts
 qa:
   main_qa_prompt:
-    description: "Main Q&A prompt for answering questions about podcast content"
+    description: "Context-aware QA from metadata, transcript, and segments"
     template: |
-      You are an expert podcast analyst and conversational AI assistant. Your task is to answer questions about a podcast episode based on the provided context.
+      You are a helpful podcast analyst assistant. Use the context to answer the user question:
 
+      CONTEXT:
       {metadata_context}
 
       {summary_context}
 
       {segments_context}
 
+      CHAT HISTORY:
       {history_context}
 
       USER QUESTION: {user_question}
 
-      INSTRUCTIONS:
-      - Answer the question based on the podcast content provided
-      - Be conversational and engaging in your response
-      - If the information isn't available in the context, say so clearly
-      - Reference specific timestamps or quotes when relevant
-      - Keep your answer concise but informative
-      - Maintain a helpful and friendly tone
-
-      Please provide your answer:
+      ANSWER GUIDELINES:
+      - Use available content only
+      - Quote relevant timestamps or phrases
+      - If unclear, say: “That info wasn't mentioned in this clip.”
+      - Stay concise, helpful, and friendly
 
   follow_up_qa:
-    description: "Follow-up Q&A prompt for continuing conversations"
+    description: "Continues from previous podcast QA"
     template: |
-      You are continuing a conversation about a podcast episode. Here's the context:
+      Continue this podcast discussion. Reference prior points if helpful.
 
+      CONTEXT:
       {metadata_context}
-
       {summary_context}
-
       {segments_context}
 
-      PREVIOUS CONVERSATION:
+      PRIOR:
       {history_context}
 
-      CURRENT QUESTION: {user_question}
+      USER QUESTION: {user_question}
 
-      Instructions:
-      - Build on the previous conversation naturally
-      - Reference earlier points when relevant
-      - Keep the conversation flowing smoothly
-      - Be conversational and engaging
-
-      Your response:
+      Write a natural, helpful reply building on the above.
 
 # Recommendation Agent Prompts
 recommendation:
   metadata_extraction:
-    description: "Extract metadata from podcast transcript for recommendations"
+    description: "Extract podcast metadata from transcript"
     template: |
-      You are analyzing a podcast transcript to extract metadata for recommendation purposes.
+      Analyze this podcast transcript and extract structured metadata in JSON.
 
       TRANSCRIPT:
       {full_text}
 
-      TASK: Extract the following metadata points and return them in JSON format:
-
+      OUTPUT FORMAT:
       {{
         "content_summary": {{
-          "main_topic": "single primary topic (e.g., 'AI ethics', 'startup funding')",
-          "category": "content category (tech, business, health, entertainment, education, news, lifestyle)",
-          "content_type": "content type (interview, monologue, discussion, qa, storytelling)",
-          "main_takeaway": "1-2 key insights from the clip",
-          "target_audience": "who this clip is for (beginners, experts, professionals, general public, students)"
+          "main_topic": "Short phrase, e.g. 'AI regulation' or 'startup failures'",
+          "category": "tech | business | health | edu | lifestyle | news | entertainment",
+          "content_type": "interview | monologue | discussion | Q&A | storytelling",
+          "main_takeaway": "1–2 insight points",
+          "target_audience": "beginners | experts | professionals | students | general public"
         }},
         "speakers": {{
-          "host": "host name if mentioned, otherwise 'unknown'",
-          "guest": "guest name if mentioned, otherwise 'none'",
-          "speaker_roles": "brief description of speaker roles/backgrounds"
+          "host": "Name or 'unknown'",
+          "guest": "Name or 'none'",
+          "speaker_roles": "e.g. 'AI ethicist & engineer'"
         }},
         "engagement": {{
-          "tone": "overall tone (casual, formal, enthusiastic, serious, humorous, educational)",
-          "memorable_quote": "most memorable quote if any, otherwise 'none'",
-          "action_item": "any call-to-action mentioned, otherwise 'none'"
+          "tone": "casual | formal | serious | humorous | educational",
+          "memorable_quote": "Quote or 'none'",
+          "action_item": "Call-to-action or 'none'"
         }}
       }}
 
-      IMPORTANT:
-      - Keep responses concise and factual
-      - Use 'unknown' or 'none' if information is not available
-      - Focus on what can be reliably determined from the content
-      - Return valid JSON only, no additional text
+      RULES:
+      - Use exact keys
+      - Do not add commentary
+      - If unknown, use 'unknown' or 'none'
+      - Return valid JSON only
 
   recommendation_generation:
-    description: "Generate podcast recommendations based on metadata"
+    description: "Recommend similar podcasts using structured metadata"
     template: |
-      You are a podcast recommendation system. Based on the metadata of a podcast clip, suggest similar podcasts that users might enjoy.
+      Recommend 3–5 similar podcast clips using reasoning based on metadata.
 
-      PODCAST METADATA:
+      CURRENT CLIP:
       {metadata}
 
       AVAILABLE PODCASTS:
       {available_podcasts}
 
-      TASK: Generate 3-5 podcast recommendations with explanations. Return in JSON format:
-
+      OUTPUT FORMAT:
       {{
         "recommendations": [
           {{
             "podcast_id": "id",
-            "reason": "why this podcast is recommended",
-            "similarity_score": "high/medium/low",
-            "matching_factors": ["factor1", "factor2"]
+            "reason": "Why it's a good match",
+            "similarity_score": "high | medium | low",
+            "matching_factors": ["topic", "tone", ...]
           }}
         ]
       }}
 
-      IMPORTANT:
-      - Focus on content similarity, speakers, tone, and target audience
-      - Explain why each recommendation is relevant
-      - Return valid JSON only, no additional text
+      CONSTRAINTS:
+      - Base similarity on topic, tone, speaker type, and takeaway
+      - If few good matches, explain that
+      - JSON only, no prose
 
-# Transcription Agent Prompts
+# Transcription Agent
 transcription:
-  # Note: Transcription agent uses OpenAI Whisper API, so prompts are minimal
-  # But we can add any processing instructions here
   processing_instructions:
-    description: "Instructions for processing transcription results"
+    description: "Ensure transcript quality and clean segmentation"
     template: |
-      Process the transcription with the following considerations:
-      - Maintain accurate timestamps
-      - Preserve speaker identification if available
-      - Handle multiple speakers appropriately
-      - Ensure proper punctuation and formatting
-      - Segment long transcripts into manageable chunks
+      While processing the Whisper output:
+      - Keep timestamps accurate and ISO-formatted if possible
+      - Identify speaker changes (e.g. Speaker 1 / Speaker 2)
+      - Split transcript into segments < 2 mins each
+      - Format output cleanly for downstream use
 
-# Key moments extraction settings
+# Key moment extraction
 key_moments:
   importance_keywords:
     - "important"
     - "key"
     - "main"
-    - "primary"
     - "significant"
     - "crucial"
-    - "essential"
-    - "critical"
-    - "vital"
-    - "fundamental"
     - "core"
-    - "central"
-    - "major"
-    - "principal"
-  
+    - "vital"
+    - "insight"
   question_indicators:
     - "what"
     - "how"
     - "why"
     - "when"
-    - "where"
-    - "who"
     - "?"
-  
   quote_indicators:
     - "said"
     - "mentioned"
-    - "stated"
+    - "quoted"
     - "explained"
-    - "described"
-    - "noted"
+    - "shared"
 
-# Model settings for all agents
+# Model Config
 model_config:
   default_model: "Llama-4-Scout-17B-16E-Instruct-FP8"
   default_temperature: 0.6
   default_max_tokens: 2048
   default_top_p: 0.9
   default_repetition_penalty: 1.0
-  
-  # Agent-specific model settings
+
   summarization:
     model: "Llama-4-Scout-17B-16E-Instruct-FP8"
     temperature: 0.6
     max_tokens: 2048
-  
+
   qa:
     model: "Llama-4-Scout-17B-16E-Instruct-FP8"
     temperature: 0.7
     max_tokens: 1024
-  
+
   recommendation:
     model: "Llama-4-Scout-17B-16E-Instruct-FP8"
     temperature: 0.7
     max_tokens: 1024
-  
+
   transcription:
-    model: "whisper-1"  # OpenAI Whisper model
+    model: "whisper-1"
     temperature: 0.0
-    max_tokens: null  # Not applicable for Whisper 

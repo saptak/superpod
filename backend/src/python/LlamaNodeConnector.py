@@ -8,6 +8,9 @@ from transcription_agent import TranscriptionAgent
 import json
 import re
 import ast
+from smart_file_manager import SmartFileManager
+from workflow_orchestrator import WorkflowOrchestrator
+from typing import Dict, Any
 
 class LlamaNodeConnector:
 
@@ -17,20 +20,57 @@ class LlamaNodeConnector:
         )
         self.model = "Llama-4-Maverick-17B-128E-Instruct-FP8"
         
+        # Initialize smart file management and workflow orchestration
+        self.file_manager = SmartFileManager()
+        self.workflow_orchestrator = WorkflowOrchestrator()
+        
         # Initialize only transcription agent by default
-        self.transcription_agent = TranscriptionAgent()
-        print("TranscriptionAgent initialized and ready")
+        # self.transcription_agent = TranscriptionAgent()
+        print("LlamaNodeConnector initialized with Smart File Manager and Workflow Orchestrator")
 
     def process_client_request(self, prompt):
         """
-        Processes the client request using the Llama API.
+        Processes the client request using intelligent workflow orchestration.
         
         Args:
             prompt (str): The input prompt for the Llama model.
         
         Returns:
-            dict: The response from the Llama API.
+            dict: The response from the workflow orchestrator or Llama API.
         """
+        # First, try to process with workflow orchestrator for intelligent handling
+        try:
+            workflow_result = self.workflow_orchestrator.process_user_request(prompt)
+            
+            # If workflow orchestrator successfully handled the request
+            if workflow_result['status'] == 'success':
+                return {
+                    'status': 'success',
+                    'source': 'workflow_orchestrator',
+                    'result': workflow_result
+                }
+            
+            # If workflow orchestrator couldn't handle it, fall back to Llama API
+            elif workflow_result['status'] == 'error' and 'Could not find audio' in workflow_result.get('message', ''):
+                # This is a general query that should go to Llama API
+                return self._process_with_llama_api(prompt)
+            
+            else:
+                # Return workflow error
+                return {
+                    'status': 'error',
+                    'source': 'workflow_orchestrator',
+                    'message': workflow_result.get('message', 'Unknown error'),
+                    'suggestions': workflow_result.get('suggestions', [])
+                }
+                
+        except Exception as e:
+            # Fall back to Llama API if workflow orchestrator fails
+            print(f"Workflow orchestrator failed, falling back to Llama API: {e}")
+            return self._process_with_llama_api(prompt)
+
+    def _process_with_llama_api(self, prompt):
+        """Process request with Llama API for general queries"""
         llama_response = self.llama_client.chat.completions.create(
             messages=[
                 {
@@ -153,8 +193,8 @@ class LlamaNodeConnector:
         Returns:
             dict: The response from the TranscriptionAgent.
         """
-        # Using the initialized transcription agent instance
-        success = self.transcription_agent.process(audio_file_path, output_dir)
+        # Using the workflow orchestrator's transcription agent
+        success = self.workflow_orchestrator.transcription_agent.process(audio_file_path, output_dir)
         if success:
             return {
                 "status": "success",
@@ -191,9 +231,19 @@ class LlamaNodeConnector:
         Returns:
             dict: The response from the SummarizationAgent.
         """
-        # Create new instance when called
-        summarizationagent = SummarizationAgent()
-        return summarizationagent.process(transcript_file, output_dir)
+        # Using the workflow orchestrator's summarization agent
+        success = self.workflow_orchestrator.summarization_agent.process(transcript_file, output_dir)
+        if success:
+            return {
+                "status": "success",
+                "message": f"Successfully summarized {transcript_file}",
+                "output_dir": output_dir
+            }
+        else:
+            return {
+                "status": "error",
+                "message": f"Failed to summarize {transcript_file}"
+            }
 
     def call_qa_agent(self, question, transcript_file, summary_file):
 
@@ -207,10 +257,21 @@ class LlamaNodeConnector:
             dict: The response from the QAAgent.
         """
         # Create new instance when called
-        qaagent = QAAgent()
-        qaagent.load_data(transcript_file, summary_file)
-        return qaagent.ask_question(question)
     
+        # Using the workflow orchestrator's QA agent
+        success = self.workflow_orchestrator.qa_agent.load_data(transcript_file, summary_file)
+        if success:
+            answer = self.workflow_orchestrator.qa_agent.ask_question(question)
+            return {
+                "status": "success",
+                "question": question,
+                "answer": answer
+            }
+        else:
+            return {
+                "status": "error",
+                "message": "Failed to load data for Q&A"
+            }
     def fix_llm_json(self, json_str):
         # Replace single quotes with double quotes
         fixed = json_str.replace("'", '"')
@@ -225,3 +286,60 @@ class LlamaNodeConnector:
         fixed = re.sub(r'(\[)(\s*call_\w+\(.*?\)\s*)(\])', quote_func_call, fixed)
 
         return fixed
+    def get_system_status(self):
+        """
+        Get comprehensive system status including file availability and workflow status.
+        
+        Returns:
+            dict: System status information
+        """
+        return self.workflow_orchestrator.get_system_status()
+
+    def list_available_content(self):
+        """
+        List all available content with their processing status.
+        
+        Returns:
+            dict: Available content breakdown
+        """
+        return self.file_manager.list_available_content()
+
+    def process_smart_request(self, user_query):
+        """
+        Process user request with intelligent message processing and automatic dependency resolution.
+        
+        Args:
+            user_query (str): User's query or request
+            
+        Returns:
+            dict: Processed result with workflow information
+        """
+        return self.workflow_orchestrator.process_user_request(user_query)
+
+    def process_message_based_request(self, user_message: str) -> Dict[str, Any]:
+        """
+        Process user message using the new message-based architecture
+        
+        Args:
+            user_message: User's input message
+            
+        Returns:
+            Dict with processed result
+        """
+        try:
+            # Use the workflow orchestrator with message processing
+            result = self.workflow_orchestrator.process_user_request(user_message)
+            
+            # Add source information
+            result['source'] = 'message_processor'
+            result['processed_message'] = user_message
+            
+            return result
+            
+        except Exception as e:
+            return {
+                'status': 'error',
+                'source': 'message_processor',
+                'message': f'Error processing message: {str(e)}',
+                'processed_message': user_message
+            }
