@@ -1,16 +1,12 @@
 import { apiClient } from '../api/client';
-import { YouTubeUser, AuthState } from '../types';
+import type { LoginRequest, LoginResponse, RegisterRequest, User } from '../types/api';
 
-interface GoogleLoginResponse {
-  authUrl: string;
-  state: string;
-}
-
-interface GoogleCallbackResponse {
-  accessToken: string;
-  refreshToken: string;
-  expiresIn: number;
-  user: YouTubeUser;
+interface AuthState {
+  isAuthenticated: boolean;
+  user: User | null;
+  accessToken: string | null;
+  refreshToken: string | null;
+  expiresAt: number | null;
 }
 
 interface RefreshTokenResponse {
@@ -62,18 +58,23 @@ class AuthService {
     apiClient.setAccessToken(null);
   }
 
-  async initiateLogin(redirectUri: string): Promise<GoogleLoginResponse> {
-    const response = await apiClient.post<GoogleLoginResponse>('/auth/google/login', {
-      redirectUri,
-    });
-    return response;
+  async login(credentials: LoginRequest): Promise<void> {
+    const response = await apiClient.post<LoginResponse>('/auth/login', credentials);
+
+    this.authState = {
+      isAuthenticated: true,
+      user: response.user,
+      accessToken: response.accessToken,
+      refreshToken: response.refreshToken,
+      expiresAt: Date.now() + response.expiresIn * 1000,
+    };
+
+    apiClient.setAccessToken(response.accessToken);
+    this.saveToStorage();
   }
 
-  async handleCallback(code: string, state: string): Promise<void> {
-    const response = await apiClient.post<GoogleCallbackResponse>('/auth/google/callback', {
-      code,
-      state,
-    });
+  async register(userData: RegisterRequest): Promise<void> {
+    const response = await apiClient.post<LoginResponse>('/auth/register', userData);
 
     this.authState = {
       isAuthenticated: true,
@@ -124,3 +125,4 @@ class AuthService {
 }
 
 export const authService = new AuthService();
+export type { AuthState };
