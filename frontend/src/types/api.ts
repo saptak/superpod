@@ -78,6 +78,14 @@ export interface ChatMessageResponse {
   timestamp: string;
   recommendations?: Recommendation[];
   relatedSegments?: TranscriptionSegment[];
+  playbackAction?: PlaybackAction;
+}
+
+export interface PlaybackAction {
+  type: 'play_segment' | 'play_from_start';
+  fileId: string;
+  segment: TranscriptionSegment;
+  intent: string;
 }
 
 export interface ChatMessage {

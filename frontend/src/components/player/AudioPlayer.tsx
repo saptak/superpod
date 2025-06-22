@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { ScrollArea } from '../ui/scroll-area';
-import type { MediaFile, TranscriptionSegment } from '../../types/api';
+import { usePlayback } from '../../contexts/PlaybackContext';
+import type { TranscriptionSegment } from '../../types/api';
 import { 
   Play, 
   Pause, 
@@ -12,147 +13,105 @@ import {
   VolumeX,
   Maximize2,
   MessageCircle,
-  Square
+  Square,
+  Loader2
 } from 'lucide-react';
+import { useState } from 'react';
 
 interface AudioPlayerProps {
-  podcast: MediaFile | null;
   onToggleChat?: () => void;
   onStop?: () => void;
-  onPlayStateChange?: (isPlaying: boolean) => void;
-  shouldAutoPlay?: boolean;
 }
 
-export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, shouldAutoPlay }: AudioPlayerProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
+export function AudioPlayer({ onToggleChat, onStop }: AudioPlayerProps) {
+  const {
+    currentFile,
+    isPlaying,
+    currentTime,
+    duration,
+    currentSegment,
+    pause,
+    resume,
+    seekTo,
+    audioRef,
+    isLoading,
+    error
+  } = usePlayback();
+
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [currentSegment, setCurrentSegment] = useState<TranscriptionSegment | null>(null);
-  
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
 
   // Mock transcription segments for demo
-  const mockSegments: TranscriptionSegment[] = podcast ? [
+  const mockSegments: TranscriptionSegment[] = currentFile ? [
     {
       id: '1',
       startTime: 0,
       endTime: 30,
-      text: 'Welcome to today\'s episode where we dive deep into the world of entrepreneurship.',
+      text: 'Welcome to today\'s episode where we dive deep into the world of entrepreneurship and startup funding strategies.',
       confidence: 0.95,
     },
     {
       id: '2', 
       startTime: 30,
       endTime: 75,
-      text: 'Starting a business is one of the most challenging yet rewarding endeavors you can undertake.',
+      text: 'Starting a business is one of the most challenging yet rewarding endeavors you can undertake in today\'s economy.',
       confidence: 0.92,
     },
     {
       id: '3',
       startTime: 75,
       endTime: 120,
-      text: 'Today we\'ll explore the key strategies that successful entrepreneurs use to scale their businesses.',
+      text: 'Today we\'ll explore the key strategies that successful entrepreneurs use to scale their businesses and attract investment.',
       confidence: 0.89,
+    },
+    {
+      id: '4',
+      startTime: 120,
+      endTime: 180,
+      text: 'When it comes to venture capital, timing and preparation are absolutely crucial for success.',
+      confidence: 0.94,
+    },
+    {
+      id: '5',
+      startTime: 180,
+      endTime: 240,
+      text: 'Many founders make the mistake of seeking funding too early, before they have a solid product-market fit.',
+      confidence: 0.91,
     },
   ] : [];
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const updateTime = () => {
-      setCurrentTime(audio.currentTime);
-      
-      // Find current segment
-      const segment = mockSegments.find(
-        s => audio.currentTime >= s.startTime && audio.currentTime <= s.endTime
-      );
-      setCurrentSegment(segment || null);
-    };
-
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setCurrentTime(0);
-      onPlayStateChange?.(false);
-    };
-
-    audio.addEventListener('timeupdate', updateTime);
-    audio.addEventListener('ended', handleEnded);
-
-    return () => {
-      audio.removeEventListener('timeupdate', updateTime);
-      audio.removeEventListener('ended', handleEnded);
-    };
-  }, [mockSegments, onPlayStateChange]);
-
-  // Auto-start playing when a new podcast is selected and shouldAutoPlay is true
-  useEffect(() => {
-    if (podcast && shouldAutoPlay && !isPlaying) {
-      const audio = audioRef.current;
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play().then(() => {
-          setIsPlaying(true);
-          onPlayStateChange?.(true);
-        }).catch(console.error);
-      }
-    }
-  }, [podcast, shouldAutoPlay, isPlaying, onPlayStateChange]);
-
-  const togglePlay = async () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    try {
-      if (isPlaying) {
-        audio.pause();
-        setIsPlaying(false);
-        onPlayStateChange?.(false);
-      } else {
-        await audio.play();
-        setIsPlaying(true);
-        onPlayStateChange?.(true);
-      }
-    } catch (error) {
-      console.error('Playback error:', error);
+  const togglePlay = () => {
+    if (isPlaying) {
+      pause();
+    } else {
+      resume();
     }
   };
 
   const stopPlayback = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.pause();
-    audio.currentTime = 0;
-    setIsPlaying(false);
-    setCurrentTime(0);
-    onPlayStateChange?.(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
     onStop?.();
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const audio = audioRef.current;
-    const progressBar = progressRef.current;
-    if (!audio || !progressBar || !podcast) return;
+    const progressBar = e.currentTarget;
+    if (!currentFile) return;
 
     const rect = progressBar.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
-    const newTime = (clickX / rect.width) * podcast.duration;
+    const newTime = (clickX / rect.width) * duration;
     
-    audio.currentTime = newTime;
-    setCurrentTime(newTime);
+    seekTo(newTime);
   };
 
   const skip = (seconds: number) => {
-    const audio = audioRef.current;
-    if (!audio || !podcast) return;
-
-    const newTime = Math.max(0, Math.min(podcast.duration, audio.currentTime + seconds));
-    audio.currentTime = newTime;
-    setCurrentTime(newTime);
+    if (!currentFile) return;
+    const newTime = Math.max(0, Math.min(duration, currentTime + seconds));
+    seekTo(newTime);
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -165,14 +124,13 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
   };
 
   const toggleMute = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    if (!audioRef.current) return;
 
     if (isMuted) {
-      audio.volume = volume;
+      audioRef.current.volume = volume;
       setIsMuted(false);
     } else {
-      audio.volume = 0;
+      audioRef.current.volume = 0;
       setIsMuted(true);
     }
   };
@@ -184,14 +142,19 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
   };
 
   const jumpToSegment = (segment: TranscriptionSegment) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.currentTime = segment.startTime;
-    setCurrentTime(segment.startTime);
+    seekTo(segment.startTime);
   };
 
-  if (!podcast) {
+  // Find current segment based on playback time
+  const getCurrentSegment = () => {
+    return mockSegments.find(
+      s => currentTime >= s.startTime && currentTime <= s.endTime
+    ) || null;
+  };
+
+  const activeSegment = getCurrentSegment();
+
+  if (!currentFile) {
     return (
       <Card className="h-32">
         <CardContent className="h-full flex items-center justify-center">
@@ -201,15 +164,10 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
     );
   }
 
-  const progressPercentage = podcast.duration > 0 ? (currentTime / podcast.duration) * 100 : 0;
+  const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
     <div className="space-y-4">
-      <audio ref={audioRef} preload="metadata">
-        <source src={`https://example.com/audio/${podcast.id}.mp3`} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-
       <Card className={isExpanded ? 'h-96' : 'h-auto'}>
         <CardContent className="p-4">
           <div className="space-y-4">
@@ -217,11 +175,18 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
             <div className="flex items-start justify-between">
               <div className="flex-1 min-w-0">
                 <h3 className="font-medium text-sm mb-1 line-clamp-2">
-                  {podcast.title}
+                  {currentFile.title}
                 </h3>
                 <p className="text-xs text-muted-foreground line-clamp-1">
-                  {podcast.description}
+                  {currentFile.description}
                 </p>
+                {currentSegment && (
+                  <div className="mt-2 p-2 bg-accent rounded-md">
+                    <p className="text-xs font-medium text-accent-foreground">
+                      🎯 Playing segment from chat
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="flex gap-2 ml-3">
                 <Button
@@ -241,10 +206,16 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
               </div>
             </div>
 
+            {/* Error Display */}
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-sm text-red-800">{error}</p>
+              </div>
+            )}
+
             {/* Progress Bar */}
             <div className="space-y-2">
               <div
-                ref={progressRef}
                 className="h-2 bg-secondary rounded-full cursor-pointer relative overflow-hidden"
                 onClick={handleSeek}
               >
@@ -255,7 +226,7 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
               </div>
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>{formatTime(currentTime)}</span>
-                <span>{formatTime(podcast.duration)}</span>
+                <span>{formatTime(duration)}</span>
               </div>
             </div>
 
@@ -266,6 +237,7 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
                   size="sm"
                   variant="outline"
                   onClick={() => skip(-15)}
+                  disabled={isLoading}
                 >
                   <SkipBack className="w-4 h-4" />
                 </Button>
@@ -273,8 +245,11 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
                 <Button
                   size="sm"
                   onClick={togglePlay}
+                  disabled={isLoading}
                 >
-                  {isPlaying ? (
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : isPlaying ? (
                     <Pause className="w-4 h-4" />
                   ) : (
                     <Play className="w-4 h-4" />
@@ -285,6 +260,7 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
                   size="sm"
                   variant="outline"
                   onClick={stopPlayback}
+                  disabled={isLoading}
                 >
                   <Square className="w-4 h-4" />
                 </Button>
@@ -293,6 +269,7 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
                   size="sm"
                   variant="outline"
                   onClick={() => skip(15)}
+                  disabled={isLoading}
                 >
                   <SkipForward className="w-4 h-4" />
                 </Button>
@@ -324,12 +301,16 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
             </div>
 
             {/* Current Segment */}
-            {currentSegment && (
+            {activeSegment && (
               <Card className="bg-accent">
                 <CardContent className="p-3">
-                  <p className="text-sm">{currentSegment.text}</p>
+                  <p className="text-sm font-medium mb-1">Current Segment</p>
+                  <p className="text-sm">{activeSegment.text}</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {formatTime(currentSegment.startTime)} - {formatTime(currentSegment.endTime)}
+                    {formatTime(activeSegment.startTime)} - {formatTime(activeSegment.endTime)}
+                    {activeSegment.confidence && (
+                      <span className="ml-2">• {Math.round(activeSegment.confidence * 100)}% confident</span>
+                    )}
                   </p>
                 </CardContent>
               </Card>
@@ -345,7 +326,7 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
                       <div
                         key={segment.id}
                         className={`p-2 rounded cursor-pointer transition-colors ${
-                          currentSegment?.id === segment.id
+                          activeSegment?.id === segment.id
                             ? 'bg-primary text-primary-foreground'
                             : 'hover:bg-accent'
                         }`}
@@ -353,11 +334,14 @@ export function AudioPlayer({ podcast, onToggleChat, onStop, onPlayStateChange, 
                       >
                         <p className="text-sm">{segment.text}</p>
                         <p className={`text-xs mt-1 ${
-                          currentSegment?.id === segment.id
+                          activeSegment?.id === segment.id
                             ? 'text-primary-foreground/70'
                             : 'text-muted-foreground'
                         }`}>
                           {formatTime(segment.startTime)} - {formatTime(segment.endTime)}
+                          {segment.confidence && (
+                            <span className="ml-2">• {Math.round(segment.confidence * 100)}% confident</span>
+                          )}
                         </p>
                       </div>
                     ))}
