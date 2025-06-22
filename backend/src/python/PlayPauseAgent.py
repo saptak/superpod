@@ -40,9 +40,9 @@ class PlayPauseAgent:
             },
             {
                 "role": "user", 
-                "content": "Look at all the audio segments and find the audio that matches the user query: " + user_message + 
-                "Find earliest start time from all segments and latest end time from all segments. Return this information in valid JSON format with keys 'audio_id', 'start_time' and 'end_time'." +
-                "Here is the list of all audio segments: " + json.dumps(audio_segments)  
+                "content": "Look at all the audio segments and find segments matching user queyr: " + user_message + 
+                "From all segments extract - start_s and end_s. return earliest start_s and latest end_s." +
+                "Here is the transcript of audio file with segments: " + json.dumps(audio_segments)  
             }],
             model="Llama-4-Maverick-17B-128E-Instruct-FP8",
             stream=False,
@@ -59,17 +59,17 @@ class PlayPauseAgent:
                             "message": {
                                 "type": "string"
                             },
-                            "start_time": {
+                            "start_s": {
                                 "type": "string"
                             },
-                            "end_time": {
+                            "end_s": {
                                 "type": "string"
                             }
                         },
                         "required": [
                             "message",
-                            "start_time",
-                            "end_time"
+                            "start_s",
+                            "end_s"
                         ],
                         "type": "object"
                     }

@@ -9,7 +9,7 @@ import json
 import re
 import ast
 from smart_file_manager import SmartFileManager
-#from workflow_orchestrator import WorkflowOrchestrator
+from workflow_orchestrator import WorkflowOrchestrator
 from typing import Dict, Any
 
 class LlamaNodeConnector:
@@ -69,14 +69,14 @@ class LlamaNodeConnector:
             print(f"Workflow orchestrator failed, falling back to Llama API: {e}")
             return self._process_with_llama_api(prompt)
 
-    def _process_with_llama_api(self, prompt):
+    def process_with_llama_api(self, prompt):
         """Process request with Llama API for general queries"""
         llama_response = self.llama_client.chat.completions.create(
             messages=[
                 {
                     "role": "system",
                     "content": "You are a helpful assistant that looks at user message and categorize it in one of the following categories: 'summarization', 'question_answering', 'audio_playback'. If the user message is about audio playback, you will call the PausePlayAgent to find and play the audio." +
-                    "You will return the response in JSON format with keys 'category' and 'response'. "
+                    "You will return the response in JSON format with keys 'category' and 'response'. Remove special charachters from parameters on tool calls. " 
                 },
                 {
                     "role": "user", 
@@ -97,9 +97,13 @@ class LlamaNodeConnector:
                         "description": "Retrieve the current temperature for a specified location",
                         "parameters": {
                         "properties": {
-                            "location": {
+                            "audioid": {
                             "type": "string",
-                            "description": "find audio and relevant segments based on user query, use it to find start and end times of audio."
+                            "description": "audio file name"
+                            },
+                             "user_message": {
+                            "type": "string",
+                            "description": "user message"
                             }
                         },
                         "required": ["audioid","user_message"]
@@ -118,7 +122,7 @@ class LlamaNodeConnector:
                             "description": "Path to the transcript file to summarize."
                             }
                         },
-                        "required": ["transcript_file","output_dir"]
+                        "required": ["transcript_file"]
                         }
                     }
                 },
@@ -134,7 +138,7 @@ class LlamaNodeConnector:
                             "description": "Question to ask about the podcast."
                             }
                         },
-                        "required": ["question","transcript_file","summary_file"]
+                        "required": ["question","transcript_file"]
                         }
                     }
                 },
@@ -150,7 +154,8 @@ class LlamaNodeConnector:
             fixed = self.fix_llm_json(response_str)
             try:
                 response = json.loads(fixed)
-            except Exception:
+            except Exception as e2:
+                print(f"Error parsing fixed response: {e2}")
                 # fallback logic
                 response = {"category": "unknown", "response": response_str}
                 
@@ -164,19 +169,15 @@ class LlamaNodeConnector:
                 args_str = match.group(1)
                  # Use shlex to split arguments safely
                 args = {}
-                if args_str.startswith("location="):
-                    json_part = args_str[len("location="):]
-                    try:
-                        # Safely evaluate the dict string
-                        data = ast.literal_eval(json_part)
-                        args["audioid"] = data.get("audioid")
-                        args["user_message"] = data.get("user_message")
-                    except Exception as e:
-                        print(f"Error parsing location argument: {e}")
+                audioid_match = re.search(r'audioid\s*=\s*"([^"]+)"', args_str)
+                user_message_match = re.search(r'user_message\s*=\s*"([^"]+)"', args_str)
+                audioid = audioid_match.group(1) if audioid_match else None
+                user_message = user_message_match.group(1) if user_message_match else None
+
                 
                 tool_result = self.call_pause_play_agent(
-                    audioid=args.get("audioid"),
-                    user_message=args.get("user_message")
+                    audioid=audioid,
+                    user_message=user_message
                 )
                 return tool_result
         
@@ -191,7 +192,7 @@ class LlamaNodeConnector:
                     args[k.strip()] = v.strip().strip('"').strip("'")
                 tool_result = self.call_summarization_agent(
                     transcript_file=args.get("transcript_file"),
-                    output_dir=args.get("output_dir")
+                    output_dir=""
                 )
                 return tool_result
 
@@ -225,8 +226,7 @@ class LlamaNodeConnector:
             dict: The response from the TranscriptionAgent.
         """
         # Using the workflow orchestrator's transcription agent
-        success = ""
-        # self.workflow_orchestrator.transcription_agent.process(audio_file_path, output_dir)
+        success =  self.workflow_orchestrator.transcription_agent.process(audio_file_path, output_dir)
         if success:
             return {
                 "status": "success",
@@ -264,8 +264,7 @@ class LlamaNodeConnector:
             dict: The response from the SummarizationAgent.
         """
         # Using the workflow orchestrator's summarization agent
-        success = ""
-        #self.workflow_orchestrator.summarization_agent.process(transcript_file, output_dir)
+        success = self.workflow_orchestrator.summarization_agent.process(transcript_file, output_dir)
         if success:
             return {
                 "status": "success",

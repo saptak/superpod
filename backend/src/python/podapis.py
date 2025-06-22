@@ -13,7 +13,7 @@ class PodAPIs:
         def chat_message():
             data = request.json
             llama_node_connector_instance = llama_node_connector()
-            response = llama_node_connector_instance.process_client_request(data)
+            response = llama_node_connector_instance.process_with_llama_api(data)
             if isinstance(response, str):
                 try:
                     response = json.loads(response)
