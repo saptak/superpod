@@ -55,3 +55,5 @@ mypy==1.7.1
 
 # Logging
 structlog==23.2.0
+flask
+llama_api_client
