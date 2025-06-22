@@ -3,6 +3,9 @@ Q&A Agent
 Interactive question-answering system for podcast content
 """
 import json
+import yaml
+import logging
+import os
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 from llama_api_client import LlamaAPIClient
@@ -11,16 +14,66 @@ class QAAgent():
     """Agent for interactive podcast Q&A"""
     
     def __init__(self):
-        super().__init__("qa")
         self.client = None
         self.transcript_data = None
         self.summary_data = None
         self.conversation_history = []
+        self.logger = self._setup_logger()
         
+        # Load prompts configuration
+        self.prompts_config = self._load_prompts_config()
+        
+    def _setup_logger(self) -> logging.Logger:
+        """Set up logging"""
+        logger = logging.getLogger("QAAgent")
+        logger.setLevel(logging.INFO)
+        
+        if not logger.handlers:
+            handler = logging.StreamHandler()
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
+        
+        return logger
+    
+    def _load_prompts_config(self) -> Dict[str, Any]:
+        """Load prompts configuration from YAML file"""
+        try:
+            config_path = Path(__file__).parent / "prompts.yaml"
+            if config_path.exists():
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    config = yaml.safe_load(f)
+                self.logger.info("QA Agent: Prompts configuration loaded successfully")
+                return config
+            else:
+                self.logger.warning("QA Agent: prompts.yaml not found, using default prompts")
+                return self._get_default_prompts()
+        except Exception as e:
+            self.logger.error(f"QA Agent: Error loading prompts config: {e}")
+            return self._get_default_prompts()
+    
+    def _get_default_prompts(self) -> Dict[str, Any]:
+        """Fallback default prompts if YAML file is not available"""
+        return {
+            "qa": {
+                "main_qa_prompt": {
+                    "description": "Main Q&A prompt for answering questions about podcast content",
+                    "template": "You are an expert podcast analyst and conversational AI assistant. Your task is to answer questions about a podcast episode based on the provided context.\n\n{metadata_context}\n\n{summary_context}\n\n{segments_context}\n\n{history_context}\n\nUSER QUESTION: {user_question}\n\nINSTRUCTIONS:\n- Answer the question based on the podcast content provided\n- Be conversational and engaging in your response\n- If the information isn't available in the context, say so clearly\n- Reference specific timestamps or quotes when relevant\n- Keep your answer concise but informative\n- Maintain a helpful and friendly tone\n\nPlease provide your answer:"
+                }
+            },
+            "model_config": {
+                "qa": {
+                    "model": "Llama-4-Scout-17B-16E-Instruct-FP8",
+                    "temperature": 0.7,
+                    "max_tokens": 1024
+                }
+            }
+        }
+    
     def _initialize_client(self) -> bool:
         """Initialize Llama API client"""
         try:
-            api_key = self.config.get_env("LLAMA_API_KEY")
+            api_key = os.getenv("LLAMA_API_KEY")
             if not api_key:
                 self.logger.error("LLAMA_API_KEY not found in environment")
                 return False
@@ -108,7 +161,7 @@ class QAAgent():
             metadata_context = f"PODCAST INFO:\n- Duration: {duration_min:.1f} minutes\n- Language: {metadata.get('language', 'Unknown')}\n\n"
         
         # Get prompt template from config
-        prompt_template = self.config.get('qa.prompt_template')
+        prompt_template = self.prompts_config["qa"]["main_qa_prompt"]["template"]
         
         return prompt_template.format(
             metadata_context=metadata_context,
@@ -121,9 +174,9 @@ class QAAgent():
     def _get_answer_stream(self, prompt: str) -> str:
         """Get streaming response from Llama model"""
         try:
-            model = self.config.get('qa.model')
-            temperature = self.config.get('qa.temperature', 0.7)
-            max_tokens = self.config.get('qa.max_tokens', 1024)
+            model = self.prompts_config["model_config"]["qa"]["model"]
+            temperature = self.prompts_config["model_config"]["qa"]["temperature"]
+            max_tokens = self.prompts_config["model_config"]["qa"]["max_tokens"]
             
             response = self.client.chat.completions.create(
                 messages=[{"role": "user", "content": prompt}],
