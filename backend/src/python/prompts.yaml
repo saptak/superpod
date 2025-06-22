@@ -1,0 +1,300 @@
+# SuperPod AI Agent Prompts Configuration
+# This file contains all prompts used by all agents
+# Modify these prompts to experiment with different styles and approaches
+
+# Summarization Agent Prompts
+summarization:
+  # Main synopsis prompt - creates the primary podcast summary
+  main_synopsis:
+    description: "Creates a casual, engaging podcast synopsis"
+    template: |
+      You're a podcast enthusiast who just listened to this episode and wants to tell a friend what it's about. Write a casual, engaging synopsis that captures the vibe and key points.
+
+      PODCAST INFO:
+      - Duration: {duration_minutes:.1f} minutes
+      - Segments: {num_segments}
+
+      TRANSCRIPT:
+      {full_text}
+
+      TASK: Write a casual, engaging podcast synopsis in this format:
+
+      ## WHAT'S THIS ABOUT?
+      [2-3 sentences in a conversational tone - what's the main vibe and topic?]
+
+      ## KEY TOPICS COVERED
+      • [Topic 1 - casual description]
+      • [Topic 2 - casual description] 
+      • [Topic 3 - casual description]
+
+      ## COOL INSIGHTS
+      [2-3 interesting takeaways in a friendly tone]
+
+      ## WHO SHOULD LISTEN?
+      [Quick note on who'd enjoy this - keep it casual!]
+
+      Keep it conversational, engaging, and under 200 words total. Write like you're chatting with a friend about a podcast you just heard.
+
+  # Topic extraction prompt - identifies main topics discussed
+  topic_extraction:
+    description: "Extracts main topics in a casual tone"
+    template: |
+      Hey! I just listened to this podcast and want to quickly jot down what they talked about. Can you help me identify the main topics?
+
+      TRANSCRIPT:
+      {full_text}
+
+      Just give me a quick list of the main things they discussed, like you're telling a friend what the podcast was about. Keep it casual and to the point!
+
+  # Alternative prompts for different styles
+  formal_summary:
+    description: "Formal, academic-style summary"
+    template: |
+      You are an expert content analyst. Please provide a comprehensive analysis of the following podcast transcript.
+
+      PODCAST INFORMATION:
+      - Duration: {duration_minutes:.1f} minutes
+      - Number of segments: {num_segments}
+      - Language: {language}
+
+      TRANSCRIPT:
+      {full_text}
+
+      Please provide a detailed analysis including:
+      1. Executive Summary
+      2. Main Topics and Themes
+      3. Key Insights and Takeaways
+      4. Important Quotes
+      5. Target Audience
+      6. Overall Assessment
+
+      Format your response in a professional, structured manner.
+
+  bullet_point_summary:
+    description: "Quick bullet-point style summary"
+    template: |
+      Create a quick bullet-point summary of this podcast episode.
+
+      TRANSCRIPT:
+      {full_text}
+
+      Format as:
+      • Main topic: [brief description]
+      • Key point 1: [description]
+      • Key point 2: [description]
+      • Key point 3: [description]
+      • Who should listen: [brief note]
+
+      Keep it under 150 words total.
+
+  social_media_summary:
+    description: "Social media friendly summary with hashtags"
+    template: |
+      Write a social media post about this podcast episode that would make people want to listen.
+
+      TRANSCRIPT:
+      {full_text}
+
+      Include:
+      - Engaging hook
+      - 2-3 key points
+      - Call to action
+      - Relevant hashtags
+
+      Keep it under 280 characters for Twitter compatibility.
+
+# QA Agent Prompts
+qa:
+  main_qa_prompt:
+    description: "Main Q&A prompt for answering questions about podcast content"
+    template: |
+      You are an expert podcast analyst and conversational AI assistant. Your task is to answer questions about a podcast episode based on the provided context.
+
+      {metadata_context}
+
+      {summary_context}
+
+      {segments_context}
+
+      {history_context}
+
+      USER QUESTION: {user_question}
+
+      INSTRUCTIONS:
+      - Answer the question based on the podcast content provided
+      - Be conversational and engaging in your response
+      - If the information isn't available in the context, say so clearly
+      - Reference specific timestamps or quotes when relevant
+      - Keep your answer concise but informative
+      - Maintain a helpful and friendly tone
+
+      Please provide your answer:
+
+  follow_up_qa:
+    description: "Follow-up Q&A prompt for continuing conversations"
+    template: |
+      You are continuing a conversation about a podcast episode. Here's the context:
+
+      {metadata_context}
+
+      {summary_context}
+
+      {segments_context}
+
+      PREVIOUS CONVERSATION:
+      {history_context}
+
+      CURRENT QUESTION: {user_question}
+
+      Instructions:
+      - Build on the previous conversation naturally
+      - Reference earlier points when relevant
+      - Keep the conversation flowing smoothly
+      - Be conversational and engaging
+
+      Your response:
+
+# Recommendation Agent Prompts
+recommendation:
+  metadata_extraction:
+    description: "Extract metadata from podcast transcript for recommendations"
+    template: |
+      You are analyzing a podcast transcript to extract metadata for recommendation purposes.
+
+      TRANSCRIPT:
+      {full_text}
+
+      TASK: Extract the following metadata points and return them in JSON format:
+
+      {{
+        "content_summary": {{
+          "main_topic": "single primary topic (e.g., 'AI ethics', 'startup funding')",
+          "category": "content category (tech, business, health, entertainment, education, news, lifestyle)",
+          "content_type": "content type (interview, monologue, discussion, qa, storytelling)",
+          "main_takeaway": "1-2 key insights from the clip",
+          "target_audience": "who this clip is for (beginners, experts, professionals, general public, students)"
+        }},
+        "speakers": {{
+          "host": "host name if mentioned, otherwise 'unknown'",
+          "guest": "guest name if mentioned, otherwise 'none'",
+          "speaker_roles": "brief description of speaker roles/backgrounds"
+        }},
+        "engagement": {{
+          "tone": "overall tone (casual, formal, enthusiastic, serious, humorous, educational)",
+          "memorable_quote": "most memorable quote if any, otherwise 'none'",
+          "action_item": "any call-to-action mentioned, otherwise 'none'"
+        }}
+      }}
+
+      IMPORTANT:
+      - Keep responses concise and factual
+      - Use 'unknown' or 'none' if information is not available
+      - Focus on what can be reliably determined from the content
+      - Return valid JSON only, no additional text
+
+  recommendation_generation:
+    description: "Generate podcast recommendations based on metadata"
+    template: |
+      You are a podcast recommendation system. Based on the metadata of a podcast clip, suggest similar podcasts that users might enjoy.
+
+      PODCAST METADATA:
+      {metadata}
+
+      AVAILABLE PODCASTS:
+      {available_podcasts}
+
+      TASK: Generate 3-5 podcast recommendations with explanations. Return in JSON format:
+
+      {{
+        "recommendations": [
+          {{
+            "podcast_id": "id",
+            "reason": "why this podcast is recommended",
+            "similarity_score": "high/medium/low",
+            "matching_factors": ["factor1", "factor2"]
+          }}
+        ]
+      }}
+
+      IMPORTANT:
+      - Focus on content similarity, speakers, tone, and target audience
+      - Explain why each recommendation is relevant
+      - Return valid JSON only, no additional text
+
+# Transcription Agent Prompts
+transcription:
+  # Note: Transcription agent uses OpenAI Whisper API, so prompts are minimal
+  # But we can add any processing instructions here
+  processing_instructions:
+    description: "Instructions for processing transcription results"
+    template: |
+      Process the transcription with the following considerations:
+      - Maintain accurate timestamps
+      - Preserve speaker identification if available
+      - Handle multiple speakers appropriately
+      - Ensure proper punctuation and formatting
+      - Segment long transcripts into manageable chunks
+
+# Key moments extraction settings
+key_moments:
+  importance_keywords:
+    - "important"
+    - "key"
+    - "main"
+    - "primary"
+    - "significant"
+    - "crucial"
+    - "essential"
+    - "critical"
+    - "vital"
+    - "fundamental"
+    - "core"
+    - "central"
+    - "major"
+    - "principal"
+  
+  question_indicators:
+    - "what"
+    - "how"
+    - "why"
+    - "when"
+    - "where"
+    - "who"
+    - "?"
+  
+  quote_indicators:
+    - "said"
+    - "mentioned"
+    - "stated"
+    - "explained"
+    - "described"
+    - "noted"
+
+# Model settings for all agents
+model_config:
+  default_model: "Llama-4-Scout-17B-16E-Instruct-FP8"
+  default_temperature: 0.6
+  default_max_tokens: 2048
+  default_top_p: 0.9
+  default_repetition_penalty: 1.0
+  
+  # Agent-specific model settings
+  summarization:
+    model: "Llama-4-Scout-17B-16E-Instruct-FP8"
+    temperature: 0.6
+    max_tokens: 2048
+  
+  qa:
+    model: "Llama-4-Scout-17B-16E-Instruct-FP8"
+    temperature: 0.7
+    max_tokens: 1024
+  
+  recommendation:
+    model: "Llama-4-Scout-17B-16E-Instruct-FP8"
+    temperature: 0.7
+    max_tokens: 1024
+  
+  transcription:
+    model: "whisper-1"  # OpenAI Whisper model
+    temperature: 0.0
+    max_tokens: null  # Not applicable for Whisper 
