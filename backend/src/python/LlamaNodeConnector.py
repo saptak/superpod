@@ -15,7 +15,7 @@ class LlamaNodeConnector:
         self.model = "Llama-4-Maverick-17B-128E-Instruct-FP8"
         
         # Initialize only transcription agent by default
-        # self.transcription_agent = TranscriptionAgent()
+        self.transcription_agent = TranscriptionAgent()
         print("TranscriptionAgent initialized and ready")
 
     def process_client_request(self, prompt):
@@ -32,7 +32,7 @@ class LlamaNodeConnector:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful assistant that looks at user message and categorize it in one of the following categories: 'summarization', 'question_answering', 'audio_playback', 'audio_search'. If the user message is about audio playback, you will call the PausePlayAgent to find and play the audio." +
+                    "content": "You are a helpful assistant that looks at user message and categorize it in one of the following categories: 'summarization', 'question_answering', 'audio_playback'. If the user message is about audio playback, you will call the PausePlayAgent to find and play the audio." +
                     "You will return the response in JSON format with keys 'category' and 'response'. "
                 },
                 {
