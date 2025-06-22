@@ -1,0 +1,167 @@
+{
+  "text": "at The Verge, and frankly, pivoted to video because I wanted to feel more creatively fulfilled. Now basically everything's a podcast. And it's possible that creators will be soon battling for listeners' time with stuff anyone can make with a click of a button. With Google's Notebook LM tool, it's doing exactly that. It's audio overview feature, which is eerily impressive, is not just two robot voices going back and forth, it's breaking down literally any form of text, audio, or link that you upload, adding metaphors, puns, even casual banter to help you better understand any topic. Apple can't charge commissions outside the App Store. That feels huge. Oh, it's potentially massive. There's even ums and filler words in there too. Isn't it interesting how things come full circle? You know? Yeah. As a former podcast creator, I obviously feel like this waters down the art of the craft. It's almost a parody of podcasting, but I'm kind of obsessed with it. So let's sit down, test this stuff out, and figure.",
+  "language": "english",
+  "segments": [
+    {
+      "id": 0,
+      "start": 0.0,
+      "end": 2.759999990463257,
+      "text": "at The Verge, and frankly, pivoted to video",
+      "confidence": 1.0
+    },
+    {
+      "id": 1,
+      "start": 2.759999990463257,
+      "end": 5.400000095367432,
+      "text": "because I wanted to feel more creatively fulfilled.",
+      "confidence": 1.0
+    },
+    {
+      "id": 2,
+      "start": 5.400000095367432,
+      "end": 7.679999828338623,
+      "text": "Now basically everything's a podcast.",
+      "confidence": 1.0
+    },
+    {
+      "id": 3,
+      "start": 7.679999828338623,
+      "end": 10.15999984741211,
+      "text": "And it's possible that creators will be soon battling",
+      "confidence": 1.0
+    },
+    {
+      "id": 4,
+      "start": 10.15999984741211,
+      "end": 12.84000015258789,
+      "text": "for listeners' time with stuff anyone can make",
+      "confidence": 1.0
+    },
+    {
+      "id": 5,
+      "start": 12.84000015258789,
+      "end": 14.119999885559082,
+      "text": "with a click of a button.",
+      "confidence": 1.0
+    },
+    {
+      "id": 6,
+      "start": 14.119999885559082,
+      "end": 17.639999389648438,
+      "text": "With Google's Notebook LM tool, it's doing exactly that.",
+      "confidence": 1.0
+    },
+    {
+      "id": 7,
+      "start": 17.639999389648438,
+      "end": 20.959999084472656,
+      "text": "It's audio overview feature, which is eerily impressive,",
+      "confidence": 1.0
+    },
+    {
+      "id": 8,
+      "start": 20.959999084472656,
+      "end": 23.739999771118164,
+      "text": "is not just two robot voices going back and forth,",
+      "confidence": 1.0
+    },
+    {
+      "id": 9,
+      "start": 23.739999771118164,
+      "end": 26.84000015258789,
+      "text": "it's breaking down literally any form of text, audio,",
+      "confidence": 1.0
+    },
+    {
+      "id": 10,
+      "start": 26.84000015258789,
+      "end": 30.200000762939453,
+      "text": "or link that you upload, adding metaphors, puns,",
+      "confidence": 1.0
+    },
+    {
+      "id": 11,
+      "start": 30.200000762939453,
+      "end": 34.400001525878906,
+      "text": "even casual banter to help you better understand any topic.",
+      "confidence": 1.0
+    },
+    {
+      "id": 12,
+      "start": 34.400001525878906,
+      "end": 36.91999816894531,
+      "text": "Apple can't charge commissions outside the App Store.",
+      "confidence": 1.0
+    },
+    {
+      "id": 13,
+      "start": 36.91999816894531,
+      "end": 38.040000915527344,
+      "text": "That feels huge.",
+      "confidence": 1.0
+    },
+    {
+      "id": 14,
+      "start": 38.040000915527344,
+      "end": 39.720001220703125,
+      "text": "Oh, it's potentially massive.",
+      "confidence": 1.0
+    },
+    {
+      "id": 15,
+      "start": 39.720001220703125,
+      "end": 42.560001373291016,
+      "text": "There's even ums and filler words in there too.",
+      "confidence": 1.0
+    },
+    {
+      "id": 16,
+      "start": 42.560001373291016,
+      "end": 45.720001220703125,
+      "text": "Isn't it interesting how things come full circle?",
+      "confidence": 1.0
+    },
+    {
+      "id": 17,
+      "start": 45.720001220703125,
+      "end": 47.040000915527344,
+      "text": "You know? Yeah.",
+      "confidence": 1.0
+    },
+    {
+      "id": 18,
+      "start": 47.040000915527344,
+      "end": 49.84000015258789,
+      "text": "As a former podcast creator, I obviously feel like",
+      "confidence": 1.0
+    },
+    {
+      "id": 19,
+      "start": 49.84000015258789,
+      "end": 52.119998931884766,
+      "text": "this waters down the art of the craft.",
+      "confidence": 1.0
+    },
+    {
+      "id": 20,
+      "start": 52.119998931884766,
+      "end": 54.880001068115234,
+      "text": "It's almost a parody of podcasting,",
+      "confidence": 1.0
+    },
+    {
+      "id": 21,
+      "start": 54.880001068115234,
+      "end": 57.400001525878906,
+      "text": "but I'm kind of obsessed with it.",
+      "confidence": 1.0
+    },
+    {
+      "id": 22,
+      "start": 57.400001525878906,
+      "end": 60.20000076293945,
+      "text": "So let's sit down, test this stuff out, and figure.",
+      "confidence": 1.0
+    }
+  ]
+}

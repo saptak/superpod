@@ -104,3 +104,9 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+
+backend/src/python/audio_downloader.py
+backend/src/python/ingestion_pipeline.py
+backend/src/python/recommendation_agent.py
+backend/src/python/test_complete_system.py
+backend/src/python/youtube_service.py

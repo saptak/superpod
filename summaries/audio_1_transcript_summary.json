@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "transcript_file": "/Users/nandvinaykumar.dave/Downloads/Superpod2/backend/src/python/transcriptions/audio_1_transcript.json",
+    "model_used": "Llama-4-Scout-17B-16E-Instruct-FP8",
+    "created_at": "2025-06-22T09:46:40.205849",
+    "agent": "SummarizationAgent",
+    "agent_type": "summarization",
+    "provider": "Llama",
+    "version": "2.1.0",
+    "summary_type": "casual_synopsis"
+  },
+  "podcast_info": {
+    "duration_seconds": 530.3599853515625,
+    "duration_minutes": 8.839333089192708,
+    "language": "english",
+    "total_segments": 297,
+    "total_text_length": 10662
+  },
+  "topics_analysis": "The podcast transcript appears to be casual and conversational, with some parts unclear or off-topic. Based on the provided text, here are 3 main topics that can be extracted:\n\n• **Bangalore and its issues**: The conversation starts with promoting Bangalore and discussing the hate that the city is receiving. The topic of traffic in Bangalore is also mentioned as a major concern.\n• **Traffic and policing**: The discussion touches on traffic violations, the role of police, and the new commissioner. The idea that drive-overs do not solve police traffic problems is also mentioned.\n• **Personal conversations and anecdotes**: The conversation is interspersed with personal greetings, small talk, and what appears to be a narrative about a ghastly crime, although the details are not fully explored.\n\nThe conversation seems to meander and includes many instances of repetitive greetings, which may not be relevant to the main topics.",
+  "comprehensive_summary": "## WHAT'S THIS ABOUT?\nThis podcast episode features a casual conversation between three friends from Bangalore, discussing various topics, including the city's reputation, traffic issues, and the speaker's experiences as a policeman. The tone is relaxed and conversational, with a focus on promoting Bangalore and addressing common complaints about the city.\n\n## KEY TOPICS COVERED\n• Bangalore's reputation and the speakers' love for the city\n• Traffic issues in Bangalore and potential solutions\n• The speaker's experiences and stories from their career as a policeman\n\n## COOL INSIGHTS\n• The speaker mentions that drive-overs do not solve police traffic problems, suggesting a need for more effective solutions.\n• The new commissioner is mentioned as not listening to others and doing whatever they want, indicating potential issues with leadership.\n• The speaker shares that they have seen some \"crazy crimes\" in their career, but declines to share details due to their ghastly nature.\n\n## WHO SHOULD LISTEN?\nAnyone interested in casual conversations about city life, traffic issues, and law enforcement experiences. Fans of relaxed, conversational podcasts may enjoy this episode.",
+  "key_moments": [
+    {
+      "timestamp": "23.9s - 24.9s",
+      "start_ms": 23920,
+      "text": "to look nice somehow.",
+      "importance_score": 2,
+      "segment_index": 8
+    },
+    {
+      "timestamp": "25.9s - 26.9s",
+      "start_ms": 25920,
+      "text": "How you been?",
+      "importance_score": 2,
+      "segment_index": 10
+    },
+    {
+      "timestamp": "27.9s - 28.9s",
+      "start_ms": 27920,
+      "text": "Calling your Sunday?",
+      "importance_score": 2,
+      "segment_index": 12
+    },
+    {
+      "timestamp": "30.9s - 34.7s",
+      "start_ms": 30920,
+      "text": "So Anushet, what happens if I make a traffic violation with you in the car?",
+      "importance_score": 2,
+      "segment_index": 14
+    },
+    {
+      "timestamp": "34.7s - 35.7s",
+      "start_ms": 34720,
+      "text": "With me?",
+      "importance_score": 2,
+      "segment_index": 15
+    },
+    {
+      "timestamp": "39.4s - 45.9s",
+      "start_ms": 39360,
+      "text": "I was talking to a politician recently, and he said, the new commissioner doesn't listen",
+      "importance_score": 2,
+      "segment_index": 18
+    },
+    {
+      "timestamp": "48.3s - 49.7s",
+      "start_ms": 48279,
+      "text": "He does whatever he wants.",
+      "importance_score": 2,
+      "segment_index": 20
+    },
+    {
+      "timestamp": "62.9s - 63.9s",
+      "start_ms": 62919,
+      "text": "What is the problem?",
+      "importance_score": 2,
+      "segment_index": 24
+    },
+    {
+      "timestamp": "63.9s - 64.9s",
+      "start_ms": 63919,
+      "text": "What is the solution?",
+      "importance_score": 2,
+      "segment_index": 25
+    },
+    {
+      "timestamp": "66.9s - 67.9s",
+      "start_ms": 66919,
+      "text": "Yeah?",
+      "importance_score": 2,
+      "segment_index": 27
+    },
+    {
+      "timestamp": "67.9s - 74.7s",
+      "start_ms": 67919,
+      "text": "You must have seen some crazy crimes in your career, right?",
+      "importance_score": 2,
+      "segment_index": 28
+    }
+  ],
+  "full_transcript": "And it's nice for three Bangaloreans to catch up. Yeah. Exactly. Let's promote Bangalore. Absolutely, yeah. Even though that wasn't very subtle. In this episode today, my agenda is, get young people who want to be policemen. B, I'm from Bangalore, I hate all the hate that is coming for Bangalore, so I want Bangalore to look nice somehow. Hey! How you been? I'm good, I'm good. Calling your Sunday? No, no, no. So Anushet, what happens if I make a traffic violation with you in the car? With me? Yeah. Oh, that'll be terrible. I was talking to a politician recently, and he said, the new commissioner doesn't listen to any of us. He does whatever he wants. Yeah, absolutely. Wherever I go and tell good things about Bangalore, people tell me traffic, traffic, traffic. What is the problem? What is the solution? Drive-overs do not solve police traffic problems. Yeah? You must have seen some crazy crimes in your career, right? Would you like to, like, narrate one particular, like... The details are so ghastly. Ghastly. On? On. Rolling. Hi. Hi. How are you? How are you? Good. Hi. How you been? I'm good, I'm good. Welcome. Hi. Just calling your Sunday? No, no, no. For us, it doesn't matter much. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday. No, you don't need to call me Sunday."
+}
