@@ -23,7 +23,17 @@ class LlamaNodeConnector:
             dict: The response from the Llama API.
         """
         llama_response = self.llama_client.chat.completions.create(
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant that looks at user message and categorize it in one of the following categories: 'summarization', 'question_answering', 'audio_playback', 'audio_search'. If the user message is about audio playback, you will call the PausePlayAgent to find and play the audio." +
+                    "You will return the response in JSON format with keys 'category' and 'response'. "
+                },
+                {
+                    "role": "user", 
+                    "content": prompt
+                 }
+                ],
             model=self.model,
             stream=False,
             temperature=0.6,
@@ -40,7 +50,7 @@ class LlamaNodeConnector:
                         "properties": {
                             "location": {
                             "type": "string",
-                            "description": "find audio and play from that location."
+                            "description": "find audio and relevant segments based on user query, use it to find start and end times of audio."
                             }
                         },
                         "required": ["audioid","user_message"]
