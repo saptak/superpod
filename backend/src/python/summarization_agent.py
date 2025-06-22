@@ -3,23 +3,43 @@ Summarization Agent
 Generates comprehensive podcast summaries using Llama AI
 """
 import json
+import os
+import logging
 from pathlib import Path
 from typing import Dict, Any, List, Optional
+from datetime import datetime
 from llama_api_client import LlamaAPIClient
 
-from .base import BaseAgent
-
-class SummarizationAgent(BaseAgent):
+class SummarizationAgent:
     """Agent for generating podcast summaries"""
     
     def __init__(self):
-        super().__init__("summarization")
         self.client = None
+        self.logger = self._setup_logger()
+        # Set up default directories
+        self.base_dir = Path(__file__).parent.parent.parent.parent  # Go up to project root
+        self.transcriptions_dir = self.base_dir / "transcriptions"
+        self.summaries_dir = self.base_dir / "summaries"
+        
+    def _setup_logger(self):
+        """Setup logging for the agent"""
+        logger = logging.getLogger("SummarizationAgent")
+        if not logger.handlers:
+            handler = logging.StreamHandler()
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
+            logger.setLevel(logging.INFO)
+        return logger
+        
+    def _get_timestamp(self) -> str:
+        """Get current timestamp in ISO format"""
+        return datetime.now().isoformat()
         
     def _initialize_client(self) -> bool:
         """Initialize Llama API client"""
         try:
-            api_key = self.config.get_env("LLAMA_API_KEY")
+            api_key = os.getenv("LLAMA_API_KEY")
             if not api_key:
                 self.logger.error("LLAMA_API_KEY not found in environment")
                 return False
@@ -31,6 +51,19 @@ class SummarizationAgent(BaseAgent):
         except Exception as e:
             self.logger.error(f"Failed to initialize Llama client: {e}")
             return False
+    
+    def get_transcript_files(self):
+        """Get list of available transcript files"""
+        transcript_files = []
+        if self.transcriptions_dir.exists():
+            for file in self.transcriptions_dir.iterdir():
+                if file.is_file() and file.suffix.lower() == '.json':
+                    transcript_files.append({
+                        'name': file.name,
+                        'path': str(file),
+                        'size': file.stat().st_size
+                    })
+        return transcript_files
     
     def _load_transcript(self, file_path: str) -> Optional[Dict[str, Any]]:
         """Load transcript data from JSON file"""
@@ -63,9 +96,27 @@ class SummarizationAgent(BaseAgent):
         num_segments = len(segments)
         avg_segment_length = sum(len(seg['text']) for seg in segments) / max(num_segments, 1)
 
-        # Get prompt template from config
-        prompt_template = self.config.get('summarization.prompt_template')
-        
+        # Default prompt template if config is not available
+        prompt_template = """You are an expert podcast analyst. Please provide a comprehensive summary of the following podcast transcript.
+
+PODCAST INFORMATION:
+- Duration: {duration_minutes:.1f} minutes ({total_duration:.1f} seconds)
+- Number of segments: {num_segments}
+- Average segment length: {avg_segment_length:.1f} characters
+- Language: {language}
+
+TRANSCRIPT:
+{full_text}
+
+Please provide a detailed summary that includes:
+1. Main topics and themes discussed
+2. Key insights and takeaways
+3. Important quotes or statements
+4. Overall tone and style of the podcast
+5. Target audience and purpose
+
+Make the summary engaging and informative while maintaining accuracy to the original content."""
+
         return prompt_template.format(
             total_duration=total_duration,
             duration_minutes=total_duration/60,
@@ -78,7 +129,8 @@ class SummarizationAgent(BaseAgent):
     def _extract_key_moments(self, segments: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Extract key moments from transcript segments"""
         key_moments = []
-        keywords = self.config.get('summarization.key_moment_keywords', [])
+        # Default keywords for key moments
+        keywords = ["important", "key", "main", "primary", "significant", "crucial", "essential"]
 
         for segment in segments:
             text = segment['text'].strip()
@@ -100,9 +152,10 @@ class SummarizationAgent(BaseAgent):
     def _get_summary_stream(self, prompt: str) -> str:
         """Get streaming summary from Llama API"""
         try:
-            model = self.config.get('summarization.model')
-            temperature = self.config.get('summarization.temperature', 0.6)
-            max_tokens = self.config.get('summarization.max_tokens', 2048)
+            # Default model settings if config is not available
+            model = os.getenv("LLAMA_MODEL", "llama-3.1-8b-instruct")
+            temperature = float(os.getenv("LLAMA_TEMPERATURE", "0.6"))
+            max_tokens = int(os.getenv("LLAMA_MAX_TOKENS", "2048"))
             
             self.logger.info(f"Generating summary with model: {model}")
             
@@ -153,7 +206,10 @@ class SummarizationAgent(BaseAgent):
     def _save_summary(self, summary_data: Dict[str, Any], output_path: str) -> bool:
         """Save summary to JSON file"""
         try:
-            with open(output_path, 'w', encoding='utf-8') as f:
+            output_file_path = Path(output_path)
+            output_file_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(output_file_path, 'w', encoding='utf-8') as f:
                 json.dump(summary_data, f, indent=2, ensure_ascii=False)
             
             self.logger.info(f"Summary saved to: {output_path}")
@@ -163,11 +219,15 @@ class SummarizationAgent(BaseAgent):
             self.logger.error(f"Failed to save summary: {e}")
             return False
     
-    def process(self, transcript_file: str, output_dir: str = "summaries") -> bool:
+    def process(self, transcript_file: str, output_dir: str = None) -> bool:
         """Process transcript and generate summary"""
         try:
             print(f"Starting podcast summarization...")
             print(f"Transcript: {Path(transcript_file).name}")
+            
+            # Set default output directory if not provided
+            if output_dir is None:
+                output_dir = str(self.summaries_dir)
             
             # Initialize client
             if not self._initialize_client():
@@ -180,7 +240,7 @@ class SummarizationAgent(BaseAgent):
             
             # Create output directory
             output_path = Path(output_dir)
-            output_path.mkdir(exist_ok=True)
+            output_path.mkdir(parents=True, exist_ok=True)
             
             # Generate summary
             print(f"\nGenerating summary...")
@@ -195,8 +255,12 @@ class SummarizationAgent(BaseAgent):
             summary_data = {
                 "metadata": {
                     "transcript_file": transcript_file,
-                    "model_used": self.config.get('summarization.model'),
-                    "created_at": self._get_timestamp()
+                    "model_used": os.getenv("LLAMA_MODEL", "llama-3.1-8b-instruct"),
+                    "created_at": self._get_timestamp(),
+                    "agent": "SummarizationAgent",
+                    "agent_type": "summarization",
+                    "provider": "Llama",
+                    "version": "1.0.0"
                 },
                 "podcast_info": {
                     "duration_seconds": transcript_data['metadata'].get('duration', 0),

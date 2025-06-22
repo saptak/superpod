@@ -2,7 +2,7 @@
 Transcription Agent for SuperPod AI Agent System
 Handles audio file transcription using OpenAI Whisper API
 """
-import openai
+from openai import OpenAI
 from pathlib import Path
 from typing import Dict, Any, Optional
 import json
@@ -15,6 +15,10 @@ class TranscriptionAgent:
     def __init__(self):
         self.client = None
         self.model = os.getenv("OPENAI_MODEL", "whisper-1")
+        # Set up default directories
+        self.base_dir = Path(__file__).parent.parent.parent.parent  # Go up to project root
+        self.audio_files_dir = self.base_dir / "audio_files"
+        self.transcriptions_dir = self.base_dir / "transcriptions"
         self._initialize_client()
     
     def _initialize_client(self):
@@ -24,22 +28,38 @@ class TranscriptionAgent:
             if not api_key:
                 print("Error: OPENAI_API_KEY not found in environment")
                 raise ValueError("OPENAI_API_KEY not set")
-            self.client = openai.OpenAI(api_key=api_key)
+            self.client = OpenAI(api_key=api_key)
         except ValueError as e:
             print(f"Error initializing OpenAI client: {e}")
             raise e
     
-    def process(self, audio_file_path: str, output_dir: str = "transcripts") -> bool:
+    def get_audio_files(self):
+        """Get list of available audio files"""
+        audio_files = []
+        if self.audio_files_dir.exists():
+            for file in self.audio_files_dir.iterdir():
+                if file.is_file() and file.suffix.lower() in ['.mp3', '.wav', '.m4a', '.flac', '.ogg']:
+                    audio_files.append({
+                        'name': file.name,
+                        'path': str(file),
+                        'size': file.stat().st_size
+                    })
+        return audio_files
+    
+    def process(self, audio_file_path: str, output_dir: str = None) -> bool:
         """
         Transcribe audio file to text
         
         Args:
             audio_file_path: Path to the audio file
-            output_dir: Directory to save the transcript
+            output_dir: Directory to save the transcript (defaults to transcriptions folder)
             
         Returns:
             bool: True if successful, False otherwise
         """
+        if output_dir is None:
+            output_dir = str(self.transcriptions_dir)
+        
         if not self._validate_prerequisites():
             return False
         
@@ -82,17 +102,16 @@ class TranscriptionAgent:
             
             return False
             
-        except openai.AuthenticationError:
-            print("Error: Authentication Error: Invalid OpenAI API key")
-            return False
-        except openai.RateLimitError:
-            print("Error: Rate Limit Error: Too many requests. Please wait and try again.")
-            return False
-        except openai.APIError as e:
-            print(f"Error: OpenAI API Error: {e}")
-            return False
         except Exception as e:
-            print(f"Error: Transcription Error: {e}")
+            error_type = type(e).__name__
+            if "AuthenticationError" in error_type or "authentication" in str(e).lower():
+                print("Error: Authentication Error: Invalid OpenAI API key")
+            elif "RateLimitError" in error_type or "rate limit" in str(e).lower():
+                print("Error: Rate Limit Error: Too many requests. Please wait and try again.")
+            elif "APIError" in error_type:
+                print(f"Error: OpenAI API Error: {e}")
+            else:
+                print(f"Error: Transcription Error: {e}")
             return False
     
     def _process_response(self, response, audio_path: Path) -> Dict[str, Any]:
