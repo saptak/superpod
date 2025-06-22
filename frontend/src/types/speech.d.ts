@@ -10,10 +10,10 @@ interface SpeechRecognition extends EventTarget {
   abort(): void;
   addEventListener(type: string, listener: EventListener): void;
   removeEventListener(type: string, listener: EventListener): void;
-  onresult: (event: SpeechRecognitionEvent) => void;
-  onerror: (event: SpeechRecognitionErrorEvent) => void;
-  onstart: (event: Event) => void;
-  onend: (event: Event) => void;
+  onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any) | null;
+  onerror: ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any) | null;
+  onstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onend: ((this: SpeechRecognition, ev: Event) => any) | null;
 }
 
 interface SpeechRecognitionEvent extends Event {
@@ -57,11 +57,17 @@ interface SpeechGrammar {
   weight: number;
 }
 
+declare var SpeechRecognition: {
+  prototype: SpeechRecognition;
+  new(): SpeechRecognition;
+};
+
+declare var webkitSpeechRecognition: {
+  prototype: SpeechRecognition;
+  new(): SpeechRecognition;
+};
+
 interface Window {
-  SpeechRecognition: {
-    new (): SpeechRecognition;
-  };
-  webkitSpeechRecognition: {
-    new (): SpeechRecognition;
-  };
+  SpeechRecognition: typeof SpeechRecognition;
+  webkitSpeechRecognition: typeof webkitSpeechRecognition;
 }
