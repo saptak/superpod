@@ -227,6 +227,10 @@ class QAAgent():
         print(f"\nQuestion: {question}")
         print("Thinking...\n")
         
+        # Ensure client is initialized
+        if not self._initialize_client():
+            return "Error: Could not initialize Llama client"
+        
         prompt = self._create_qa_prompt(question)
         answer = self._get_answer_stream(prompt)
         
@@ -343,4 +347,90 @@ class QAAgent():
         except Exception as e:
             self.logger.error(f"Q&A process failed: {e}")
             print(f"\nQ&A session failed: {e}")
-            return False 
+            return False
+
+    def answer_from_message(self, agent_context: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Answer question from message context
+        
+        Args:
+            agent_context: Context from message processor
+            
+        Returns:
+            Dict with answer result
+        """
+        try:
+            user_message = agent_context.get('user_message', '')
+            target_audio_id = agent_context.get('target_audio_id')
+            file_paths = agent_context.get('file_paths', {})
+            has_transcript = agent_context.get('has_transcript', False)
+            has_summary = agent_context.get('has_summary', False)
+            
+            # If transcript is available, use it for Q&A
+            if has_transcript and 'transcript' in file_paths:
+                transcript_file = file_paths['transcript']
+                summary_file = file_paths.get('summary')  # Optional
+                
+                self.logger.info(f"Answering question for audio_{target_audio_id} with transcript")
+                
+                # Load data and ask question
+                success = self.load_data(transcript_file, summary_file)
+                if success:
+                    answer = self.ask_question(user_message)
+                    
+                    return {
+                        'status': 'success',
+                        'target_audio_id': target_audio_id,
+                        'question': user_message,
+                        'answer': answer,
+                        'has_transcript': True,
+                        'has_summary': has_summary,
+                        'message': f'Answered question for audio_{target_audio_id}'
+                    }
+                else:
+                    return {
+                        'status': 'error',
+                        'message': f'Failed to load data for audio_{target_audio_id}'
+                    }
+            
+            # If no transcript available, send general question to Llama
+            else:
+                self.logger.info(f"No transcript available, sending general question to Llama")
+                
+                # Initialize client if needed
+                if not self._initialize_client():
+                    return {
+                        'status': 'error',
+                        'message': 'Failed to initialize Llama client'
+                    }
+                
+                # Create general prompt for Llama
+                general_prompt = f"""
+You are a helpful AI assistant. The user has a question about podcast content.
+
+USER QUESTION: {user_message}
+
+AVAILABLE CONTENT: {agent_context.get('available_content', {})}
+
+Please provide a helpful response to the user's question. If you have information about available podcast content, mention it. Otherwise, provide a general helpful response.
+"""
+                
+                # Get response from Llama
+                answer = self._get_answer_stream(general_prompt)
+                
+                return {
+                    'status': 'success',
+                    'target_audio_id': target_audio_id,
+                    'question': user_message,
+                    'answer': answer,
+                    'has_transcript': False,
+                    'has_summary': False,
+                    'message': 'Answered general question without specific transcript'
+                }
+                
+        except Exception as e:
+            self.logger.error(f"Error in answer_from_message: {e}")
+            return {
+                'status': 'error',
+                'message': f'Error answering question: {str(e)}'
+            } 
