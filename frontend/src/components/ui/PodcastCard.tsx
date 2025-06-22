@@ -24,7 +24,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
       className={`relative rounded-2xl border overflow-hidden ${className}`}
       style={{ 
         borderColor: '#e2e8f0',
-        height: '200px',
+        height: '240px',
         width: className?.includes('w-full') ? '100%' : '350px'
       }}
     >
@@ -43,7 +43,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
           <div 
             className="absolute bottom-0 left-0 right-0 p-3 rounded-b-2xl"
             style={{
-              background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 70%, transparent 100%)'
+              background: 'linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.75) 70%, rgba(0,0,0,0.3) 90%, transparent 100%)'
             }}
           >
             <div className="space-y-1">

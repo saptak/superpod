@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
                   boxShadow: '0 0 8px rgba(16, 185, 129, 0.6), 0 0 16px rgba(16, 185, 129, 0.4), 0 0 24px rgba(16, 185, 129, 0.2)',
                   animation: 'glow-pulse 2s infinite'
                 }}
-              />
+              /> 
               <h1 className="text-lg font-bold text-gray-800">
                 Superpod
               </h1>

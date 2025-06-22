@@ -4,6 +4,7 @@ import Navbar from './ui/Navbar';
 import MediaPlayer from './ui/MediaPlayer';
 import AIButton from './ui/AIButton';
 import PodcastPage from './PodcastPage';
+import podcastData from '../assets/data_storage.json';
 
 interface PodcastData {
   id: number;
@@ -11,102 +12,22 @@ interface PodcastData {
   author?: string;
   rating?: number;
   duration?: string;
-  isEmpty?: boolean;
+  description?: string;
   imageUrl?: string;
+  category?: string;
+  isEmpty?: boolean;
 }
 
 const Dashboard: React.FC = () => {
   const [selectedPodcast, setSelectedPodcast] = useState<PodcastData | null>(null);
 
-  const podcastCards: PodcastData[] = [
-    {
-      id: 1,
-      title: "Future of AI",
-      author: "Author Author",
-      rating: 4.5,
-      duration: "12 min"
-    },
-    {
-      id: 2,
-      title: "Tech Talk Daily",
-      author: "Sarah Johnson",
-      rating: 4.3,
-      duration: "25 min"
-    },
-    {
-      id: 3,
-      title: "Startup Stories",
-      author: "Mike Chen",
-      rating: 4.7,
-      duration: "18 min"
-    },
-    {
-      id: 4,
-      title: "Code & Coffee",
-      author: "Alex Rivera",
-      rating: 4.1,
-      duration: "22 min"
-    },
-    {
-      id: 5,
-      title: "Digital Trends",
-      author: "Emma Wilson",
-      rating: 4.4,
-      duration: "16 min"
-    },
-    {
-      id: 6,
-      title: "Innovation Hub",
-      author: "David Park",
-      rating: 4.6,
-      duration: "30 min"
-    },
-    {
-      id: 7,
-      title: "Machine Learning Basics",
-      author: "Tech Author",
-      rating: 4.2,
-      duration: "15 min"
-    },
-    {
-      id: 8,
-      title: "Deep Learning",
-      author: "AI Expert",
-      rating: 4.8,
-      duration: "20 min"
-    },
-    {
-      id: 9,
-      title: "Neural Networks",
-      author: "Data Scientist",
-      rating: 4.6,
-      duration: "18 min"
-    },
-    {
-      id: 10,
-      title: "Crypto Corner",
-      author: "Lisa Martinez",
-      rating: 4.0,
-      duration: "28 min"
-    },
-    {
-      id: 11,
-      title: "Web Dev Weekly",
-      author: "Tom Anderson",
-      rating: 4.5,
-      duration: "24 min"
-    },
-    {
-      id: 12,
-      title: "Product Hunt",
-      author: "Ryan Foster",
-      rating: 4.3,
-      duration: "14 min"
-    }
-  ];
+  // Use data from JSON file
+  const podcastCards: PodcastData[] = podcastData;
 
   const handleCardClick = (podcast: PodcastData) => {
-    setSelectedPodcast(podcast);
+    if (!podcast.isEmpty) {
+      setSelectedPodcast(podcast);
+    }
   };
 
   const handleBackToDashboard = () => {
@@ -121,6 +42,7 @@ const Dashboard: React.FC = () => {
         author={selectedPodcast.author}
         rating={selectedPodcast.rating}
         duration={selectedPodcast.duration}
+        description={selectedPodcast.description}
         imageUrl={selectedPodcast.imageUrl}
         onBack={handleBackToDashboard}
       />
@@ -144,6 +66,7 @@ const Dashboard: React.FC = () => {
                   rating={card.rating}
                   duration={card.duration}
                   isEmpty={card.isEmpty}
+                  imageUrl={card.imageUrl}
                   className="cursor-pointer hover:scale-102 transition-transform duration-200"
                 />
               </div>
@@ -160,6 +83,7 @@ const Dashboard: React.FC = () => {
                   rating={card.rating}
                   duration={card.duration}
                   isEmpty={card.isEmpty}
+                  imageUrl={card.imageUrl}
                   className="cursor-pointer hover:scale-102 transition-transform duration-200 w-full"
                 />
               </div>

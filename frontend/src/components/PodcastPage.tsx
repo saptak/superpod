@@ -8,6 +8,7 @@ interface PodcastPageProps {
   author?: string;
   rating?: number;
   duration?: string;
+  description?: string;
   imageUrl?: string;
   onBack?: () => void;
 }
@@ -17,6 +18,7 @@ const PodcastPage: React.FC<PodcastPageProps> = ({
   author = "Author Name",
   rating = 4.5,
   duration = "25 min",
+  description = "An insightful exploration of artificial intelligence and its impact on our daily lives. Join us as we dive deep into the latest developments in AI technology and discuss what the future holds for humanity in an AI-driven world.",
   imageUrl = "https://picsum.photos/400/300",
   onBack
 }) => {
@@ -41,7 +43,7 @@ const PodcastPage: React.FC<PodcastPageProps> = ({
 
           {/* Desktop Podcast Layout - Image Left, Info Right */}
           <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden mb-8 hidden md:block">
-            <div className="flex h-72">
+            <div className="flex h-96">
               {/* Left Side - Podcast Image */}
               <div className="w-80 flex-shrink-0 bg-gray-100">
                 <img 
@@ -67,12 +69,19 @@ const PodcastPage: React.FC<PodcastPageProps> = ({
                   <span className="text-gray-600">{duration}</span>
                 </div>
 
+                <div className="mb-6">
+                  <button className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span className="font-medium text-sm">Play Episode</span>
+                  </button>
+                </div>
+
                 <div className="mb-4">
                   <h3 className="text-sm font-medium text-gray-700 mb-2">Description</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    An insightful exploration of artificial intelligence and its impact on our daily lives. 
-                    Join us as we dive deep into the latest developments in AI technology and discuss 
-                    what the future holds for humanity in an AI-driven world.
+                    {description}
                   </p>
                 </div>
               </div>
@@ -106,12 +115,19 @@ const PodcastPage: React.FC<PodcastPageProps> = ({
                 <span className="text-gray-600">{duration}</span>
               </div>
 
+              <div className="mb-6">
+                <button className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 w-full justify-center">
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                  <span className="font-medium text-sm">Play Episode</span>
+                </button>
+              </div>
+
               <div>
                 <h3 className="text-sm font-medium text-gray-700 mb-2">Description</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  An insightful exploration of artificial intelligence and its impact on our daily lives. 
-                  Join us as we dive deep into the latest developments in AI technology and discuss 
-                  what the future holds for humanity in an AI-driven world.
+                  {description}
                 </p>
               </div>
             </div>
