@@ -362,15 +362,28 @@ class QAAgent():
         try:
             user_message = agent_context.get('user_message', '')
             target_audio_id = agent_context.get('target_audio_id')
-            file_paths = agent_context.get('file_paths', {})
-            has_transcript = agent_context.get('has_transcript', False)
-            has_summary = agent_context.get('has_summary', False)
             
-            # If transcript is available, use it for Q&A
-            if has_transcript and 'transcript' in file_paths:
-                transcript_file = file_paths['transcript']
-                summary_file = file_paths.get('summary')  # Optional
+            # Use same file identification logic as PlayPauseAgent
+            transcriptions_dir = os.path.join(os.path.dirname(__file__), "transcriptions")
+            transcript_file = None
+            summary_file = None
+            
+            if target_audio_id:
+                for fname in os.listdir(transcriptions_dir):
+                    if target_audio_id in fname:
+                        transcript_file = os.path.join(transcriptions_dir, fname)
+                        break
                 
+                # Also look for summary file
+                summaries_dir = os.path.join(os.path.dirname(__file__), "summaries")
+                if os.path.exists(summaries_dir):
+                    for fname in os.listdir(summaries_dir):
+                        if target_audio_id in fname:
+                            summary_file = os.path.join(summaries_dir, fname)
+                            break
+
+            # If transcript is available, use it for Q&A
+            if transcript_file and os.path.isfile(transcript_file):
                 self.logger.info(f"Answering question for audio_{target_audio_id} with transcript")
                 
                 # Load data and ask question
@@ -384,7 +397,7 @@ class QAAgent():
                         'question': user_message,
                         'answer': answer,
                         'has_transcript': True,
-                        'has_summary': has_summary,
+                        'has_summary': summary_file is not None,
                         'message': f'Answered question for audio_{target_audio_id}'
                     }
                 else:

@@ -383,50 +383,52 @@ class SummarizationAgent:
         try:
             user_message = agent_context.get('user_message', '')
             target_audio_id = agent_context.get('target_audio_id')
-            file_paths = agent_context.get('file_paths', {})
             
-            # If specific target is identified
-            if target_audio_id and 'transcript' in file_paths:
-                transcript_file = file_paths['transcript']
-                self.logger.info(f"Generating summary for audio_{target_audio_id}")
+            # Use same file identification logic as PlayPauseAgent
+            transcriptions_dir = os.path.join(os.path.dirname(__file__), "transcriptions")
+            transcript_file = None
+            
+            if target_audio_id:
+                for fname in os.listdir(transcriptions_dir):
+                    if target_audio_id in fname:
+                        transcript_file = os.path.join(transcriptions_dir, fname)
+                        break
+
+            if not transcript_file or not os.path.isfile(transcript_file):
+                return {"status": "error", "message": f"Transcript for audioid {target_audio_id} not found"}
                 
-                # Use existing process method
-                success = self.process(transcript_file)
+            self.logger.info(f"Generating summary for audio_{target_audio_id}")
+            
+            # Use existing process method
+            success = self.process(transcript_file)
+            
+            if success:
+                # Get the generated summary file - use the same pattern as process method
+                base_name = Path(transcript_file).stem  # This will be "audio_1_transcript" from "audio_1_transcript.json"
+                summary_file = f"{base_name}_summary.json"  # This will be "audio_1_transcript_summary.json"
+                summary_path = self.summaries_dir / summary_file
                 
-                if success:
-                    # Get the generated summary file - use the same pattern as process method
-                    base_name = Path(transcript_file).stem  # This will be "audio_1_transcript" from "audio_1_transcript.json"
-                    summary_file = f"{base_name}_summary.json"  # This will be "audio_1_transcript_summary.json"
-                    summary_path = self.summaries_dir / summary_file
+                if summary_path.exists():
+                    with open(summary_path, 'r', encoding='utf-8') as f:
+                        summary_data = json.load(f)
                     
-                    if summary_path.exists():
-                        with open(summary_path, 'r', encoding='utf-8') as f:
-                            summary_data = json.load(f)
-                        
-                        return {
-                            'status': 'success',
-                            'target_audio_id': target_audio_id,
-                            'summary': summary_data.get('comprehensive_summary', ''),
-                            'topics': summary_data.get('topics_analysis', ''),
-                            'key_moments': summary_data.get('key_moments', []),
-                            'message': f'Summary generated for audio_{target_audio_id}'
-                        }
-                    else:
-                        return {
-                            'status': 'error',
-                            'message': f'Summary file not found: {summary_file}'
-                        }
+                    return {
+                        'status': 'success',
+                        'target_audio_id': target_audio_id,
+                        'summary': summary_data.get('comprehensive_summary', ''),
+                        'topics': summary_data.get('topics_analysis', ''),
+                        'key_moments': summary_data.get('key_moments', []),
+                        'message': f'Summary generated for audio_{target_audio_id}'
+                    }
                 else:
                     return {
                         'status': 'error',
-                        'message': f'Failed to generate summary for audio_{target_audio_id}'
+                        'message': f'Summary file not found: {summary_file}'
                     }
-            
-            # If no specific target or transcript not available
             else:
                 return {
                     'status': 'error',
-                    'message': f'No transcript available for summarization. User message: "{user_message}"'
+                    'message': f'Failed to generate summary for audio_{target_audio_id}'
                 }
                 
         except Exception as e:
