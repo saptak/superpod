@@ -1,43 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Button } from './components/ui/button';
-import Dashboard from './components/Dashboard';
-
-function HomePage() {
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <div className="max-w-md w-full space-y-8 text-center">
-        <div>
-          <h1 className="text-4xl font-bold text-foreground mb-4">
-            SuperPod
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            AI-powered podcast discovery through YouTube
-          </p>
-        </div>
-        
-        <div className="space-y-4">
-          <Button className="w-full" size="lg">
-            Sign in with Google
-          </Button>
-          
-          <p className="text-sm text-muted-foreground">
-            Connect your YouTube account to get personalized podcast recommendations
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Dashboard } from './pages/Dashboard';
+import { PlaybackProvider } from './contexts/PlaybackContext';
+import DashboardComponent from './components/Dashboard';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-        </Routes>
-      </div>
-    </Router>
+    <PlaybackProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route 
+              path="/" 
+              element={<DashboardComponent />}
+            />
+            <Route 
+              path="/dashboard" 
+              element={<Dashboard onLogout={() => {}} />}
+            />
+            <Route 
+              path="*" 
+              element={<Navigate to="/" replace />} 
+            />
+          </Routes>
+        </div>
+      </Router>
+    </PlaybackProvider>
   );
 }
 

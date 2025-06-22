@@ -1,26 +1,113 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+
+// Audio file path
+const audioFile = new URL('../../assets/audio/WTF is with Nikhil Kamath-episode-Nikhil Kamath ft. Police Comm\'r & Traffic Police Comm\'r of Bengaluru _ WTF is Policing_ _ Special Ep.mp3', import.meta.url).href;
 
 interface MediaPlayerProps {
   podcastName?: string;
-  currentTime?: string;
-  totalTime?: string;
-  progress?: number;
-  isPlaying?: boolean;
   className?: string;
-  onPlayPause?: () => void;
 }
 
 const MediaPlayer: React.FC<MediaPlayerProps> = ({ 
-  podcastName = "Future of AI - how world is changing",
-  currentTime = "0:00",
-  totalTime = "9:52",
-  progress = 0,
-  isPlaying = false,
-  className = "",
-  onPlayPause
+  podcastName = "WTF is with Nikhil Kamath - Policing Special Episode",
+  className = ""
 }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  // Format time in MM:SS format
+  const formatTime = (time: number) => {
+    if (isNaN(time)) return "0:00";
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  // Handle play/pause
+  const handlePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  // Handle progress bar click
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (audioRef.current) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const newTime = (clickX / width) * duration;
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
+  };
+
+  // Audio event handlers
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleLoadedMetadata = () => {
+      setDuration(audio.duration);
+    };
+
+    const handleTimeUpdate = () => {
+      setCurrentTime(audio.currentTime);
+      setProgress((audio.currentTime / audio.duration) * 100);
+    };
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setProgress(0);
+      setCurrentTime(0);
+    };
+
+    const handleLoadStart = () => {
+      console.log('Audio loading started');
+    };
+
+    const handleCanPlay = () => {
+      console.log('Audio can start playing');
+    };
+
+    // Handle custom event from Play Episode button
+    const handleStartPlayback = () => {
+      if (audio && !isPlaying) {
+        audio.play();
+        setIsPlaying(true);
+      }
+    };
+
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+    audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('loadstart', handleLoadStart);
+    audio.addEventListener('canplay', handleCanPlay);
+    window.addEventListener('startAudioPlayback', handleStartPlayback);
+
+    return () => {
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('loadstart', handleLoadStart);
+      audio.removeEventListener('canplay', handleCanPlay);
+      window.removeEventListener('startAudioPlayback', handleStartPlayback);
+    };
+  }, [isPlaying]);
+
   return (
     <>
+      {/* Hidden audio element */}
+      <audio ref={audioRef} src={audioFile} preload="metadata" />
+
       {/* Desktop Media Player */}
       <div 
         className={`fixed bottom-0 left-1/2 transform -translate-x-1/2 border p-3 hidden md:block ${className}`}
@@ -38,7 +125,7 @@ const MediaPlayer: React.FC<MediaPlayerProps> = ({
           <div className="flex items-center space-x-2">
             <button 
               className="w-10 h-7 rounded-lg flex items-center justify-center bg-gray-700 text-white border-none shadow-sm hover:bg-gray-600 transition-all duration-200"
-              onClick={onPlayPause}
+              onClick={handlePlayPause}
             >
               {isPlaying ? (
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
@@ -52,7 +139,7 @@ const MediaPlayer: React.FC<MediaPlayerProps> = ({
               )}
             </button>
             <div className="font-medium text-xs" style={{ color: '#ffffff' }}>
-              {currentTime}/{totalTime}
+              {formatTime(currentTime)}/{formatTime(duration)}
             </div>
           </div>
           
@@ -60,7 +147,11 @@ const MediaPlayer: React.FC<MediaPlayerProps> = ({
             <div className="text-center mb-1 text-sm font-medium" style={{ color: '#ffffff' }}>
               {podcastName}
             </div>
-            <div className="w-full rounded-full h-1" style={{ backgroundColor: '#374151' }}>
+            <div 
+              className="w-full rounded-full h-1 cursor-pointer" 
+              style={{ backgroundColor: '#374151' }}
+              onClick={handleProgressClick}
+            >
               <div 
                 className="h-1 rounded-full transition-all duration-300" 
                 style={{ width: `${progress}%`, backgroundColor: '#ffffff' }}
@@ -99,7 +190,7 @@ const MediaPlayer: React.FC<MediaPlayerProps> = ({
           <div className="flex items-center space-x-2">
             <button 
               className="w-10 h-8 rounded-lg flex items-center justify-center bg-gray-700 text-white border-none shadow-sm hover:bg-gray-600 transition-all duration-200"
-              onClick={onPlayPause}
+              onClick={handlePlayPause}
             >
               {isPlaying ? (
                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -113,7 +204,7 @@ const MediaPlayer: React.FC<MediaPlayerProps> = ({
               )}
             </button>
             <div className="font-medium text-xs" style={{ color: '#ffffff' }}>
-              {currentTime}/{totalTime}
+              {formatTime(currentTime)}/{formatTime(duration)}
             </div>
           </div>
           

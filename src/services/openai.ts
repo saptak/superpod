@@ -37,37 +37,26 @@ class OpenAIService {
     }
   }
 
-  // Generate AI response using GPT
+  // Generate AI response using backend
   async generateResponse(userMessage: string): Promise<string> {
     try {
-      console.log('API Key length:', this.apiKey.length);
-      console.log('API Key starts with sk-:', this.apiKey.startsWith('sk-'));
+      console.log('Sending message to backend:', userMessage);
       
-      const response = await fetch(`${this.baseURL}/chat/completions`, {
+      const requestBody = {
+        message: userMessage
+      };
+      console.log('Request body:', JSON.stringify(requestBody));
+
+      const response = await fetch('/api/chat/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiKey}`,
         },
-        body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
-          messages: [
-            {
-              role: 'system',
-              content: 'You are a helpful AI assistant for a podcast application called Superpod. Provide concise, helpful responses to user questions about podcasts, technology, or general topics. Keep responses under 100 words.'
-            },
-            {
-              role: 'user',
-              content: userMessage
-            }
-          ],
-          max_tokens: 150,
-          temperature: 0.7,
-        }),
+        body: JSON.stringify(requestBody),
       });
 
       console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -76,9 +65,18 @@ class OpenAIService {
       }
 
       const data = await response.json();
-      return data.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
+      console.log('Backend response data:', data);
+      console.log('Data type:', typeof data);
+      console.log('Data keys:', Object.keys(data));
+      
+      // The backend uses jsonify(response) so the response should directly contain the data
+      const result = data.message || data.response || data || 'Sorry, I could not generate a response.';
+      console.log('Final result:', result);
+      
+      return result;
     } catch (error) {
       console.error('Generate response error:', error);
+      console.error('Error details:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }

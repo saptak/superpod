@@ -388,7 +388,7 @@ const AIButton: React.FC<AIButtonProps> = ({ className = "", onClick }) => {
       case AIState.SPEAKING:
         return displayedResponse ? `"${truncateText(displayedResponse, maxLength)}"` : 'AI Speaking...';
       default:
-        return isConversationActive ? 'Tap to end conversation' : 'Ask AI Assistant';
+        return isConversationActive ? 'Tap to end conversation' : 'Ask Llama';
     }
   };
 

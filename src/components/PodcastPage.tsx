@@ -70,12 +70,31 @@ const PodcastPage: React.FC<PodcastPageProps> = ({
                 </div>
 
                 <div className="mb-6">
-                  <button className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200">
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    <span className="font-medium text-sm">Play Episode</span>
-                  </button>
+                  {title === "WTF is Policing? Bengaluru Police Special" ? (
+                    <button 
+                      className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+                      onClick={() => {
+                        // Trigger play from media player - only for Nikhil Kamath podcast
+                        const event = new CustomEvent('startAudioPlayback');
+                        window.dispatchEvent(event);
+                      }}
+                    >
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                      <span className="font-medium text-sm">Play Episode</span>
+                    </button>
+                  ) : (
+                    <button 
+                      className="flex items-center space-x-2 bg-gray-400 text-gray-200 px-4 py-2 rounded-lg cursor-not-allowed"
+                      disabled
+                    >
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                      <span className="font-medium text-sm">Audio Not Available</span>
+                    </button>
+                  )}
                 </div>
 
                 <div className="mb-4">
@@ -116,12 +135,31 @@ const PodcastPage: React.FC<PodcastPageProps> = ({
               </div>
 
               <div className="mb-6">
-                <button className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 w-full justify-center">
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                  <span className="font-medium text-sm">Play Episode</span>
-                </button>
+                {title === "WTF is Policing? Bengaluru Police Special" ? (
+                  <button 
+                    className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 w-full justify-center"
+                    onClick={() => {
+                      // Trigger play from media player - only for Nikhil Kamath podcast
+                      const event = new CustomEvent('startAudioPlayback');
+                      window.dispatchEvent(event);
+                    }}
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span className="font-medium text-sm">Play Episode</span>
+                  </button>
+                ) : (
+                  <button 
+                    className="flex items-center space-x-2 bg-gray-400 text-gray-200 px-4 py-2 rounded-lg cursor-not-allowed w-full justify-center"
+                    disabled
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span className="font-medium text-sm">Audio Not Available</span>
+                  </button>
+                )}
               </div>
 
               <div>
