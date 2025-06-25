@@ -46,7 +46,6 @@ class OpenAIService {
         message: userMessage
       };
       console.log('Request body:', JSON.stringify(requestBody));
-
       const response = await fetch('/api/chat/message', {
         method: 'POST',
         headers: {

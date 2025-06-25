@@ -1,76 +1,91 @@
 import type { APIError } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE_URL = 'http://localhost:8000';
 
-class APIClient {
-  private baseURL: string;
-  private accessToken: string | null = null;
+export interface ChatMessage {
+  message: string;
+  file_id?: string;
+}
 
-  constructor(baseURL: string = API_BASE_URL) {
-    this.baseURL = baseURL;
-  }
+export interface ChatResponse {
+  response: string;
+  segments?: Array<{
+    start: number;
+    end: number;
+    text: string;
+  }>;
+}
 
-  setAccessToken(token: string | null) {
-    this.accessToken = token;
+export interface Podcast {
+  id: string;
+  title: string;
+  file_path: string;
+  summary?: string;
+  duration?: string;
+}
+
+export interface Transcript {
+  segments: Array<{
+    start: number;
+    end: number;
+    text: string;
+  }>;
+}
+
+class ApiClient {
+  private baseUrl: string;
+
+  constructor(baseUrl: string = API_BASE_URL) {
+    this.baseUrl = baseUrl;
   }
 
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
-    const url = `${this.baseURL}${endpoint}`;
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-      ...(options.headers as Record<string, string>),
-    };
-
-    if (this.accessToken) {
-      headers['Authorization'] = `Bearer ${this.accessToken}`;
-    }
-
-    const config: RequestInit = {
+    const url = `${this.baseUrl}${endpoint}`;
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
       ...options,
-      headers,
-    };
+    });
 
-    try {
-      const response = await fetch(url, config);
-      
-      if (!response.ok) {
-        const errorData: APIError = await response.json();
-        throw new Error(errorData.error.message);
-      }
-
-      return await response.json();
-    } catch (error) {
-      if (error instanceof Error) {
-        throw error;
-      }
-      throw new Error('An unexpected error occurred');
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.statusText}`);
     }
+
+    return response.json();
   }
 
-  async get<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: 'GET' });
+  // Get all available podcasts
+  async getPodcasts(): Promise<Podcast[]> {
+    return this.request<Podcast[]>('/podcasts');
   }
 
-  async post<T>(endpoint: string, data?: any): Promise<T> {
-    return this.request<T>(endpoint, {
+  // Send chat message
+  async sendChatMessage(message: ChatMessage): Promise<ChatResponse> {
+    return this.request<ChatResponse>('/chat/message', {
       method: 'POST',
-      body: data ? JSON.stringify(data) : undefined,
+      body: JSON.stringify(message),
     });
   }
 
-  async put<T>(endpoint: string, data?: any): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'PUT',
-      body: data ? JSON.stringify(data) : undefined,
-    });
+  // Get audio file URL
+  getAudioUrl(fileId: string): string {
+    return `${this.baseUrl}/audio/${fileId}.mp3`;
   }
 
-  async delete<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: 'DELETE' });
+  // Get transcript for audio file
+  async getTranscript(fileId: string): Promise<Transcript> {
+    return this.request<Transcript>(`/transcript/${fileId}`);
+  }
+
+  // Check if API is running
+  async healthCheck(): Promise<{ message: string }> {
+    return this.request<{ message: string }>('/');
   }
 }
 
-export const apiClient = new APIClient();
+export const apiClient = new ApiClient();
