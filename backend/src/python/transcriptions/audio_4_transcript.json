@@ -1,0 +1,1859 @@
+{
+  "metadata": {
+    "audio_file": "/Users/nandvinaykumar.dave/Downloads/Superpod2/backend/src/python/audio_files/audio_4.mp3",
+    "language": "english",
+    "duration": 530.3599853515625,
+    "model": "whisper-1",
+    "timestamp_granularities": [
+      "segment"
+    ],
+    "processed_at": "2025-06-21T22:33:04.138498",
+    "agent": "TranscriptionAgent",
+    "agent_type": "transcription",
+    "provider": "OpenAI",
+    "version": "1.0.0"
+  },
+  "full_text": "Photo goes up. Is it by post? By post. Your registered address. And if you have a phone number, it comes to your phone number as well. Right. When I was younger, I don't drive now. I've not driven for many years. But when you'd get caught in the night, going somewhere, coming from somewhere, you'd pay a bribe and all that, right? How do you stop that? So, that's one way of doing that is this body-worn camera, right? So, you have this body-worn camera which is live-streamed here. But they can't close it. They can't. They can't turn it off. So, and if they're doing enforcement, then... It's mandatory that they switch on the body-worn camera. Especially this drunk driving and all that. But if somebody's charging a fine in cash and the money is not legal per se, he won't be collecting that while he's in... with the camera on in enforcement, right? Yeah, but that used to happen when cash was the mode of transaction, right? Today, you will not believe it. 99.9% is UPS. Cashless. Cashless. So, both are helpful. Both the cashless payment as well as measures such as this. And it's no longer that we'll randomly do this thing. It is specific for this particular time of day, this particular junction. The location is taken here. And complaints do come. Complaints do come about police high-handedness, harassment and all those things. But most of the times, we're able to absolve our policemen because of body-worn camera. Now, they've also realized that with body-worn camera, they're in a better position. So, they always switch it on. Any argument, any this thing with the public. I must have forwarded to him so many complaints what public have sent me. I think 99% they all have been absolved with body-worn camera. Only 1 or 2% maybe we are taking action because there is actually something wrong. And another thing is that all the location is monitored. The body-worn camera is there. That is the location of the body-worn camera. And the car and the vehicle as well. All our vehicles are fitted with IOT devices which we monitor the GPS. So, if we are saying that he has to put in a particular place, our control room verifies he is at that place. Right. So, all these things, technology basically. Makes sense. Plus, they are geo-fenced also. Our policemen, they are geo-fenced to those junctions. If he leaves that junction, again they get an alert here. And he has to explain for what purpose he left the junction. So, this is the kind of challan which goes to a person's house. Right. And this QR code, if you scan it, you will get the photo as well. If a vehicle is registered to me, you also send an SMS, right? If the mobile number is there, yeah. The older vehicles, they have not captured the mobile number. New vehicles, they have captured. Right now, we are at about 99.999% accuracy because of the human validation. Prior to that, it was about 95%. But 1 in 10,000 is acceptable. Right. Because there will be human errors as well. The number of errors being generated has reduced. Right. Because if there is no trust in the system, then there is no acceptance. Right. You can only get trust if your data has integrity in it. Right. How the traffic police evolved in Bangalore city over the period. When was the first signal set up? When was the first altimeter used? How they used to do it earlier? Hand signal time? Very well done, no? The lighting and all that. Old gazettes and all that, they have digged out. Press the button, Kannada or English. Put in Bangalore city, near a town, all that. Just have go and no. If go was do, go was stop. Bangalore city, Bangalore You should change. Let's go in the car. Hi. This is our chat board. Right. Does anybody ask? Yes, we can. But who asks? There is a mic button here. Any public who can... Who comes to the community. Interact with the last few questions related to congestion. No, no, don't worry. It's fine. No, no, you can say it on camera. No, no. Why do you like the police so much? Why do you work with them so much? It's just so nice to work with them. Because no one sees them as they are, right? Was there a case long back that you were trying to solve? No. No? It's just nice. Sometimes you feel like Batman maybe. Really? Yeah, yeah. Love it. Sir, first thing, first big compliment I can pay you is I was talking to a politician recently and he was saying I don't know what we were talking about. Keeping restaurants open till late or something like that. And he said the new commissioner doesn't listen to any of us. He does whatever he wants. Yeah, absolutely. So, coming from a politician in my view is a great compliment to you as police commissioner. Would you like to talk about that? How does it feel to be stuck in between all these different worlds in your role? It feels nice coming from a politician definitely. But then again the politicians also they expect police officers to enforce law. Once you are enforcing what they expect from police officers is impartiality, neutrality and a little bit of hard work. Where they have a problem is once you start compromising and all that. If you mean business, they like it end of the day. And then once they know that you mean business then they don't intervene much also. Yeah. That has been my experience. Then they know that this fellow is not going to listen like the way the politician told you. Then they are not going to trouble you. So, it saves our problem also, our headache. So, you can execute, you can do what you want to. And also intentions matter. If your intentions are good. Intentions also. Tell me something about your life, sir. From the beginning to now. When did you want to be a policeman? How did you start? Where did you study? Strictly speaking, to become police was not my first option. I tried the civil services examination that is through the UPSC in the 90s. My father was in the government service. He was an administrative service officer of the state. KS, what they call. So, I was exposed to the administrative and bureaucratic environment. But definitely not to the police job as such. But then once I wrote the UPSC exam, I got into the Indian police service in 1994. Were you a bright student? It's a tough exam to clear, right? It is, no doubt about that. It requires a lot of hard work. Academic knowledge or your intelligence doesn't matter. But it is more of hard work and perseverance. You have to crack the exam. Once I joined the service, luckily I got into the home state. Since then, it has been so far so good. How many years in service now? 31 years now. You must have played many roles in the police during that time. Which one has been your favorite? It starts from your ASP days. Yes, I was ASP of Kuttur Sub-Division where Anujet was also there as ASP. That was very good. After that, I have done ASP-ship in about 5 districts. Bijapur, Belgaum, Mangalore, Kolar, Chitrakoot, some of these districts. Every position has its own charm and challenge. Some charm, some challenge, some tough assignments. Days have changed also nowadays. Certain things, especially the infusion of technology has made our job much easier compared to the earlier days. Either in detection of crime or even in law and order and other things also. Some things have made it difficult also.",
+  "segments": [
+    {
+      "id": "audio_4_segment_0",
+      "start_ms": 0,
+      "end_ms": 4000,
+      "start_s": 0.0,
+      "end_s": 4.0,
+      "duration_ms": 4000,
+      "text": "Photo goes up. Is it by post?",
+      "segment_index": 0
+    },
+    {
+      "id": "audio_4_segment_1",
+      "start_ms": 4000,
+      "end_ms": 6000,
+      "start_s": 4.0,
+      "end_s": 6.0,
+      "duration_ms": 2000,
+      "text": "By post. Your registered address.",
+      "segment_index": 1
+    },
+    {
+      "id": "audio_4_segment_2",
+      "start_ms": 6000,
+      "end_ms": 8000,
+      "start_s": 6.0,
+      "end_s": 8.0,
+      "duration_ms": 2000,
+      "text": "And if you have a phone number, it comes to your phone number as well.",
+      "segment_index": 2
+    },
+    {
+      "id": "audio_4_segment_3",
+      "start_ms": 8000,
+      "end_ms": 10000,
+      "start_s": 8.0,
+      "end_s": 10.0,
+      "duration_ms": 2000,
+      "text": "Right.",
+      "segment_index": 3
+    },
+    {
+      "id": "audio_4_segment_4",
+      "start_ms": 10000,
+      "end_ms": 12000,
+      "start_s": 10.0,
+      "end_s": 12.0,
+      "duration_ms": 2000,
+      "text": "When I was younger, I don't drive now.",
+      "segment_index": 4
+    },
+    {
+      "id": "audio_4_segment_5",
+      "start_ms": 12000,
+      "end_ms": 14000,
+      "start_s": 12.0,
+      "end_s": 14.0,
+      "duration_ms": 2000,
+      "text": "I've not driven for many years.",
+      "segment_index": 5
+    },
+    {
+      "id": "audio_4_segment_6",
+      "start_ms": 14000,
+      "end_ms": 17000,
+      "start_s": 14.0,
+      "end_s": 17.0,
+      "duration_ms": 3000,
+      "text": "But when you'd get caught in the night, going somewhere, coming from somewhere,",
+      "segment_index": 6
+    },
+    {
+      "id": "audio_4_segment_7",
+      "start_ms": 17000,
+      "end_ms": 19000,
+      "start_s": 17.0,
+      "end_s": 19.0,
+      "duration_ms": 2000,
+      "text": "you'd pay a bribe and all that, right?",
+      "segment_index": 7
+    },
+    {
+      "id": "audio_4_segment_8",
+      "start_ms": 19000,
+      "end_ms": 21000,
+      "start_s": 19.0,
+      "end_s": 21.0,
+      "duration_ms": 2000,
+      "text": "How do you stop that?",
+      "segment_index": 8
+    },
+    {
+      "id": "audio_4_segment_9",
+      "start_ms": 21000,
+      "end_ms": 23000,
+      "start_s": 21.0,
+      "end_s": 23.0,
+      "duration_ms": 2000,
+      "text": "So, that's one way of doing that is",
+      "segment_index": 9
+    },
+    {
+      "id": "audio_4_segment_10",
+      "start_ms": 23000,
+      "end_ms": 25000,
+      "start_s": 23.0,
+      "end_s": 25.0,
+      "duration_ms": 2000,
+      "text": "this body-worn camera, right?",
+      "segment_index": 10
+    },
+    {
+      "id": "audio_4_segment_11",
+      "start_ms": 25000,
+      "end_ms": 28000,
+      "start_s": 25.0,
+      "end_s": 28.0,
+      "duration_ms": 3000,
+      "text": "So, you have this body-worn camera which is live-streamed here.",
+      "segment_index": 11
+    },
+    {
+      "id": "audio_4_segment_12",
+      "start_ms": 28000,
+      "end_ms": 29000,
+      "start_s": 28.0,
+      "end_s": 29.0,
+      "duration_ms": 1000,
+      "text": "But they can't close it.",
+      "segment_index": 12
+    },
+    {
+      "id": "audio_4_segment_13",
+      "start_ms": 29000,
+      "end_ms": 30000,
+      "start_s": 29.0,
+      "end_s": 30.0,
+      "duration_ms": 1000,
+      "text": "They can't.",
+      "segment_index": 13
+    },
+    {
+      "id": "audio_4_segment_14",
+      "start_ms": 30000,
+      "end_ms": 32000,
+      "start_s": 30.0,
+      "end_s": 32.0,
+      "duration_ms": 2000,
+      "text": "They can't turn it off.",
+      "segment_index": 14
+    },
+    {
+      "id": "audio_4_segment_15",
+      "start_ms": 32000,
+      "end_ms": 34000,
+      "start_s": 32.0,
+      "end_s": 34.0,
+      "duration_ms": 2000,
+      "text": "So, and if they're doing enforcement, then...",
+      "segment_index": 15
+    },
+    {
+      "id": "audio_4_segment_16",
+      "start_ms": 34000,
+      "end_ms": 37000,
+      "start_s": 34.0,
+      "end_s": 37.0,
+      "duration_ms": 3000,
+      "text": "It's mandatory that they switch on the body-worn camera.",
+      "segment_index": 16
+    },
+    {
+      "id": "audio_4_segment_17",
+      "start_ms": 37000,
+      "end_ms": 40000,
+      "start_s": 37.0,
+      "end_s": 40.0,
+      "duration_ms": 3000,
+      "text": "Especially this drunk driving and all that.",
+      "segment_index": 17
+    },
+    {
+      "id": "audio_4_segment_18",
+      "start_ms": 40000,
+      "end_ms": 43000,
+      "start_s": 40.0,
+      "end_s": 43.0,
+      "duration_ms": 3000,
+      "text": "But if somebody's charging a fine in cash",
+      "segment_index": 18
+    },
+    {
+      "id": "audio_4_segment_19",
+      "start_ms": 43000,
+      "end_ms": 46000,
+      "start_s": 43.0,
+      "end_s": 46.0,
+      "duration_ms": 3000,
+      "text": "and the money is not legal per se,",
+      "segment_index": 19
+    },
+    {
+      "id": "audio_4_segment_20",
+      "start_ms": 46000,
+      "end_ms": 49000,
+      "start_s": 46.0,
+      "end_s": 49.0,
+      "duration_ms": 3000,
+      "text": "he won't be collecting that while he's in...",
+      "segment_index": 20
+    },
+    {
+      "id": "audio_4_segment_21",
+      "start_ms": 49000,
+      "end_ms": 51000,
+      "start_s": 49.0,
+      "end_s": 51.0,
+      "duration_ms": 2000,
+      "text": "with the camera on in enforcement, right?",
+      "segment_index": 21
+    },
+    {
+      "id": "audio_4_segment_22",
+      "start_ms": 51000,
+      "end_ms": 55000,
+      "start_s": 51.0,
+      "end_s": 55.0,
+      "duration_ms": 4000,
+      "text": "Yeah, but that used to happen when cash was the mode of transaction, right?",
+      "segment_index": 22
+    },
+    {
+      "id": "audio_4_segment_23",
+      "start_ms": 55000,
+      "end_ms": 57000,
+      "start_s": 55.0,
+      "end_s": 57.0,
+      "duration_ms": 2000,
+      "text": "Today, you will not believe it.",
+      "segment_index": 23
+    },
+    {
+      "id": "audio_4_segment_24",
+      "start_ms": 57000,
+      "end_ms": 59000,
+      "start_s": 57.0,
+      "end_s": 59.0,
+      "duration_ms": 2000,
+      "text": "99.9% is UPS.",
+      "segment_index": 24
+    },
+    {
+      "id": "audio_4_segment_25",
+      "start_ms": 59000,
+      "end_ms": 60000,
+      "start_s": 59.0,
+      "end_s": 60.0,
+      "duration_ms": 1000,
+      "text": "Cashless.",
+      "segment_index": 25
+    },
+    {
+      "id": "audio_4_segment_26",
+      "start_ms": 60000,
+      "end_ms": 61000,
+      "start_s": 60.0,
+      "end_s": 61.0,
+      "duration_ms": 1000,
+      "text": "Cashless.",
+      "segment_index": 26
+    },
+    {
+      "id": "audio_4_segment_27",
+      "start_ms": 61000,
+      "end_ms": 63000,
+      "start_s": 61.0,
+      "end_s": 63.0,
+      "duration_ms": 2000,
+      "text": "So, both are helpful.",
+      "segment_index": 27
+    },
+    {
+      "id": "audio_4_segment_28",
+      "start_ms": 63000,
+      "end_ms": 66000,
+      "start_s": 63.0,
+      "end_s": 66.0,
+      "duration_ms": 3000,
+      "text": "Both the cashless payment as well as measures such as this.",
+      "segment_index": 28
+    },
+    {
+      "id": "audio_4_segment_29",
+      "start_ms": 66000,
+      "end_ms": 70000,
+      "start_s": 66.0,
+      "end_s": 70.0,
+      "duration_ms": 4000,
+      "text": "And it's no longer that we'll randomly do this thing.",
+      "segment_index": 29
+    },
+    {
+      "id": "audio_4_segment_30",
+      "start_ms": 70000,
+      "end_ms": 73000,
+      "start_s": 70.0,
+      "end_s": 73.0,
+      "duration_ms": 3000,
+      "text": "It is specific for this particular time of day, this particular junction.",
+      "segment_index": 30
+    },
+    {
+      "id": "audio_4_segment_31",
+      "start_ms": 73000,
+      "end_ms": 75000,
+      "start_s": 73.0,
+      "end_s": 75.0,
+      "duration_ms": 2000,
+      "text": "The location is taken here.",
+      "segment_index": 31
+    },
+    {
+      "id": "audio_4_segment_32",
+      "start_ms": 75000,
+      "end_ms": 76000,
+      "start_s": 75.0,
+      "end_s": 76.0,
+      "duration_ms": 1000,
+      "text": "And complaints do come.",
+      "segment_index": 32
+    },
+    {
+      "id": "audio_4_segment_33",
+      "start_ms": 76000,
+      "end_ms": 80000,
+      "start_s": 76.0,
+      "end_s": 80.0,
+      "duration_ms": 4000,
+      "text": "Complaints do come about police high-handedness, harassment and all those things.",
+      "segment_index": 33
+    },
+    {
+      "id": "audio_4_segment_34",
+      "start_ms": 80000,
+      "end_ms": 84000,
+      "start_s": 80.0,
+      "end_s": 84.0,
+      "duration_ms": 4000,
+      "text": "But most of the times, we're able to absolve our policemen because of body-worn camera.",
+      "segment_index": 34
+    },
+    {
+      "id": "audio_4_segment_35",
+      "start_ms": 84000,
+      "end_ms": 88000,
+      "start_s": 84.0,
+      "end_s": 88.0,
+      "duration_ms": 4000,
+      "text": "Now, they've also realized that with body-worn camera, they're in a better position.",
+      "segment_index": 35
+    },
+    {
+      "id": "audio_4_segment_36",
+      "start_ms": 88000,
+      "end_ms": 90000,
+      "start_s": 88.0,
+      "end_s": 90.0,
+      "duration_ms": 2000,
+      "text": "So, they always switch it on.",
+      "segment_index": 36
+    },
+    {
+      "id": "audio_4_segment_37",
+      "start_ms": 90000,
+      "end_ms": 92000,
+      "start_s": 90.0,
+      "end_s": 92.0,
+      "duration_ms": 2000,
+      "text": "Any argument, any this thing with the public.",
+      "segment_index": 37
+    },
+    {
+      "id": "audio_4_segment_38",
+      "start_ms": 92000,
+      "end_ms": 96000,
+      "start_s": 92.0,
+      "end_s": 96.0,
+      "duration_ms": 4000,
+      "text": "I must have forwarded to him so many complaints what public have sent me.",
+      "segment_index": 38
+    },
+    {
+      "id": "audio_4_segment_39",
+      "start_ms": 96000,
+      "end_ms": 100000,
+      "start_s": 96.0,
+      "end_s": 100.0,
+      "duration_ms": 4000,
+      "text": "I think 99% they all have been absolved with body-worn camera.",
+      "segment_index": 39
+    },
+    {
+      "id": "audio_4_segment_40",
+      "start_ms": 100000,
+      "end_ms": 105000,
+      "start_s": 100.0,
+      "end_s": 105.0,
+      "duration_ms": 5000,
+      "text": "Only 1 or 2% maybe we are taking action because there is actually something wrong.",
+      "segment_index": 40
+    },
+    {
+      "id": "audio_4_segment_41",
+      "start_ms": 105000,
+      "end_ms": 107000,
+      "start_s": 105.0,
+      "end_s": 107.0,
+      "duration_ms": 2000,
+      "text": "And another thing is that all the location is monitored.",
+      "segment_index": 41
+    },
+    {
+      "id": "audio_4_segment_42",
+      "start_ms": 107000,
+      "end_ms": 109000,
+      "start_s": 107.0,
+      "end_s": 109.0,
+      "duration_ms": 2000,
+      "text": "The body-worn camera is there.",
+      "segment_index": 42
+    },
+    {
+      "id": "audio_4_segment_43",
+      "start_ms": 109000,
+      "end_ms": 111000,
+      "start_s": 109.0,
+      "end_s": 111.0,
+      "duration_ms": 2000,
+      "text": "That is the location of the body-worn camera.",
+      "segment_index": 43
+    },
+    {
+      "id": "audio_4_segment_44",
+      "start_ms": 112000,
+      "end_ms": 114000,
+      "start_s": 112.0,
+      "end_s": 114.0,
+      "duration_ms": 2000,
+      "text": "And the car and the vehicle as well.",
+      "segment_index": 44
+    },
+    {
+      "id": "audio_4_segment_45",
+      "start_ms": 114000,
+      "end_ms": 118000,
+      "start_s": 114.0,
+      "end_s": 118.0,
+      "duration_ms": 4000,
+      "text": "All our vehicles are fitted with IOT devices which we monitor the GPS.",
+      "segment_index": 45
+    },
+    {
+      "id": "audio_4_segment_46",
+      "start_ms": 118000,
+      "end_ms": 123000,
+      "start_s": 118.0,
+      "end_s": 123.0,
+      "duration_ms": 5000,
+      "text": "So, if we are saying that he has to put in a particular place, our control room verifies he is at that place.",
+      "segment_index": 46
+    },
+    {
+      "id": "audio_4_segment_47",
+      "start_ms": 123000,
+      "end_ms": 124000,
+      "start_s": 123.0,
+      "end_s": 124.0,
+      "duration_ms": 1000,
+      "text": "Right.",
+      "segment_index": 47
+    },
+    {
+      "id": "audio_4_segment_48",
+      "start_ms": 124000,
+      "end_ms": 126000,
+      "start_s": 124.0,
+      "end_s": 126.0,
+      "duration_ms": 2000,
+      "text": "So, all these things, technology basically.",
+      "segment_index": 48
+    },
+    {
+      "id": "audio_4_segment_49",
+      "start_ms": 126000,
+      "end_ms": 127000,
+      "start_s": 126.0,
+      "end_s": 127.0,
+      "duration_ms": 1000,
+      "text": "Makes sense.",
+      "segment_index": 49
+    },
+    {
+      "id": "audio_4_segment_50",
+      "start_ms": 127000,
+      "end_ms": 129000,
+      "start_s": 127.0,
+      "end_s": 129.0,
+      "duration_ms": 2000,
+      "text": "Plus, they are geo-fenced also.",
+      "segment_index": 50
+    },
+    {
+      "id": "audio_4_segment_51",
+      "start_ms": 129000,
+      "end_ms": 131000,
+      "start_s": 129.0,
+      "end_s": 131.0,
+      "duration_ms": 2000,
+      "text": "Our policemen, they are geo-fenced to those junctions.",
+      "segment_index": 51
+    },
+    {
+      "id": "audio_4_segment_52",
+      "start_ms": 131000,
+      "end_ms": 134000,
+      "start_s": 131.0,
+      "end_s": 134.0,
+      "duration_ms": 3000,
+      "text": "If he leaves that junction, again they get an alert here.",
+      "segment_index": 52
+    },
+    {
+      "id": "audio_4_segment_53",
+      "start_ms": 134000,
+      "end_ms": 137000,
+      "start_s": 134.0,
+      "end_s": 137.0,
+      "duration_ms": 3000,
+      "text": "And he has to explain for what purpose he left the junction.",
+      "segment_index": 53
+    },
+    {
+      "id": "audio_4_segment_54",
+      "start_ms": 137000,
+      "end_ms": 140000,
+      "start_s": 137.0,
+      "end_s": 140.0,
+      "duration_ms": 3000,
+      "text": "So, this is the kind of challan which goes to a person's house.",
+      "segment_index": 54
+    },
+    {
+      "id": "audio_4_segment_55",
+      "start_ms": 140000,
+      "end_ms": 141000,
+      "start_s": 140.0,
+      "end_s": 141.0,
+      "duration_ms": 1000,
+      "text": "Right.",
+      "segment_index": 55
+    },
+    {
+      "id": "audio_4_segment_56",
+      "start_ms": 142000,
+      "end_ms": 147000,
+      "start_s": 142.0,
+      "end_s": 147.0,
+      "duration_ms": 5000,
+      "text": "And this QR code, if you scan it, you will get the photo as well.",
+      "segment_index": 56
+    },
+    {
+      "id": "audio_4_segment_57",
+      "start_ms": 148000,
+      "end_ms": 151000,
+      "start_s": 148.0,
+      "end_s": 151.0,
+      "duration_ms": 3000,
+      "text": "If a vehicle is registered to me, you also send an SMS, right?",
+      "segment_index": 57
+    },
+    {
+      "id": "audio_4_segment_58",
+      "start_ms": 151000,
+      "end_ms": 153000,
+      "start_s": 151.0,
+      "end_s": 153.0,
+      "duration_ms": 2000,
+      "text": "If the mobile number is there, yeah.",
+      "segment_index": 58
+    },
+    {
+      "id": "audio_4_segment_59",
+      "start_ms": 154000,
+      "end_ms": 156000,
+      "start_s": 154.0,
+      "end_s": 156.0,
+      "duration_ms": 2000,
+      "text": "The older vehicles, they have not captured the mobile number.",
+      "segment_index": 59
+    },
+    {
+      "id": "audio_4_segment_60",
+      "start_ms": 156000,
+      "end_ms": 158000,
+      "start_s": 156.0,
+      "end_s": 158.0,
+      "duration_ms": 2000,
+      "text": "New vehicles, they have captured.",
+      "segment_index": 60
+    },
+    {
+      "id": "audio_4_segment_61",
+      "start_ms": 158000,
+      "end_ms": 162000,
+      "start_s": 158.0,
+      "end_s": 162.0,
+      "duration_ms": 4000,
+      "text": "Right now, we are at about 99.999% accuracy because of the human validation.",
+      "segment_index": 61
+    },
+    {
+      "id": "audio_4_segment_62",
+      "start_ms": 162000,
+      "end_ms": 164000,
+      "start_s": 162.0,
+      "end_s": 164.0,
+      "duration_ms": 2000,
+      "text": "Prior to that, it was about 95%.",
+      "segment_index": 62
+    },
+    {
+      "id": "audio_4_segment_63",
+      "start_ms": 165000,
+      "end_ms": 167000,
+      "start_s": 165.0,
+      "end_s": 167.0,
+      "duration_ms": 2000,
+      "text": "But 1 in 10,000 is acceptable.",
+      "segment_index": 63
+    },
+    {
+      "id": "audio_4_segment_64",
+      "start_ms": 167000,
+      "end_ms": 168000,
+      "start_s": 167.0,
+      "end_s": 168.0,
+      "duration_ms": 1000,
+      "text": "Right.",
+      "segment_index": 64
+    },
+    {
+      "id": "audio_4_segment_65",
+      "start_ms": 169000,
+      "end_ms": 171000,
+      "start_s": 169.0,
+      "end_s": 171.0,
+      "duration_ms": 2000,
+      "text": "Because there will be human errors as well.",
+      "segment_index": 65
+    },
+    {
+      "id": "audio_4_segment_66",
+      "start_ms": 172000,
+      "end_ms": 174000,
+      "start_s": 172.0,
+      "end_s": 174.0,
+      "duration_ms": 2000,
+      "text": "The number of errors being generated has reduced.",
+      "segment_index": 66
+    },
+    {
+      "id": "audio_4_segment_67",
+      "start_ms": 174000,
+      "end_ms": 175000,
+      "start_s": 174.0,
+      "end_s": 175.0,
+      "duration_ms": 1000,
+      "text": "Right.",
+      "segment_index": 67
+    },
+    {
+      "id": "audio_4_segment_68",
+      "start_ms": 175000,
+      "end_ms": 178000,
+      "start_s": 175.0,
+      "end_s": 178.0,
+      "duration_ms": 3000,
+      "text": "Because if there is no trust in the system, then there is no acceptance.",
+      "segment_index": 68
+    },
+    {
+      "id": "audio_4_segment_69",
+      "start_ms": 178000,
+      "end_ms": 179000,
+      "start_s": 178.0,
+      "end_s": 179.0,
+      "duration_ms": 1000,
+      "text": "Right.",
+      "segment_index": 69
+    },
+    {
+      "id": "audio_4_segment_70",
+      "start_ms": 179000,
+      "end_ms": 182000,
+      "start_s": 179.0,
+      "end_s": 182.0,
+      "duration_ms": 3000,
+      "text": "You can only get trust if your data has integrity in it.",
+      "segment_index": 70
+    },
+    {
+      "id": "audio_4_segment_71",
+      "start_ms": 182000,
+      "end_ms": 183000,
+      "start_s": 182.0,
+      "end_s": 183.0,
+      "duration_ms": 1000,
+      "text": "Right.",
+      "segment_index": 71
+    },
+    {
+      "id": "audio_4_segment_72",
+      "start_ms": 184000,
+      "end_ms": 187000,
+      "start_s": 184.0,
+      "end_s": 187.0,
+      "duration_ms": 3000,
+      "text": "How the traffic police evolved in Bangalore city over the period.",
+      "segment_index": 72
+    },
+    {
+      "id": "audio_4_segment_73",
+      "start_ms": 187000,
+      "end_ms": 188000,
+      "start_s": 187.0,
+      "end_s": 188.0,
+      "duration_ms": 1000,
+      "text": "When was the first signal set up?",
+      "segment_index": 73
+    },
+    {
+      "id": "audio_4_segment_74",
+      "start_ms": 188000,
+      "end_ms": 191000,
+      "start_s": 188.0,
+      "end_s": 191.0,
+      "duration_ms": 3000,
+      "text": "When was the first altimeter used?",
+      "segment_index": 74
+    },
+    {
+      "id": "audio_4_segment_75",
+      "start_ms": 191000,
+      "end_ms": 192000,
+      "start_s": 191.0,
+      "end_s": 192.0,
+      "duration_ms": 1000,
+      "text": "How they used to do it earlier?",
+      "segment_index": 75
+    },
+    {
+      "id": "audio_4_segment_76",
+      "start_ms": 192000,
+      "end_ms": 193000,
+      "start_s": 192.0,
+      "end_s": 193.0,
+      "duration_ms": 1000,
+      "text": "Hand signal time?",
+      "segment_index": 76
+    },
+    {
+      "id": "audio_4_segment_77",
+      "start_ms": 194000,
+      "end_ms": 195000,
+      "start_s": 194.0,
+      "end_s": 195.0,
+      "duration_ms": 1000,
+      "text": "Very well done, no?",
+      "segment_index": 77
+    },
+    {
+      "id": "audio_4_segment_78",
+      "start_ms": 195000,
+      "end_ms": 196000,
+      "start_s": 195.0,
+      "end_s": 196.0,
+      "duration_ms": 1000,
+      "text": "The lighting and all that.",
+      "segment_index": 78
+    },
+    {
+      "id": "audio_4_segment_79",
+      "start_ms": 196000,
+      "end_ms": 198000,
+      "start_s": 196.0,
+      "end_s": 198.0,
+      "duration_ms": 2000,
+      "text": "Old gazettes and all that, they have digged out.",
+      "segment_index": 79
+    },
+    {
+      "id": "audio_4_segment_80",
+      "start_ms": 200000,
+      "end_ms": 201000,
+      "start_s": 200.0,
+      "end_s": 201.0,
+      "duration_ms": 1000,
+      "text": "Press the button, Kannada or English.",
+      "segment_index": 80
+    },
+    {
+      "id": "audio_4_segment_81",
+      "start_ms": 208000,
+      "end_ms": 211000,
+      "start_s": 208.0,
+      "end_s": 211.0,
+      "duration_ms": 3000,
+      "text": "Put in Bangalore city, near a town, all that.",
+      "segment_index": 81
+    },
+    {
+      "id": "audio_4_segment_82",
+      "start_ms": 211000,
+      "end_ms": 212000,
+      "start_s": 211.0,
+      "end_s": 212.0,
+      "duration_ms": 1000,
+      "text": "Just have go and no.",
+      "segment_index": 82
+    },
+    {
+      "id": "audio_4_segment_83",
+      "start_ms": 213000,
+      "end_ms": 215000,
+      "start_s": 213.0,
+      "end_s": 215.0,
+      "duration_ms": 2000,
+      "text": "If go was do, go was stop.",
+      "segment_index": 83
+    },
+    {
+      "id": "audio_4_segment_84",
+      "start_ms": 227000,
+      "end_ms": 231000,
+      "start_s": 227.0,
+      "end_s": 231.0,
+      "duration_ms": 4000,
+      "text": "Bangalore city, Bangalore",
+      "segment_index": 84
+    },
+    {
+      "id": "audio_4_segment_85",
+      "start_ms": 246000,
+      "end_ms": 248000,
+      "start_s": 246.0,
+      "end_s": 248.0,
+      "duration_ms": 2000,
+      "text": "You should change. Let's go in the car.",
+      "segment_index": 85
+    },
+    {
+      "id": "audio_4_segment_86",
+      "start_ms": 249000,
+      "end_ms": 250000,
+      "start_s": 249.0,
+      "end_s": 250.0,
+      "duration_ms": 1000,
+      "text": "Hi.",
+      "segment_index": 86
+    },
+    {
+      "id": "audio_4_segment_87",
+      "start_ms": 251000,
+      "end_ms": 252000,
+      "start_s": 251.0,
+      "end_s": 252.0,
+      "duration_ms": 1000,
+      "text": "This is our chat board.",
+      "segment_index": 87
+    },
+    {
+      "id": "audio_4_segment_88",
+      "start_ms": 252000,
+      "end_ms": 253000,
+      "start_s": 252.0,
+      "end_s": 253.0,
+      "duration_ms": 1000,
+      "text": "Right.",
+      "segment_index": 88
+    },
+    {
+      "id": "audio_4_segment_89",
+      "start_ms": 254000,
+      "end_ms": 255000,
+      "start_s": 254.0,
+      "end_s": 255.0,
+      "duration_ms": 1000,
+      "text": "Does anybody ask?",
+      "segment_index": 89
+    },
+    {
+      "id": "audio_4_segment_90",
+      "start_ms": 255000,
+      "end_ms": 256000,
+      "start_s": 255.0,
+      "end_s": 256.0,
+      "duration_ms": 1000,
+      "text": "Yes, we can.",
+      "segment_index": 90
+    },
+    {
+      "id": "audio_4_segment_91",
+      "start_ms": 256000,
+      "end_ms": 257000,
+      "start_s": 256.0,
+      "end_s": 257.0,
+      "duration_ms": 1000,
+      "text": "But who asks?",
+      "segment_index": 91
+    },
+    {
+      "id": "audio_4_segment_92",
+      "start_ms": 257000,
+      "end_ms": 258000,
+      "start_s": 257.0,
+      "end_s": 258.0,
+      "duration_ms": 1000,
+      "text": "There is a mic button here.",
+      "segment_index": 92
+    },
+    {
+      "id": "audio_4_segment_93",
+      "start_ms": 258000,
+      "end_ms": 259000,
+      "start_s": 258.0,
+      "end_s": 259.0,
+      "duration_ms": 1000,
+      "text": "Any public who can...",
+      "segment_index": 93
+    },
+    {
+      "id": "audio_4_segment_94",
+      "start_ms": 260000,
+      "end_ms": 261000,
+      "start_s": 260.0,
+      "end_s": 261.0,
+      "duration_ms": 1000,
+      "text": "Who comes to the community.",
+      "segment_index": 94
+    },
+    {
+      "id": "audio_4_segment_95",
+      "start_ms": 261000,
+      "end_ms": 265000,
+      "start_s": 261.0,
+      "end_s": 265.0,
+      "duration_ms": 4000,
+      "text": "Interact with the last few questions related to congestion.",
+      "segment_index": 95
+    },
+    {
+      "id": "audio_4_segment_96",
+      "start_ms": 265000,
+      "end_ms": 266000,
+      "start_s": 265.0,
+      "end_s": 266.0,
+      "duration_ms": 1000,
+      "text": "No, no, don't worry. It's fine.",
+      "segment_index": 96
+    },
+    {
+      "id": "audio_4_segment_97",
+      "start_ms": 270000,
+      "end_ms": 271000,
+      "start_s": 270.0,
+      "end_s": 271.0,
+      "duration_ms": 1000,
+      "text": "No, no, you can say it on camera.",
+      "segment_index": 97
+    },
+    {
+      "id": "audio_4_segment_98",
+      "start_ms": 271000,
+      "end_ms": 272000,
+      "start_s": 271.0,
+      "end_s": 272.0,
+      "duration_ms": 1000,
+      "text": "No, no.",
+      "segment_index": 98
+    },
+    {
+      "id": "audio_4_segment_99",
+      "start_ms": 272000,
+      "end_ms": 274000,
+      "start_s": 272.0,
+      "end_s": 274.0,
+      "duration_ms": 2000,
+      "text": "Why do you like the police so much?",
+      "segment_index": 99
+    },
+    {
+      "id": "audio_4_segment_100",
+      "start_ms": 274000,
+      "end_ms": 276000,
+      "start_s": 274.0,
+      "end_s": 276.0,
+      "duration_ms": 2000,
+      "text": "Why do you work with them so much?",
+      "segment_index": 100
+    },
+    {
+      "id": "audio_4_segment_101",
+      "start_ms": 276000,
+      "end_ms": 277000,
+      "start_s": 276.0,
+      "end_s": 277.0,
+      "duration_ms": 1000,
+      "text": "It's just so nice to work with them.",
+      "segment_index": 101
+    },
+    {
+      "id": "audio_4_segment_102",
+      "start_ms": 277000,
+      "end_ms": 281000,
+      "start_s": 277.0,
+      "end_s": 281.0,
+      "duration_ms": 4000,
+      "text": "Because no one sees them as they are, right?",
+      "segment_index": 102
+    },
+    {
+      "id": "audio_4_segment_103",
+      "start_ms": 281000,
+      "end_ms": 284000,
+      "start_s": 281.0,
+      "end_s": 284.0,
+      "duration_ms": 3000,
+      "text": "Was there a case long back that you were trying to solve?",
+      "segment_index": 103
+    },
+    {
+      "id": "audio_4_segment_104",
+      "start_ms": 284000,
+      "end_ms": 285000,
+      "start_s": 284.0,
+      "end_s": 285.0,
+      "duration_ms": 1000,
+      "text": "No.",
+      "segment_index": 104
+    },
+    {
+      "id": "audio_4_segment_105",
+      "start_ms": 285000,
+      "end_ms": 286000,
+      "start_s": 285.0,
+      "end_s": 286.0,
+      "duration_ms": 1000,
+      "text": "No?",
+      "segment_index": 105
+    },
+    {
+      "id": "audio_4_segment_106",
+      "start_ms": 286000,
+      "end_ms": 289000,
+      "start_s": 286.0,
+      "end_s": 289.0,
+      "duration_ms": 3000,
+      "text": "It's just nice. Sometimes you feel like Batman maybe.",
+      "segment_index": 106
+    },
+    {
+      "id": "audio_4_segment_107",
+      "start_ms": 289000,
+      "end_ms": 290000,
+      "start_s": 289.0,
+      "end_s": 290.0,
+      "duration_ms": 1000,
+      "text": "Really?",
+      "segment_index": 107
+    },
+    {
+      "id": "audio_4_segment_108",
+      "start_ms": 290000,
+      "end_ms": 291000,
+      "start_s": 290.0,
+      "end_s": 291.0,
+      "duration_ms": 1000,
+      "text": "Yeah, yeah. Love it.",
+      "segment_index": 108
+    },
+    {
+      "id": "audio_4_segment_109",
+      "start_ms": 298000,
+      "end_ms": 302000,
+      "start_s": 298.0,
+      "end_s": 302.0,
+      "duration_ms": 4000,
+      "text": "Sir, first thing, first big compliment I can pay you is",
+      "segment_index": 109
+    },
+    {
+      "id": "audio_4_segment_110",
+      "start_ms": 303000,
+      "end_ms": 305000,
+      "start_s": 303.0,
+      "end_s": 305.0,
+      "duration_ms": 2000,
+      "text": "I was talking to a politician recently",
+      "segment_index": 110
+    },
+    {
+      "id": "audio_4_segment_111",
+      "start_ms": 307000,
+      "end_ms": 308000,
+      "start_s": 307.0,
+      "end_s": 308.0,
+      "duration_ms": 1000,
+      "text": "and he was saying",
+      "segment_index": 111
+    },
+    {
+      "id": "audio_4_segment_112",
+      "start_ms": 309000,
+      "end_ms": 311000,
+      "start_s": 309.0,
+      "end_s": 311.0,
+      "duration_ms": 2000,
+      "text": "I don't know what we were talking about.",
+      "segment_index": 112
+    },
+    {
+      "id": "audio_4_segment_113",
+      "start_ms": 311000,
+      "end_ms": 314000,
+      "start_s": 311.0,
+      "end_s": 314.0,
+      "duration_ms": 3000,
+      "text": "Keeping restaurants open till late or something like that.",
+      "segment_index": 113
+    },
+    {
+      "id": "audio_4_segment_114",
+      "start_ms": 316000,
+      "end_ms": 318000,
+      "start_s": 316.0,
+      "end_s": 318.0,
+      "duration_ms": 2000,
+      "text": "And he said the new commissioner",
+      "segment_index": 114
+    },
+    {
+      "id": "audio_4_segment_115",
+      "start_ms": 319000,
+      "end_ms": 320000,
+      "start_s": 319.0,
+      "end_s": 320.0,
+      "duration_ms": 1000,
+      "text": "doesn't listen to any of us.",
+      "segment_index": 115
+    },
+    {
+      "id": "audio_4_segment_116",
+      "start_ms": 322000,
+      "end_ms": 323000,
+      "start_s": 322.0,
+      "end_s": 323.0,
+      "duration_ms": 1000,
+      "text": "He does whatever he wants.",
+      "segment_index": 116
+    },
+    {
+      "id": "audio_4_segment_117",
+      "start_ms": 323000,
+      "end_ms": 324000,
+      "start_s": 323.0,
+      "end_s": 324.0,
+      "duration_ms": 1000,
+      "text": "Yeah, absolutely.",
+      "segment_index": 117
+    },
+    {
+      "id": "audio_4_segment_118",
+      "start_ms": 325000,
+      "end_ms": 327000,
+      "start_s": 325.0,
+      "end_s": 327.0,
+      "duration_ms": 2000,
+      "text": "So, coming from a politician",
+      "segment_index": 118
+    },
+    {
+      "id": "audio_4_segment_119",
+      "start_ms": 328000,
+      "end_ms": 331000,
+      "start_s": 328.0,
+      "end_s": 331.0,
+      "duration_ms": 3000,
+      "text": "in my view is a great compliment to you",
+      "segment_index": 119
+    },
+    {
+      "id": "audio_4_segment_120",
+      "start_ms": 332000,
+      "end_ms": 333000,
+      "start_s": 332.0,
+      "end_s": 333.0,
+      "duration_ms": 1000,
+      "text": "as police commissioner.",
+      "segment_index": 120
+    },
+    {
+      "id": "audio_4_segment_121",
+      "start_ms": 334000,
+      "end_ms": 335000,
+      "start_s": 334.0,
+      "end_s": 335.0,
+      "duration_ms": 1000,
+      "text": "Would you like to talk about that?",
+      "segment_index": 121
+    },
+    {
+      "id": "audio_4_segment_122",
+      "start_ms": 335000,
+      "end_ms": 336000,
+      "start_s": 335.0,
+      "end_s": 336.0,
+      "duration_ms": 1000,
+      "text": "How does it feel to",
+      "segment_index": 122
+    },
+    {
+      "id": "audio_4_segment_123",
+      "start_ms": 336000,
+      "end_ms": 339000,
+      "start_s": 336.0,
+      "end_s": 339.0,
+      "duration_ms": 3000,
+      "text": "be stuck in between all these different worlds in your role?",
+      "segment_index": 123
+    },
+    {
+      "id": "audio_4_segment_124",
+      "start_ms": 339000,
+      "end_ms": 342000,
+      "start_s": 339.0,
+      "end_s": 342.0,
+      "duration_ms": 3000,
+      "text": "It feels nice coming from a politician definitely.",
+      "segment_index": 124
+    },
+    {
+      "id": "audio_4_segment_125",
+      "start_ms": 343000,
+      "end_ms": 344000,
+      "start_s": 343.0,
+      "end_s": 344.0,
+      "duration_ms": 1000,
+      "text": "But then again the politicians also",
+      "segment_index": 125
+    },
+    {
+      "id": "audio_4_segment_126",
+      "start_ms": 345000,
+      "end_ms": 347000,
+      "start_s": 345.0,
+      "end_s": 347.0,
+      "duration_ms": 2000,
+      "text": "they expect police officers to enforce law.",
+      "segment_index": 126
+    },
+    {
+      "id": "audio_4_segment_127",
+      "start_ms": 348000,
+      "end_ms": 349000,
+      "start_s": 348.0,
+      "end_s": 349.0,
+      "duration_ms": 1000,
+      "text": "Once you are enforcing",
+      "segment_index": 127
+    },
+    {
+      "id": "audio_4_segment_128",
+      "start_ms": 349000,
+      "end_ms": 352000,
+      "start_s": 349.0,
+      "end_s": 352.0,
+      "duration_ms": 3000,
+      "text": "what they expect from police officers is impartiality, neutrality",
+      "segment_index": 128
+    },
+    {
+      "id": "audio_4_segment_129",
+      "start_ms": 353000,
+      "end_ms": 355000,
+      "start_s": 353.0,
+      "end_s": 355.0,
+      "duration_ms": 2000,
+      "text": "and a little bit of hard work.",
+      "segment_index": 129
+    },
+    {
+      "id": "audio_4_segment_130",
+      "start_ms": 356000,
+      "end_ms": 358000,
+      "start_s": 356.0,
+      "end_s": 358.0,
+      "duration_ms": 2000,
+      "text": "Where they have a problem is",
+      "segment_index": 130
+    },
+    {
+      "id": "audio_4_segment_131",
+      "start_ms": 358000,
+      "end_ms": 360000,
+      "start_s": 358.0,
+      "end_s": 360.0,
+      "duration_ms": 2000,
+      "text": "once you start compromising and all that.",
+      "segment_index": 131
+    },
+    {
+      "id": "audio_4_segment_132",
+      "start_ms": 361000,
+      "end_ms": 364000,
+      "start_s": 361.0,
+      "end_s": 364.0,
+      "duration_ms": 3000,
+      "text": "If you mean business, they like it end of the day.",
+      "segment_index": 132
+    },
+    {
+      "id": "audio_4_segment_133",
+      "start_ms": 364000,
+      "end_ms": 366000,
+      "start_s": 364.0,
+      "end_s": 366.0,
+      "duration_ms": 2000,
+      "text": "And then once they know that you mean business",
+      "segment_index": 133
+    },
+    {
+      "id": "audio_4_segment_134",
+      "start_ms": 366000,
+      "end_ms": 368000,
+      "start_s": 366.0,
+      "end_s": 368.0,
+      "duration_ms": 2000,
+      "text": "then they don't intervene much also.",
+      "segment_index": 134
+    },
+    {
+      "id": "audio_4_segment_135",
+      "start_ms": 369000,
+      "end_ms": 370000,
+      "start_s": 369.0,
+      "end_s": 370.0,
+      "duration_ms": 1000,
+      "text": "Yeah.",
+      "segment_index": 135
+    },
+    {
+      "id": "audio_4_segment_136",
+      "start_ms": 370000,
+      "end_ms": 371000,
+      "start_s": 370.0,
+      "end_s": 371.0,
+      "duration_ms": 1000,
+      "text": "That has been my experience.",
+      "segment_index": 136
+    },
+    {
+      "id": "audio_4_segment_137",
+      "start_ms": 371000,
+      "end_ms": 373000,
+      "start_s": 371.0,
+      "end_s": 373.0,
+      "duration_ms": 2000,
+      "text": "Then they know that this fellow is not going to listen",
+      "segment_index": 137
+    },
+    {
+      "id": "audio_4_segment_138",
+      "start_ms": 373000,
+      "end_ms": 375000,
+      "start_s": 373.0,
+      "end_s": 375.0,
+      "duration_ms": 2000,
+      "text": "like the way the politician told you.",
+      "segment_index": 138
+    },
+    {
+      "id": "audio_4_segment_139",
+      "start_ms": 375000,
+      "end_ms": 377000,
+      "start_s": 375.0,
+      "end_s": 377.0,
+      "duration_ms": 2000,
+      "text": "Then they are not going to trouble you.",
+      "segment_index": 139
+    },
+    {
+      "id": "audio_4_segment_140",
+      "start_ms": 377000,
+      "end_ms": 380000,
+      "start_s": 377.0,
+      "end_s": 380.0,
+      "duration_ms": 3000,
+      "text": "So, it saves our problem also, our headache.",
+      "segment_index": 140
+    },
+    {
+      "id": "audio_4_segment_141",
+      "start_ms": 381000,
+      "end_ms": 385000,
+      "start_s": 381.0,
+      "end_s": 385.0,
+      "duration_ms": 4000,
+      "text": "So, you can execute, you can do what you want to.",
+      "segment_index": 141
+    },
+    {
+      "id": "audio_4_segment_142",
+      "start_ms": 385000,
+      "end_ms": 386000,
+      "start_s": 385.0,
+      "end_s": 386.0,
+      "duration_ms": 1000,
+      "text": "And also intentions matter.",
+      "segment_index": 142
+    },
+    {
+      "id": "audio_4_segment_143",
+      "start_ms": 386000,
+      "end_ms": 387000,
+      "start_s": 386.0,
+      "end_s": 387.0,
+      "duration_ms": 1000,
+      "text": "If your intentions are good.",
+      "segment_index": 143
+    },
+    {
+      "id": "audio_4_segment_144",
+      "start_ms": 387000,
+      "end_ms": 388000,
+      "start_s": 387.0,
+      "end_s": 388.0,
+      "duration_ms": 1000,
+      "text": "Intentions also.",
+      "segment_index": 144
+    },
+    {
+      "id": "audio_4_segment_145",
+      "start_ms": 389000,
+      "end_ms": 391000,
+      "start_s": 389.0,
+      "end_s": 391.0,
+      "duration_ms": 2000,
+      "text": "Tell me something about your life, sir.",
+      "segment_index": 145
+    },
+    {
+      "id": "audio_4_segment_146",
+      "start_ms": 391000,
+      "end_ms": 393000,
+      "start_s": 391.0,
+      "end_s": 393.0,
+      "duration_ms": 2000,
+      "text": "From the beginning to now.",
+      "segment_index": 146
+    },
+    {
+      "id": "audio_4_segment_147",
+      "start_ms": 393000,
+      "end_ms": 395000,
+      "start_s": 393.0,
+      "end_s": 395.0,
+      "duration_ms": 2000,
+      "text": "When did you want to be a policeman?",
+      "segment_index": 147
+    },
+    {
+      "id": "audio_4_segment_148",
+      "start_ms": 395000,
+      "end_ms": 396000,
+      "start_s": 395.0,
+      "end_s": 396.0,
+      "duration_ms": 1000,
+      "text": "How did you start?",
+      "segment_index": 148
+    },
+    {
+      "id": "audio_4_segment_149",
+      "start_ms": 397000,
+      "end_ms": 398000,
+      "start_s": 397.0,
+      "end_s": 398.0,
+      "duration_ms": 1000,
+      "text": "Where did you study?",
+      "segment_index": 149
+    },
+    {
+      "id": "audio_4_segment_150",
+      "start_ms": 399000,
+      "end_ms": 403000,
+      "start_s": 399.0,
+      "end_s": 403.0,
+      "duration_ms": 4000,
+      "text": "Strictly speaking, to become police was not my first option.",
+      "segment_index": 150
+    },
+    {
+      "id": "audio_4_segment_151",
+      "start_ms": 404000,
+      "end_ms": 407000,
+      "start_s": 404.0,
+      "end_s": 407.0,
+      "duration_ms": 3000,
+      "text": "I tried the civil services examination",
+      "segment_index": 151
+    },
+    {
+      "id": "audio_4_segment_152",
+      "start_ms": 407000,
+      "end_ms": 410000,
+      "start_s": 407.0,
+      "end_s": 410.0,
+      "duration_ms": 3000,
+      "text": "that is through the UPSC in the 90s.",
+      "segment_index": 152
+    },
+    {
+      "id": "audio_4_segment_153",
+      "start_ms": 411000,
+      "end_ms": 413000,
+      "start_s": 411.0,
+      "end_s": 413.0,
+      "duration_ms": 2000,
+      "text": "My father was in the government service.",
+      "segment_index": 153
+    },
+    {
+      "id": "audio_4_segment_154",
+      "start_ms": 413000,
+      "end_ms": 417000,
+      "start_s": 413.0,
+      "end_s": 417.0,
+      "duration_ms": 4000,
+      "text": "He was an administrative service officer of the state.",
+      "segment_index": 154
+    },
+    {
+      "id": "audio_4_segment_155",
+      "start_ms": 417000,
+      "end_ms": 418000,
+      "start_s": 417.0,
+      "end_s": 418.0,
+      "duration_ms": 1000,
+      "text": "KS, what they call.",
+      "segment_index": 155
+    },
+    {
+      "id": "audio_4_segment_156",
+      "start_ms": 419000,
+      "end_ms": 422000,
+      "start_s": 419.0,
+      "end_s": 422.0,
+      "duration_ms": 3000,
+      "text": "So, I was exposed to the administrative and bureaucratic environment.",
+      "segment_index": 156
+    },
+    {
+      "id": "audio_4_segment_157",
+      "start_ms": 422000,
+      "end_ms": 425000,
+      "start_s": 422.0,
+      "end_s": 425.0,
+      "duration_ms": 3000,
+      "text": "But definitely not to the police job as such.",
+      "segment_index": 157
+    },
+    {
+      "id": "audio_4_segment_158",
+      "start_ms": 426000,
+      "end_ms": 429000,
+      "start_s": 426.0,
+      "end_s": 429.0,
+      "duration_ms": 3000,
+      "text": "But then once I wrote the UPSC exam,",
+      "segment_index": 158
+    },
+    {
+      "id": "audio_4_segment_159",
+      "start_ms": 429000,
+      "end_ms": 434000,
+      "start_s": 429.0,
+      "end_s": 434.0,
+      "duration_ms": 5000,
+      "text": "I got into the Indian police service in 1994.",
+      "segment_index": 159
+    },
+    {
+      "id": "audio_4_segment_160",
+      "start_ms": 435000,
+      "end_ms": 436000,
+      "start_s": 435.0,
+      "end_s": 436.0,
+      "duration_ms": 1000,
+      "text": "Were you a bright student?",
+      "segment_index": 160
+    },
+    {
+      "id": "audio_4_segment_161",
+      "start_ms": 436000,
+      "end_ms": 438000,
+      "start_s": 436.0,
+      "end_s": 438.0,
+      "duration_ms": 2000,
+      "text": "It's a tough exam to clear, right?",
+      "segment_index": 161
+    },
+    {
+      "id": "audio_4_segment_162",
+      "start_ms": 439000,
+      "end_ms": 440000,
+      "start_s": 439.0,
+      "end_s": 440.0,
+      "duration_ms": 1000,
+      "text": "It is, no doubt about that.",
+      "segment_index": 162
+    },
+    {
+      "id": "audio_4_segment_163",
+      "start_ms": 440000,
+      "end_ms": 442000,
+      "start_s": 440.0,
+      "end_s": 442.0,
+      "duration_ms": 2000,
+      "text": "It requires a lot of hard work.",
+      "segment_index": 163
+    },
+    {
+      "id": "audio_4_segment_164",
+      "start_ms": 443000,
+      "end_ms": 448000,
+      "start_s": 443.0,
+      "end_s": 448.0,
+      "duration_ms": 5000,
+      "text": "Academic knowledge or your intelligence doesn't matter.",
+      "segment_index": 164
+    },
+    {
+      "id": "audio_4_segment_165",
+      "start_ms": 448000,
+      "end_ms": 450000,
+      "start_s": 448.0,
+      "end_s": 450.0,
+      "duration_ms": 2000,
+      "text": "But it is more of hard work and perseverance.",
+      "segment_index": 165
+    },
+    {
+      "id": "audio_4_segment_166",
+      "start_ms": 451000,
+      "end_ms": 452000,
+      "start_s": 451.0,
+      "end_s": 452.0,
+      "duration_ms": 1000,
+      "text": "You have to crack the exam.",
+      "segment_index": 166
+    },
+    {
+      "id": "audio_4_segment_167",
+      "start_ms": 455000,
+      "end_ms": 461000,
+      "start_s": 455.0,
+      "end_s": 461.0,
+      "duration_ms": 6000,
+      "text": "Once I joined the service, luckily I got into the home state.",
+      "segment_index": 167
+    },
+    {
+      "id": "audio_4_segment_168",
+      "start_ms": 462000,
+      "end_ms": 464000,
+      "start_s": 462.0,
+      "end_s": 464.0,
+      "duration_ms": 2000,
+      "text": "Since then, it has been so far so good.",
+      "segment_index": 168
+    },
+    {
+      "id": "audio_4_segment_169",
+      "start_ms": 465000,
+      "end_ms": 466000,
+      "start_s": 465.0,
+      "end_s": 466.0,
+      "duration_ms": 1000,
+      "text": "How many years in service now?",
+      "segment_index": 169
+    },
+    {
+      "id": "audio_4_segment_170",
+      "start_ms": 467000,
+      "end_ms": 469000,
+      "start_s": 467.0,
+      "end_s": 469.0,
+      "duration_ms": 2000,
+      "text": "31 years now.",
+      "segment_index": 170
+    },
+    {
+      "id": "audio_4_segment_171",
+      "start_ms": 471000,
+      "end_ms": 474000,
+      "start_s": 471.0,
+      "end_s": 474.0,
+      "duration_ms": 3000,
+      "text": "You must have played many roles in the police during that time.",
+      "segment_index": 171
+    },
+    {
+      "id": "audio_4_segment_172",
+      "start_ms": 475000,
+      "end_ms": 476000,
+      "start_s": 475.0,
+      "end_s": 476.0,
+      "duration_ms": 1000,
+      "text": "Which one has been your favorite?",
+      "segment_index": 172
+    },
+    {
+      "id": "audio_4_segment_173",
+      "start_ms": 478000,
+      "end_ms": 480000,
+      "start_s": 478.0,
+      "end_s": 480.0,
+      "duration_ms": 2000,
+      "text": "It starts from your ASP days.",
+      "segment_index": 173
+    },
+    {
+      "id": "audio_4_segment_174",
+      "start_ms": 480000,
+      "end_ms": 487000,
+      "start_s": 480.0,
+      "end_s": 487.0,
+      "duration_ms": 7000,
+      "text": "Yes, I was ASP of Kuttur Sub-Division where Anujet was also there as ASP.",
+      "segment_index": 174
+    },
+    {
+      "id": "audio_4_segment_175",
+      "start_ms": 488000,
+      "end_ms": 489000,
+      "start_s": 488.0,
+      "end_s": 489.0,
+      "duration_ms": 1000,
+      "text": "That was very good.",
+      "segment_index": 175
+    },
+    {
+      "id": "audio_4_segment_176",
+      "start_ms": 490000,
+      "end_ms": 493000,
+      "start_s": 490.0,
+      "end_s": 493.0,
+      "duration_ms": 3000,
+      "text": "After that, I have done ASP-ship in about 5 districts.",
+      "segment_index": 176
+    },
+    {
+      "id": "audio_4_segment_177",
+      "start_ms": 494000,
+      "end_ms": 501000,
+      "start_s": 494.0,
+      "end_s": 501.0,
+      "duration_ms": 7000,
+      "text": "Bijapur, Belgaum, Mangalore, Kolar, Chitrakoot, some of these districts.",
+      "segment_index": 177
+    },
+    {
+      "id": "audio_4_segment_178",
+      "start_ms": 502000,
+      "end_ms": 505000,
+      "start_s": 502.0,
+      "end_s": 505.0,
+      "duration_ms": 3000,
+      "text": "Every position has its own charm and challenge.",
+      "segment_index": 178
+    },
+    {
+      "id": "audio_4_segment_179",
+      "start_ms": 507000,
+      "end_ms": 509000,
+      "start_s": 507.0,
+      "end_s": 509.0,
+      "duration_ms": 2000,
+      "text": "Some charm, some challenge, some tough assignments.",
+      "segment_index": 179
+    },
+    {
+      "id": "audio_4_segment_180",
+      "start_ms": 511000,
+      "end_ms": 513000,
+      "start_s": 511.0,
+      "end_s": 513.0,
+      "duration_ms": 2000,
+      "text": "Days have changed also nowadays.",
+      "segment_index": 180
+    },
+    {
+      "id": "audio_4_segment_181",
+      "start_ms": 514000,
+      "end_ms": 522000,
+      "start_s": 514.0,
+      "end_s": 522.0,
+      "duration_ms": 8000,
+      "text": "Certain things, especially the infusion of technology has made our job much easier compared to the earlier days.",
+      "segment_index": 181
+    },
+    {
+      "id": "audio_4_segment_182",
+      "start_ms": 523000,
+      "end_ms": 526000,
+      "start_s": 523.0,
+      "end_s": 526.0,
+      "duration_ms": 3000,
+      "text": "Either in detection of crime or even in law and order and other things also.",
+      "segment_index": 182
+    },
+    {
+      "id": "audio_4_segment_183",
+      "start_ms": 527000,
+      "end_ms": 528000,
+      "start_s": 527.0,
+      "end_s": 528.0,
+      "duration_ms": 1000,
+      "text": "Some things have made it difficult also.",
+      "segment_index": 183
+    }
+  ]
+}

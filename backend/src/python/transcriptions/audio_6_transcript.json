@@ -1,0 +1,969 @@
+{
+  "metadata": {
+    "audio_file": "/Users/nandvinaykumar.dave/Downloads/Superpod2/backend/src/python/audio_files/audio_6.mp3",
+    "language": "english",
+    "duration": 530.3599853515625,
+    "model": "whisper-1",
+    "timestamp_granularities": [
+      "segment"
+    ],
+    "processed_at": "2025-06-21T22:33:54.009436",
+    "agent": "TranscriptionAgent",
+    "agent_type": "transcription",
+    "provider": "OpenAI",
+    "version": "1.0.0"
+  },
+  "full_text": "and testing and I always wanted to become a civil servant. My father was in the services so similar to sir I was also motivated you know motivated through that aspect. My father was an IPS officer in this same state. So it was always in the back of my mind. So in fact I went to Delhi to prepare for the services and it also happened that I got a job. So both went hand in hand but I had to quit the job because I couldn't concentrate on the exam because the exam is quite a grueling examination. So I had to leave that and I joined in my second attempt I joined the services. I've seen both sides although the private sector side not for many I mean maybe about a year, year and a half. But I think I would have preferred this for the personality that I have. Which is? Which is like it's like challenges which doesn't like. Plus he has seen the police department, police family also. From that perspective also he has seen. Is it a bit like judiciary like the son of a judge will always want to be a judge? Not really my elder brother never wanted to be. Nowadays none of the bureaucrats children want to become bureaucrats. You think? Very few, very few. Yeah I would assume more people. My younger son is aspiring to become now but that's a different thing but generally it is less. Older son is a lawyer right? Yeah he just finished. So when you have family gatherings and you compare what profession you picked versus other people in your family how do you compare? Like what are the metrics that you use to compare? No as far as I'm concerned I have no regret. So far I have no regrets. It has been really good whatever postings I have done or whatever job I have done. It has been really good although family does suffer. My wife especially feels that being a policeman's wife is tough and difficult because my engagement was postponed by one day. I could not attend my engagement. I have not attended both my son's naming ceremony. So this kind of sacrifices you have to make and family also has to make certain sacrifices. That is part of the game but so far it has been good. So I don't have any regrets although I don't I hardly attend any family functions or relatives and other things but it's good. And as everybody another problem with the job must be whoever knows you extended family do people always call you for a favor? No but again you know what kind of for this thing you what kind of barriers or what kind of a line you draw. Right. Once you draw the line that you are not going to you know favor anybody within the family or outside. Right. Then those things will reduce. Right. We are transitioning into the coffee shop. Jokingly it is said in police department police officers know how their sons grow is like this. Horizontal because when they morning when they go to work the children will be sleeping. When they come home in the night also children will be sleeping. So their growth they visualize like this. Jokingly it is said. And also when a policeman retires it is the wife also retires with him or the spouse as the case may be. Meaning? Means like it's for her also it's like or him also it's like the same. Generally it becomes kind of she takes the load. In my case my kids have grown more with the mother than the kind of a single parent kind of situation happens. So I'll tell you in my house right my father was a bank manager in Kendra Bank. He was in Kendra Bank from his first job to the last job for 40 years. I've seen this life where while he was in the bank everybody gives him attention because he's the manager and maybe he can sanction a loan or he can do a bunch of things. But the day he retired at 16 suddenly that importance goes away. And in my case I saw his health also started depleting because suddenly he doesn't have that place to go to every morning and do a certain thing where people are treating him a certain way. How do you cope with that as a policeman? I'm assuming and extrapolating that it must be similar. It is simple. No doubt about it. Post retirement yes everything goes and here the because you are when you are in a police job you are always looked up to and you have the status. And the power is attached. Suddenly when everything is gone you have that vacuum. It definitely affects. And because you've had parents in the government you probably witnessed that as well. But you still chose to be a policeman? So what happens is like I saw with my own father right so he shifted to education. He became CEO of a education this thing where they were running institutions. So he went into that. But otherwise it does happen if that gap happens because you're full of work till you're 60. Post retirement opportunities also have increased nowadays. None of the retired officers are actually retired. So they have retired just for one. That's why it is said that when you retire earlier it used to be like retired from life itself. But now it is just retiring from one job. There are so many other opportunities. But this intoxicating power which has to be intoxicating like you go anywhere you're treated differently especially in uniform. That going away can't be an easy transition. Best is not get used to it. It's very hard no? Easier said than done. Yeah of course. But you shouldn't get in the trappings of power. Which are? Like if you want to be treated selectively, if you want everybody to salute you, if you're looking for that. I think that goes away with even when you get transferred out of a particular role that you're in. Right. I'm in traffic now so all the traffic constables and all the officers and all that, they know when my vehicle is going. Right. If I go to a different role next, certainly they will not know. So if you're expecting everybody to you know salute you at that. That visibility, power and aura what you call. That fades away. That fades away. Once you're out of the role itself. Forget retirement. From one role to the other itself it changes. So if you don't get into that you know, then it's fine. And you prepare yourself for all these things. Yeah. So I have many friends in police. Since I've grown up in Bangalore and I've gone to school and this has been home for me throughout. I've known them from you know like 10 years ago, 15 years ago, whatever. Whenever they go to the government at the central level, like some go to ED, some go to CBI, some go to like SFI, I don't know, different, different places. A lot of them tell me that our representation, Kannadiga's representation in government is so low. Like what are your thoughts on that? For various reasons. Not just because nobody speaks for us or anything. Officers from Karnataka KADAR do not like to go to the centre. Forget about us insiders. Even the outsiders who have come here like from other states. Like generally it is out of every four posts, three positions will be held by the outsiders and one position is given to the insider. That is the home state persons. Mainly because the KADAR is such that it is a very good KADAR. KADAR management is very good. The differentiation between the outside officers and inside officers is not much. The political witch hunting which happens in other states is not here and Bangalore city offers a good comfortable place to stay for education, for health and so many other aspects. It's a comfortable place. So, people do not prefer to go out. And also historically the number of people taking up examination was very less. Because you had alternated means of education and employment through engineering, medical, law. So, you see a lot of employment opportunities were there apart from government service.",
+  "segments": [
+    {
+      "id": "audio_6_segment_0",
+      "start_ms": 0,
+      "end_ms": 8199,
+      "start_s": 0.0,
+      "end_s": 8.199999809265137,
+      "duration_ms": 8199,
+      "text": "and testing and I always wanted to become a civil servant. My father was in the",
+      "segment_index": 0
+    },
+    {
+      "id": "audio_6_segment_1",
+      "start_ms": 8199,
+      "end_ms": 13600,
+      "start_s": 8.199999809265137,
+      "end_s": 13.600000381469727,
+      "duration_ms": 5400,
+      "text": "services so similar to sir I was also motivated you know motivated through",
+      "segment_index": 1
+    },
+    {
+      "id": "audio_6_segment_2",
+      "start_ms": 13600,
+      "end_ms": 18479,
+      "start_s": 13.600000381469727,
+      "end_s": 18.479999542236328,
+      "duration_ms": 4879,
+      "text": "that aspect. My father was an IPS officer in this same state. So it was",
+      "segment_index": 2
+    },
+    {
+      "id": "audio_6_segment_3",
+      "start_ms": 18479,
+      "end_ms": 22120,
+      "start_s": 18.479999542236328,
+      "end_s": 22.1200008392334,
+      "duration_ms": 3640,
+      "text": "always in the back of my mind. So in fact I went to Delhi to prepare for",
+      "segment_index": 3
+    },
+    {
+      "id": "audio_6_segment_4",
+      "start_ms": 22120,
+      "end_ms": 27719,
+      "start_s": 22.1200008392334,
+      "end_s": 27.719999313354492,
+      "duration_ms": 5599,
+      "text": "the services and it also happened that I got a job. So both went hand in hand",
+      "segment_index": 4
+    },
+    {
+      "id": "audio_6_segment_5",
+      "start_ms": 27719,
+      "end_ms": 30360,
+      "start_s": 27.719999313354492,
+      "end_s": 30.360000610351562,
+      "duration_ms": 2640,
+      "text": "but I had to quit the job because I couldn't concentrate on the exam because",
+      "segment_index": 5
+    },
+    {
+      "id": "audio_6_segment_6",
+      "start_ms": 30360,
+      "end_ms": 38040,
+      "start_s": 30.360000610351562,
+      "end_s": 38.040000915527344,
+      "duration_ms": 7680,
+      "text": "the exam is quite a grueling examination. So I had to leave that and I joined",
+      "segment_index": 6
+    },
+    {
+      "id": "audio_6_segment_7",
+      "start_ms": 38040,
+      "end_ms": 44319,
+      "start_s": 38.040000915527344,
+      "end_s": 44.31999969482422,
+      "duration_ms": 6279,
+      "text": "in my second attempt I joined the services. I've seen both sides although",
+      "segment_index": 7
+    },
+    {
+      "id": "audio_6_segment_8",
+      "start_ms": 44319,
+      "end_ms": 48680,
+      "start_s": 44.31999969482422,
+      "end_s": 48.68000030517578,
+      "duration_ms": 4360,
+      "text": "the private sector side not for many I mean maybe about a year, year and a half.",
+      "segment_index": 8
+    },
+    {
+      "id": "audio_6_segment_9",
+      "start_ms": 48680,
+      "end_ms": 54479,
+      "start_s": 48.68000030517578,
+      "end_s": 54.47999954223633,
+      "duration_ms": 5799,
+      "text": "But I think I would have preferred this for the personality that I have. Which is?",
+      "segment_index": 9
+    },
+    {
+      "id": "audio_6_segment_10",
+      "start_ms": 54479,
+      "end_ms": 58959,
+      "start_s": 54.47999954223633,
+      "end_s": 58.959999084472656,
+      "duration_ms": 4479,
+      "text": "Which is like it's like challenges which doesn't like. Plus he has seen the police",
+      "segment_index": 10
+    },
+    {
+      "id": "audio_6_segment_11",
+      "start_ms": 58959,
+      "end_ms": 64599,
+      "start_s": 58.959999084472656,
+      "end_s": 64.5999984741211,
+      "duration_ms": 5639,
+      "text": "department, police family also. From that perspective also he has seen. Is it a bit",
+      "segment_index": 11
+    },
+    {
+      "id": "audio_6_segment_12",
+      "start_ms": 64599,
+      "end_ms": 68519,
+      "start_s": 64.5999984741211,
+      "end_s": 68.5199966430664,
+      "duration_ms": 3919,
+      "text": "like judiciary like the son of a judge will always want to be a judge? Not",
+      "segment_index": 12
+    },
+    {
+      "id": "audio_6_segment_13",
+      "start_ms": 68519,
+      "end_ms": 72480,
+      "start_s": 68.5199966430664,
+      "end_s": 72.4800033569336,
+      "duration_ms": 3960,
+      "text": "really my elder brother never wanted to be. Nowadays none of the bureaucrats",
+      "segment_index": 13
+    },
+    {
+      "id": "audio_6_segment_14",
+      "start_ms": 72480,
+      "end_ms": 78680,
+      "start_s": 72.4800033569336,
+      "end_s": 78.68000030517578,
+      "duration_ms": 6199,
+      "text": "children want to become bureaucrats. You think? Very few, very few. Yeah I would assume",
+      "segment_index": 14
+    },
+    {
+      "id": "audio_6_segment_15",
+      "start_ms": 78680,
+      "end_ms": 82160,
+      "start_s": 78.68000030517578,
+      "end_s": 82.16000366210938,
+      "duration_ms": 3480,
+      "text": "more people. My younger son is aspiring to become now but that's a different thing",
+      "segment_index": 15
+    },
+    {
+      "id": "audio_6_segment_16",
+      "start_ms": 82160,
+      "end_ms": 89199,
+      "start_s": 82.16000366210938,
+      "end_s": 89.19999694824219,
+      "duration_ms": 7039,
+      "text": "but generally it is less. Older son is a lawyer right? Yeah he just finished.",
+      "segment_index": 16
+    },
+    {
+      "id": "audio_6_segment_17",
+      "start_ms": 89199,
+      "end_ms": 96000,
+      "start_s": 89.19999694824219,
+      "end_s": 96.0,
+      "duration_ms": 6800,
+      "text": "So when you have family gatherings and you compare what profession you picked",
+      "segment_index": 17
+    },
+    {
+      "id": "audio_6_segment_18",
+      "start_ms": 96000,
+      "end_ms": 101440,
+      "start_s": 96.0,
+      "end_s": 101.44000244140625,
+      "duration_ms": 5440,
+      "text": "versus other people in your family how do you compare? Like what are the",
+      "segment_index": 18
+    },
+    {
+      "id": "audio_6_segment_19",
+      "start_ms": 101440,
+      "end_ms": 107680,
+      "start_s": 101.44000244140625,
+      "end_s": 107.68000030517578,
+      "duration_ms": 6239,
+      "text": "metrics that you use to compare? No as far as I'm concerned I have no regret.",
+      "segment_index": 19
+    },
+    {
+      "id": "audio_6_segment_20",
+      "start_ms": 108279,
+      "end_ms": 115639,
+      "start_s": 108.27999877929688,
+      "end_s": 115.63999938964844,
+      "duration_ms": 7360,
+      "text": "So far I have no regrets. It has been really good whatever postings I have",
+      "segment_index": 20
+    },
+    {
+      "id": "audio_6_segment_21",
+      "start_ms": 115639,
+      "end_ms": 120720,
+      "start_s": 115.63999938964844,
+      "end_s": 120.72000122070312,
+      "duration_ms": 5080,
+      "text": "done or whatever job I have done. It has been really good although family does",
+      "segment_index": 21
+    },
+    {
+      "id": "audio_6_segment_22",
+      "start_ms": 120720,
+      "end_ms": 127919,
+      "start_s": 120.72000122070312,
+      "end_s": 127.91999816894531,
+      "duration_ms": 7199,
+      "text": "suffer. My wife especially feels that being a policeman's wife is tough and",
+      "segment_index": 22
+    },
+    {
+      "id": "audio_6_segment_23",
+      "start_ms": 127919,
+      "end_ms": 132479,
+      "start_s": 127.91999816894531,
+      "end_s": 132.47999572753906,
+      "duration_ms": 4559,
+      "text": "difficult because my engagement was postponed by one day. I could not attend",
+      "segment_index": 23
+    },
+    {
+      "id": "audio_6_segment_24",
+      "start_ms": 132479,
+      "end_ms": 137360,
+      "start_s": 132.47999572753906,
+      "end_s": 137.36000061035156,
+      "duration_ms": 4880,
+      "text": "my engagement. I have not attended both my son's naming ceremony. So this kind of",
+      "segment_index": 24
+    },
+    {
+      "id": "audio_6_segment_25",
+      "start_ms": 137360,
+      "end_ms": 140880,
+      "start_s": 137.36000061035156,
+      "end_s": 140.8800048828125,
+      "duration_ms": 3520,
+      "text": "sacrifices you have to make and family also has to make certain sacrifices.",
+      "segment_index": 25
+    },
+    {
+      "id": "audio_6_segment_26",
+      "start_ms": 140880,
+      "end_ms": 147320,
+      "start_s": 140.8800048828125,
+      "end_s": 147.32000732421875,
+      "duration_ms": 6440,
+      "text": "That is part of the game but so far it has been good. So I don't have any",
+      "segment_index": 26
+    },
+    {
+      "id": "audio_6_segment_27",
+      "start_ms": 147320,
+      "end_ms": 154759,
+      "start_s": 147.32000732421875,
+      "end_s": 154.75999450683594,
+      "duration_ms": 7439,
+      "text": "regrets although I don't I hardly attend any family functions or relatives and",
+      "segment_index": 27
+    },
+    {
+      "id": "audio_6_segment_28",
+      "start_ms": 154759,
+      "end_ms": 160720,
+      "start_s": 154.75999450683594,
+      "end_s": 160.72000122070312,
+      "duration_ms": 5960,
+      "text": "other things but it's good. And as everybody another problem with the job",
+      "segment_index": 28
+    },
+    {
+      "id": "audio_6_segment_29",
+      "start_ms": 160720,
+      "end_ms": 166080,
+      "start_s": 160.72000122070312,
+      "end_s": 166.0800018310547,
+      "duration_ms": 5360,
+      "text": "must be whoever knows you extended family do people always call you for a",
+      "segment_index": 29
+    },
+    {
+      "id": "audio_6_segment_30",
+      "start_ms": 166080,
+      "end_ms": 171479,
+      "start_s": 166.0800018310547,
+      "end_s": 171.47999572753906,
+      "duration_ms": 5399,
+      "text": "favor? No but again you know what kind of for this thing you what kind of",
+      "segment_index": 30
+    },
+    {
+      "id": "audio_6_segment_31",
+      "start_ms": 171479,
+      "end_ms": 176199,
+      "start_s": 171.47999572753906,
+      "end_s": 176.1999969482422,
+      "duration_ms": 4720,
+      "text": "barriers or what kind of a line you draw. Right. Once you draw the line that you",
+      "segment_index": 31
+    },
+    {
+      "id": "audio_6_segment_32",
+      "start_ms": 176199,
+      "end_ms": 180360,
+      "start_s": 176.1999969482422,
+      "end_s": 180.36000061035156,
+      "duration_ms": 4160,
+      "text": "are not going to you know favor anybody within the family or outside. Right.",
+      "segment_index": 32
+    },
+    {
+      "id": "audio_6_segment_33",
+      "start_ms": 180360,
+      "end_ms": 187639,
+      "start_s": 180.36000061035156,
+      "end_s": 187.63999938964844,
+      "duration_ms": 7279,
+      "text": "Then those things will reduce. Right. We are transitioning into the coffee shop.",
+      "segment_index": 33
+    },
+    {
+      "id": "audio_6_segment_34",
+      "start_ms": 196080,
+      "end_ms": 220880,
+      "start_s": 196.0800018310547,
+      "end_s": 220.8800048828125,
+      "duration_ms": 24800,
+      "text": "Jokingly it is said in police department police officers know how their sons grow",
+      "segment_index": 34
+    },
+    {
+      "id": "audio_6_segment_35",
+      "start_ms": 220880,
+      "end_ms": 225919,
+      "start_s": 220.8800048828125,
+      "end_s": 225.9199981689453,
+      "duration_ms": 5039,
+      "text": "is like this. Horizontal because when they morning when they go to work the",
+      "segment_index": 35
+    },
+    {
+      "id": "audio_6_segment_36",
+      "start_ms": 225919,
+      "end_ms": 229440,
+      "start_s": 225.9199981689453,
+      "end_s": 229.44000244140625,
+      "duration_ms": 3520,
+      "text": "children will be sleeping. When they come home in the night also children will be",
+      "segment_index": 36
+    },
+    {
+      "id": "audio_6_segment_37",
+      "start_ms": 229440,
+      "end_ms": 237360,
+      "start_s": 229.44000244140625,
+      "end_s": 237.36000061035156,
+      "duration_ms": 7919,
+      "text": "sleeping. So their growth they visualize like this. Jokingly it is said. And also when a",
+      "segment_index": 37
+    },
+    {
+      "id": "audio_6_segment_38",
+      "start_ms": 237360,
+      "end_ms": 240960,
+      "start_s": 237.36000061035156,
+      "end_s": 240.9600067138672,
+      "duration_ms": 3600,
+      "text": "policeman retires it is the wife also retires with him or the spouse as the",
+      "segment_index": 38
+    },
+    {
+      "id": "audio_6_segment_39",
+      "start_ms": 240960,
+      "end_ms": 246080,
+      "start_s": 240.9600067138672,
+      "end_s": 246.0800018310547,
+      "duration_ms": 5119,
+      "text": "case may be. Meaning? Means like it's for her also it's like or him also it's like the",
+      "segment_index": 39
+    },
+    {
+      "id": "audio_6_segment_40",
+      "start_ms": 246080,
+      "end_ms": 254800,
+      "start_s": 246.0800018310547,
+      "end_s": 254.8000030517578,
+      "duration_ms": 8720,
+      "text": "same. Generally it becomes kind of she takes the load. In my case my kids have",
+      "segment_index": 40
+    },
+    {
+      "id": "audio_6_segment_41",
+      "start_ms": 254800,
+      "end_ms": 259920,
+      "start_s": 254.8000030517578,
+      "end_s": 259.9200134277344,
+      "duration_ms": 5120,
+      "text": "grown more with the mother than the kind of a single parent kind of situation",
+      "segment_index": 41
+    },
+    {
+      "id": "audio_6_segment_42",
+      "start_ms": 259920,
+      "end_ms": 263359,
+      "start_s": 259.9200134277344,
+      "end_s": 263.3599853515625,
+      "duration_ms": 3439,
+      "text": "happens. So I'll tell you in my house right my father was a bank manager in",
+      "segment_index": 42
+    },
+    {
+      "id": "audio_6_segment_43",
+      "start_ms": 263359,
+      "end_ms": 269040,
+      "start_s": 263.3599853515625,
+      "end_s": 269.0400085449219,
+      "duration_ms": 5680,
+      "text": "Kendra Bank. He was in Kendra Bank from his first job to the last job for 40",
+      "segment_index": 43
+    },
+    {
+      "id": "audio_6_segment_44",
+      "start_ms": 269040,
+      "end_ms": 277279,
+      "start_s": 269.0400085449219,
+      "end_s": 277.2799987792969,
+      "duration_ms": 8239,
+      "text": "years. I've seen this life where while he was in the bank everybody gives him",
+      "segment_index": 44
+    },
+    {
+      "id": "audio_6_segment_45",
+      "start_ms": 277279,
+      "end_ms": 281119,
+      "start_s": 277.2799987792969,
+      "end_s": 281.1199951171875,
+      "duration_ms": 3839,
+      "text": "attention because he's the manager and maybe he can sanction a loan or he can",
+      "segment_index": 45
+    },
+    {
+      "id": "audio_6_segment_46",
+      "start_ms": 281119,
+      "end_ms": 289519,
+      "start_s": 281.1199951171875,
+      "end_s": 289.5199890136719,
+      "duration_ms": 8399,
+      "text": "do a bunch of things. But the day he retired at 16 suddenly that importance",
+      "segment_index": 46
+    },
+    {
+      "id": "audio_6_segment_47",
+      "start_ms": 289519,
+      "end_ms": 294559,
+      "start_s": 289.5199890136719,
+      "end_s": 294.55999755859375,
+      "duration_ms": 5040,
+      "text": "goes away. And in my case I saw his health also started depleting because",
+      "segment_index": 47
+    },
+    {
+      "id": "audio_6_segment_48",
+      "start_ms": 294559,
+      "end_ms": 299279,
+      "start_s": 294.55999755859375,
+      "end_s": 299.2799987792969,
+      "duration_ms": 4720,
+      "text": "suddenly he doesn't have that place to go to every morning and do a certain",
+      "segment_index": 48
+    },
+    {
+      "id": "audio_6_segment_49",
+      "start_ms": 299279,
+      "end_ms": 304000,
+      "start_s": 299.2799987792969,
+      "end_s": 304.0,
+      "duration_ms": 4720,
+      "text": "thing where people are treating him a certain way. How do you cope with that as",
+      "segment_index": 49
+    },
+    {
+      "id": "audio_6_segment_50",
+      "start_ms": 304000,
+      "end_ms": 307200,
+      "start_s": 304.0,
+      "end_s": 307.20001220703125,
+      "duration_ms": 3200,
+      "text": "a policeman? I'm assuming and extrapolating that it must be similar.",
+      "segment_index": 50
+    },
+    {
+      "id": "audio_6_segment_51",
+      "start_ms": 307200,
+      "end_ms": 312559,
+      "start_s": 307.20001220703125,
+      "end_s": 312.55999755859375,
+      "duration_ms": 5359,
+      "text": "It is simple. No doubt about it. Post retirement yes everything goes and here",
+      "segment_index": 51
+    },
+    {
+      "id": "audio_6_segment_52",
+      "start_ms": 312559,
+      "end_ms": 319600,
+      "start_s": 312.55999755859375,
+      "end_s": 319.6000061035156,
+      "duration_ms": 7040,
+      "text": "the because you are when you are in a police job you are always looked up to",
+      "segment_index": 52
+    },
+    {
+      "id": "audio_6_segment_53",
+      "start_ms": 319600,
+      "end_ms": 323839,
+      "start_s": 319.6000061035156,
+      "end_s": 323.8399963378906,
+      "duration_ms": 4239,
+      "text": "and you have the status. And the power is attached. Suddenly when everything is",
+      "segment_index": 53
+    },
+    {
+      "id": "audio_6_segment_54",
+      "start_ms": 323839,
+      "end_ms": 328720,
+      "start_s": 323.8399963378906,
+      "end_s": 328.7200012207031,
+      "duration_ms": 4880,
+      "text": "gone you have that vacuum. It definitely affects. And because you've had parents",
+      "segment_index": 54
+    },
+    {
+      "id": "audio_6_segment_55",
+      "start_ms": 328720,
+      "end_ms": 333920,
+      "start_s": 328.7200012207031,
+      "end_s": 333.9200134277344,
+      "duration_ms": 5200,
+      "text": "in the government you probably witnessed that as well. But you still chose to be a",
+      "segment_index": 55
+    },
+    {
+      "id": "audio_6_segment_56",
+      "start_ms": 333920,
+      "end_ms": 338079,
+      "start_s": 333.9200134277344,
+      "end_s": 338.0799865722656,
+      "duration_ms": 4159,
+      "text": "policeman? So what happens is like I saw with my own father right so he shifted",
+      "segment_index": 56
+    },
+    {
+      "id": "audio_6_segment_57",
+      "start_ms": 338079,
+      "end_ms": 344799,
+      "start_s": 338.0799865722656,
+      "end_s": 344.79998779296875,
+      "duration_ms": 6720,
+      "text": "to education. He became CEO of a education this thing where they were",
+      "segment_index": 57
+    },
+    {
+      "id": "audio_6_segment_58",
+      "start_ms": 344799,
+      "end_ms": 348880,
+      "start_s": 344.79998779296875,
+      "end_s": 348.8800048828125,
+      "duration_ms": 4080,
+      "text": "running institutions. So he went into that. But otherwise it does happen if",
+      "segment_index": 58
+    },
+    {
+      "id": "audio_6_segment_59",
+      "start_ms": 348880,
+      "end_ms": 353920,
+      "start_s": 348.8800048828125,
+      "end_s": 353.9200134277344,
+      "duration_ms": 5040,
+      "text": "that gap happens because you're full of work till you're 60. Post retirement",
+      "segment_index": 59
+    },
+    {
+      "id": "audio_6_segment_60",
+      "start_ms": 353920,
+      "end_ms": 357760,
+      "start_s": 353.9200134277344,
+      "end_s": 357.760009765625,
+      "duration_ms": 3839,
+      "text": "opportunities also have increased nowadays. None of the retired officers are",
+      "segment_index": 60
+    },
+    {
+      "id": "audio_6_segment_61",
+      "start_ms": 357760,
+      "end_ms": 362160,
+      "start_s": 357.760009765625,
+      "end_s": 362.1600036621094,
+      "duration_ms": 4399,
+      "text": "actually retired. So they have retired just for one. That's why it is said that",
+      "segment_index": 61
+    },
+    {
+      "id": "audio_6_segment_62",
+      "start_ms": 362160,
+      "end_ms": 366799,
+      "start_s": 362.1600036621094,
+      "end_s": 366.79998779296875,
+      "duration_ms": 4639,
+      "text": "when you retire earlier it used to be like retired from life itself. But now it",
+      "segment_index": 62
+    },
+    {
+      "id": "audio_6_segment_63",
+      "start_ms": 366799,
+      "end_ms": 370559,
+      "start_s": 366.79998779296875,
+      "end_s": 370.55999755859375,
+      "duration_ms": 3760,
+      "text": "is just retiring from one job. There are so many other opportunities. But this",
+      "segment_index": 63
+    },
+    {
+      "id": "audio_6_segment_64",
+      "start_ms": 370559,
+      "end_ms": 374880,
+      "start_s": 370.55999755859375,
+      "end_s": 374.8800048828125,
+      "duration_ms": 4320,
+      "text": "intoxicating power which has to be intoxicating like you go anywhere you're",
+      "segment_index": 64
+    },
+    {
+      "id": "audio_6_segment_65",
+      "start_ms": 374880,
+      "end_ms": 379839,
+      "start_s": 374.8800048828125,
+      "end_s": 379.8399963378906,
+      "duration_ms": 4959,
+      "text": "treated differently especially in uniform. That going away can't be an easy",
+      "segment_index": 65
+    },
+    {
+      "id": "audio_6_segment_66",
+      "start_ms": 379839,
+      "end_ms": 384959,
+      "start_s": 379.8399963378906,
+      "end_s": 384.9599914550781,
+      "duration_ms": 5119,
+      "text": "transition. Best is not get used to it. It's very hard no? Easier said than done.",
+      "segment_index": 66
+    },
+    {
+      "id": "audio_6_segment_67",
+      "start_ms": 384959,
+      "end_ms": 390880,
+      "start_s": 384.9599914550781,
+      "end_s": 390.8800048828125,
+      "duration_ms": 5920,
+      "text": "Yeah of course. But you shouldn't get in the trappings of power. Which are? Like if",
+      "segment_index": 67
+    },
+    {
+      "id": "audio_6_segment_68",
+      "start_ms": 390880,
+      "end_ms": 394239,
+      "start_s": 390.8800048828125,
+      "end_s": 394.239990234375,
+      "duration_ms": 3359,
+      "text": "you want to be treated selectively, if you want everybody to salute you, if you're",
+      "segment_index": 68
+    },
+    {
+      "id": "audio_6_segment_69",
+      "start_ms": 394239,
+      "end_ms": 397920,
+      "start_s": 394.239990234375,
+      "end_s": 397.9200134277344,
+      "duration_ms": 3680,
+      "text": "looking for that. I think that goes away with even when you get transferred out of",
+      "segment_index": 69
+    },
+    {
+      "id": "audio_6_segment_70",
+      "start_ms": 397920,
+      "end_ms": 402559,
+      "start_s": 397.9200134277344,
+      "end_s": 402.55999755859375,
+      "duration_ms": 4639,
+      "text": "a particular role that you're in. Right. I'm in traffic now so all the traffic",
+      "segment_index": 70
+    },
+    {
+      "id": "audio_6_segment_71",
+      "start_ms": 402640,
+      "end_ms": 405920,
+      "start_s": 402.6400146484375,
+      "end_s": 405.9200134277344,
+      "duration_ms": 3279,
+      "text": "constables and all the officers and all that, they know when my vehicle is going.",
+      "segment_index": 71
+    },
+    {
+      "id": "audio_6_segment_72",
+      "start_ms": 405920,
+      "end_ms": 411119,
+      "start_s": 405.9200134277344,
+      "end_s": 411.1199951171875,
+      "duration_ms": 5199,
+      "text": "Right. If I go to a different role next, certainly they will not know. So if you're",
+      "segment_index": 72
+    },
+    {
+      "id": "audio_6_segment_73",
+      "start_ms": 411119,
+      "end_ms": 417200,
+      "start_s": 411.1199951171875,
+      "end_s": 417.20001220703125,
+      "duration_ms": 6080,
+      "text": "expecting everybody to you know salute you at that. That visibility, power and aura",
+      "segment_index": 73
+    },
+    {
+      "id": "audio_6_segment_74",
+      "start_ms": 417200,
+      "end_ms": 421359,
+      "start_s": 417.20001220703125,
+      "end_s": 421.3599853515625,
+      "duration_ms": 4159,
+      "text": "what you call. That fades away. That fades away. Once you're out of the role itself.",
+      "segment_index": 74
+    },
+    {
+      "id": "audio_6_segment_75",
+      "start_ms": 422399,
+      "end_ms": 426399,
+      "start_s": 422.3999938964844,
+      "end_s": 426.3999938964844,
+      "duration_ms": 4000,
+      "text": "Forget retirement. From one role to the other itself it changes. So if you don't get",
+      "segment_index": 75
+    },
+    {
+      "id": "audio_6_segment_76",
+      "start_ms": 427440,
+      "end_ms": 431760,
+      "start_s": 427.44000244140625,
+      "end_s": 431.760009765625,
+      "duration_ms": 4320,
+      "text": "into that you know, then it's fine. And you prepare yourself for all these things.",
+      "segment_index": 76
+    },
+    {
+      "id": "audio_6_segment_77",
+      "start_ms": 431760,
+      "end_ms": 436239,
+      "start_s": 431.760009765625,
+      "end_s": 436.239990234375,
+      "duration_ms": 4479,
+      "text": "Yeah. So I have many friends in police. Since I've grown up in Bangalore and I've",
+      "segment_index": 77
+    },
+    {
+      "id": "audio_6_segment_78",
+      "start_ms": 436239,
+      "end_ms": 441440,
+      "start_s": 436.239990234375,
+      "end_s": 441.44000244140625,
+      "duration_ms": 5200,
+      "text": "gone to school and this has been home for me throughout. I've known them from you know like",
+      "segment_index": 78
+    },
+    {
+      "id": "audio_6_segment_79",
+      "start_ms": 441440,
+      "end_ms": 448880,
+      "start_s": 441.44000244140625,
+      "end_s": 448.8800048828125,
+      "duration_ms": 7440,
+      "text": "10 years ago, 15 years ago, whatever. Whenever they go to the government at the central level,",
+      "segment_index": 79
+    },
+    {
+      "id": "audio_6_segment_80",
+      "start_ms": 448880,
+      "end_ms": 454079,
+      "start_s": 448.8800048828125,
+      "end_s": 454.0799865722656,
+      "duration_ms": 5199,
+      "text": "like some go to ED, some go to CBI, some go to like SFI, I don't know, different, different",
+      "segment_index": 80
+    },
+    {
+      "id": "audio_6_segment_81",
+      "start_ms": 454079,
+      "end_ms": 459920,
+      "start_s": 454.0799865722656,
+      "end_s": 459.9200134277344,
+      "duration_ms": 5840,
+      "text": "places. A lot of them tell me that our representation, Kannadiga's representation",
+      "segment_index": 81
+    },
+    {
+      "id": "audio_6_segment_82",
+      "start_ms": 459920,
+      "end_ms": 465440,
+      "start_s": 459.9200134277344,
+      "end_s": 465.44000244140625,
+      "duration_ms": 5519,
+      "text": "in government is so low. Like what are your thoughts on that? For various reasons. Not just",
+      "segment_index": 82
+    },
+    {
+      "id": "audio_6_segment_83",
+      "start_ms": 465440,
+      "end_ms": 471679,
+      "start_s": 465.44000244140625,
+      "end_s": 471.67999267578125,
+      "duration_ms": 6239,
+      "text": "because nobody speaks for us or anything. Officers from Karnataka KADAR do not like to go to the",
+      "segment_index": 83
+    },
+    {
+      "id": "audio_6_segment_84",
+      "start_ms": 471679,
+      "end_ms": 476720,
+      "start_s": 471.67999267578125,
+      "end_s": 476.7200012207031,
+      "duration_ms": 5040,
+      "text": "centre. Forget about us insiders. Even the outsiders who have come here like from other",
+      "segment_index": 84
+    },
+    {
+      "id": "audio_6_segment_85",
+      "start_ms": 476720,
+      "end_ms": 482320,
+      "start_s": 476.7200012207031,
+      "end_s": 482.32000732421875,
+      "duration_ms": 5600,
+      "text": "states. Like generally it is out of every four posts, three positions will be held by the",
+      "segment_index": 85
+    },
+    {
+      "id": "audio_6_segment_86",
+      "start_ms": 482320,
+      "end_ms": 488480,
+      "start_s": 482.32000732421875,
+      "end_s": 488.4800109863281,
+      "duration_ms": 6160,
+      "text": "outsiders and one position is given to the insider. That is the home state persons. Mainly because the",
+      "segment_index": 86
+    },
+    {
+      "id": "audio_6_segment_87",
+      "start_ms": 488480,
+      "end_ms": 494239,
+      "start_s": 488.4800109863281,
+      "end_s": 494.239990234375,
+      "duration_ms": 5759,
+      "text": "KADAR is such that it is a very good KADAR. KADAR management is very good. The differentiation",
+      "segment_index": 87
+    },
+    {
+      "id": "audio_6_segment_88",
+      "start_ms": 494239,
+      "end_ms": 499279,
+      "start_s": 494.239990234375,
+      "end_s": 499.2799987792969,
+      "duration_ms": 5040,
+      "text": "between the outside officers and inside officers is not much. The political witch hunting which",
+      "segment_index": 88
+    },
+    {
+      "id": "audio_6_segment_89",
+      "start_ms": 499279,
+      "end_ms": 506640,
+      "start_s": 499.2799987792969,
+      "end_s": 506.6400146484375,
+      "duration_ms": 7360,
+      "text": "happens in other states is not here and Bangalore city offers a good comfortable place to stay",
+      "segment_index": 89
+    },
+    {
+      "id": "audio_6_segment_90",
+      "start_ms": 507200,
+      "end_ms": 513359,
+      "start_s": 507.20001220703125,
+      "end_s": 513.3599853515625,
+      "duration_ms": 6159,
+      "text": "for education, for health and so many other aspects. It's a comfortable place. So, people do",
+      "segment_index": 90
+    },
+    {
+      "id": "audio_6_segment_91",
+      "start_ms": 513359,
+      "end_ms": 518880,
+      "start_s": 513.3599853515625,
+      "end_s": 518.8800048828125,
+      "duration_ms": 5520,
+      "text": "not prefer to go out. And also historically the number of people taking up examination was very",
+      "segment_index": 91
+    },
+    {
+      "id": "audio_6_segment_92",
+      "start_ms": 518880,
+      "end_ms": 525039,
+      "start_s": 518.8800048828125,
+      "end_s": 525.0399780273438,
+      "duration_ms": 6159,
+      "text": "less. Because you had alternated means of education and employment through engineering,",
+      "segment_index": 92
+    },
+    {
+      "id": "audio_6_segment_93",
+      "start_ms": 525039,
+      "end_ms": 529440,
+      "start_s": 525.0399780273438,
+      "end_s": 529.4400024414062,
+      "duration_ms": 4400,
+      "text": "medical, law. So, you see a lot of employment opportunities were there apart from government",
+      "segment_index": 93
+    },
+    {
+      "id": "audio_6_segment_94",
+      "start_ms": 529440,
+      "end_ms": 530239,
+      "start_s": 529.4400024414062,
+      "end_s": 530.239990234375,
+      "duration_ms": 799,
+      "text": "service.",
+      "segment_index": 94
+    }
+  ]
+}

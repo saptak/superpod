@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "audio_file": "downloads/YGtINs3R5EM_60_30.mp3",
+    "language": "english",
+    "duration": 30.0,
+    "model": "whisper-1",
+    "timestamp_granularities": [
+      "segment"
+    ],
+    "processed_at": "2025-06-22T02:06:17.230753",
+    "agent": "TranscriptionAgent",
+    "agent_type": "transcription",
+    "provider": "OpenAI",
+    "version": "1.0.0"
+  },
+  "full_text": "Even casual banter to help you better understand any topic. Apple can't charge commissions outside the App Store. That feels huge. Oh, it's potentially massive. There's even ums and filler words in there, too. Isn't it interesting how things come full circle, you know? Yeah. As a former podcast creator, I obviously feel like this waters down the art of the craft. It's almost a parody of podcasting, but I'm kind of obsessed with it. So let's sit down, test this stuff out, and figure",
+  "segments": [
+    {
+      "id": "YGtINs3R5EM_60_30_segment_0",
+      "start_ms": 0,
+      "end_ms": 4199,
+      "start_s": 0.0,
+      "end_s": 4.199999809265137,
+      "duration_ms": 4199,
+      "text": "Even casual banter to help you better understand any topic.",
+      "segment_index": 0
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_1",
+      "start_ms": 4199,
+      "end_ms": 6800,
+      "start_s": 4.199999809265137,
+      "end_s": 6.800000190734863,
+      "duration_ms": 2600,
+      "text": "Apple can't charge commissions outside the App Store.",
+      "segment_index": 1
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_2",
+      "start_ms": 6800,
+      "end_ms": 7800,
+      "start_s": 6.800000190734863,
+      "end_s": 7.800000190734863,
+      "duration_ms": 1000,
+      "text": "That feels huge.",
+      "segment_index": 2
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_3",
+      "start_ms": 7800,
+      "end_ms": 9500,
+      "start_s": 7.800000190734863,
+      "end_s": 9.5,
+      "duration_ms": 1699,
+      "text": "Oh, it's potentially massive.",
+      "segment_index": 3
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_4",
+      "start_ms": 9500,
+      "end_ms": 12399,
+      "start_s": 9.5,
+      "end_s": 12.399999618530273,
+      "duration_ms": 2899,
+      "text": "There's even ums and filler words in there, too.",
+      "segment_index": 4
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_5",
+      "start_ms": 12399,
+      "end_ms": 16000,
+      "start_s": 12.399999618530273,
+      "end_s": 16.0,
+      "duration_ms": 3600,
+      "text": "Isn't it interesting how things come full circle, you know?",
+      "segment_index": 5
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_6",
+      "start_ms": 16000,
+      "end_ms": 16799,
+      "start_s": 16.0,
+      "end_s": 16.799999237060547,
+      "duration_ms": 799,
+      "text": "Yeah.",
+      "segment_index": 6
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_7",
+      "start_ms": 16799,
+      "end_ms": 18700,
+      "start_s": 16.799999237060547,
+      "end_s": 18.700000762939453,
+      "duration_ms": 1900,
+      "text": "As a former podcast creator,",
+      "segment_index": 7
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_8",
+      "start_ms": 18700,
+      "end_ms": 21899,
+      "start_s": 18.700000762939453,
+      "end_s": 21.899999618530273,
+      "duration_ms": 3199,
+      "text": "I obviously feel like this waters down the art of the craft.",
+      "segment_index": 8
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_9",
+      "start_ms": 21899,
+      "end_ms": 24700,
+      "start_s": 21.899999618530273,
+      "end_s": 24.700000762939453,
+      "duration_ms": 2800,
+      "text": "It's almost a parody of podcasting,",
+      "segment_index": 9
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_10",
+      "start_ms": 24700,
+      "end_ms": 27200,
+      "start_s": 24.700000762939453,
+      "end_s": 27.200000762939453,
+      "duration_ms": 2500,
+      "text": "but I'm kind of obsessed with it.",
+      "segment_index": 10
+    },
+    {
+      "id": "YGtINs3R5EM_60_30_segment_11",
+      "start_ms": 27200,
+      "end_ms": 30399,
+      "start_s": 27.200000762939453,
+      "end_s": 30.399999618530273,
+      "duration_ms": 3199,
+      "text": "So let's sit down, test this stuff out, and figure",
+      "segment_index": 11
+    }
+  ]
+}

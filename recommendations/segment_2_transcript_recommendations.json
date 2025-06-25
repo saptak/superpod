@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "agent": "RecommendationAgent",
+    "agent_type": "recommendation",
+    "model": "Llama-4-Scout-17B-16E-Instruct-FP8",
+    "created_at": "2025-06-21T22:26:14.818112",
+    "version": "1.0.0"
+  },
+  "podcast_metadata": {
+    "content_summary": {
+      "main_topic": "Indian Police Service (IPS) and policing in India",
+      "category": "education",
+      "content_type": "discussion",
+      "main_takeaway": [
+        "The IPS is a prestigious service with limited cadre strength, and officers can be assigned to various roles including deputation to central organizations.",
+        "The police force in India has different levels of entry, including Constabulary, Sub-Inspector, Assistant SP, and Superintendent of Police."
+      ],
+      "target_audience": "general public, students"
+    },
+    "speakers": {
+      "host": "unknown",
+      "guest": "none",
+      "speaker_roles": [
+        "A person knowledgeable about the Indian Police Service (IPS) and policing in India"
+      ]
+    },
+    "engagement": {
+      "tone": "casual",
+      "memorable_quote": "You have to live with the criticism what police gets. Because ultimately in police, either you have to be with the victim or with the accused.",
+      "action_item": "Encouraging young people to consider joining the police force."
+    },
+    "duration_seconds": 530.3599853515625,
+    "duration_minutes": 8.839333089192708,
+    "total_segments": 188,
+    "total_words": 1344,
+    "extraction_timestamp": "2025-06-21T22:26:08.660115"
+  },
+  "recommendations": [
+    {
+      "podcast_id": "gov_insights_004",
+      "title": "Governance and Public Service",
+      "reason": "This podcast is likely to discuss topics related to government services, public policy, and administration, which aligns with the main topic of Indian Police Service (IPS) and policing in India.",
+      "similarity_score": "high",
+      "matching_factors": [
+        "category",
+        "content_type",
+        "target_audience"
+      ]
+    },
+    {
+      "podcast_id": "career_talk_005",
+      "title": "Career Talk Show",
+      "reason": "This podcast may explore various career paths and opportunities, including those in law enforcement or public service, making it relevant to listeners interested in IPS and policing.",
+      "similarity_score": "medium",
+      "matching_factors": [
+        "education",
+        "discussion",
+        "general public",
+        "students"
+      ]
+    },
+    {
+      "podcast_id": "social_issue_discussion_006",
+      "title": "Social Issues Today",
+      "reason": "As a discussion-based podcast focusing on social issues, this show might cover topics intersecting with policing and its societal impact, appealing to an audience concerned with public safety and governance.",
+      "similarity_score": "medium",
+      "matching_factors": [
+        "discussion",
+        "casual tone",
+        "general public"
+      ]
+    }
+  ]
+}
